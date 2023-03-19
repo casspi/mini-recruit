@@ -11,17 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Woshiajuana/wow-wx.git"
+    "url": "git+https://codeup.aliyun.com/632e5c95419338aaa2b13ca0/wx-mini/mini-recruit.git"
   },
   "keywords": [
     "webpack"
   ],
   "author": "kassadin",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Woshiajuana/wow-wx/issues"
-  },
-  "homepage": "https://github.com/Woshiajuana/wow-wx#readme",
   "dependencies": {
     "@daysnap/define-sass": "0.0.9",
     "wow-wx": "^0.1.15"
