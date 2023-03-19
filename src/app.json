@@ -1,0 +1,17 @@
+{
+    "pages": [
+        "pages/home/index",
+        "pages/demo/index"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "window": {
+        "navigationBarTitleText": "招募之家",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff"
+    },
+    "subpackages": []
+}
