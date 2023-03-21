@@ -1,0 +1,31 @@
+<view class="c-page">
+  <view class="user">
+    <text class="user-avatar">呵</text>
+    <view class="user-detail">
+      <view class="user-name">
+        <text>呵呵</text>
+        <text decode="{{true}}">&nbsp;|&nbsp;</text>
+        <text>招募经理</text>
+      </view>
+      <view>
+        <text>13817674594</text>
+      </view>
+    </view>
+  </view>
+  <view class="menu-section">
+    <view class="menu-item"
+          bindtap="jumpPageOrFireFn"
+          data-item="{{ item }}"
+          wx:for="{{ arrMenu }}"
+          wx:key="index">
+      <view class="iconfont {{ item.icon }}"></view>
+      <view class="menu-label">
+        <text>{{ item.label }}</text>
+      </view>
+      <view class="menu-value">
+        <text>{{ item.value }}</text>
+      </view>
+      <view class="c-arrow right"></view>
+    </view>
+  </view>
+</view>

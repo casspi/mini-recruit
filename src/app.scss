@@ -4,3 +4,47 @@
 page {
   @extend %bsb;
 }
+
+button {
+  border: none;
+}
+
+button::after {
+  border: none;
+}
+
+@include b(c) {
+  @include e(form) {
+    width: j(702);
+    height: j(200);
+    border-radius: j(20);
+    margin: j(40) auto 0;
+    @extend %bfff;
+  }
+  @include e(input-place) {
+    @extend %c6;
+  }
+  @include e(arrow) {
+    width: j(12);
+    height: j(12);
+    border-top: 1px solid #848484;
+    border-right: 1px solid #848484;
+    &.right {
+      @include tfr(45deg);
+      margin-left: j(10);
+    }
+    &.bottom {
+      @include tfr(135deg);
+      margin-left: j(30);
+      margin-bottom: j(20);
+    }
+    &.left {
+      @include tfr(-135deg);
+      margin-right: j(10);
+    }
+    &.top {
+      @include tfr(-45deg);
+      margin-left: j(30);
+    }
+  }
+}

@@ -1,0 +1,86 @@
+@import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+}
+
+// 用户信息
+@include b(user) {
+  height: j(308);
+  background-color: $color-primary;
+  padding-top: j(42);
+  @extend %bsb;
+  @extend %df;
+  @include e(avatar) {
+    width: j(130);
+    height: j(130);
+    line-height: j(130);
+    background-color: #fff;
+    font-size: j(44);
+    color: $color-primary;
+    margin-left: j(48);
+    @extend %fwb;
+    @extend %br50;
+    @extend %tac;
+  }
+  @include e(detail) {
+    margin-left: j(18);
+    font-size: j(30);
+    @extend %cfff;
+
+  }
+  @include e(name) {
+    @extend %df;
+    @extend %aic;
+    margin-bottom: j(16);
+    text:first-child {
+      font-size: j(48);
+    }
+  }
+}
+
+// 菜单
+@include b(menu) {
+  @include e(section) {
+    margin: j(-80) auto 0;
+    width: j(702);
+  }
+  @include e(item) {
+    @extend %df;
+    @extend %aic;
+    @extend %ao8;
+    @extend %cp;
+    @extend %bwb;
+    background-color: #fff;
+    padding: 0 j(24) 0 j(28);
+    font-size: j(28);
+    height: j(104);
+    margin-bottom: j(24);
+    border-radius: j(16);
+    &:last-child {
+      &:after {
+        @extend %dn;
+      }
+    }
+    .iconfont {
+      @extend %df;
+      @extend %aic;
+      @extend %jcc;
+      @extend %c6;
+      font-size: j(40);
+      width: j(40);
+      height: j(40);
+      margin-right: j(20);
+    }
+  }
+  @include e(label) {
+    @extend %c3;
+    @extend %df1;
+    @extend %fwb;
+  }
+  @include e(value) {
+    @extend %c6;
+  }
+}

@@ -1,0 +1,50 @@
+<view class="login-page">
+  <view class="header">
+    <image class="logo"/>
+    <text class="title">xx招募之家</text>
+    <text class="code" space="false">推荐码:2222</text>
+  </view>
+  <view class="login-form">
+    <view class="form-item">
+      <view class="form-item__title">手机号</view>
+      <view class="form-item-cells form-item_after-title">
+        <view class="form-item-cells form-item_input">
+          <input class="form-input" type="number" maxlength="11" placeholder="请输入手机号"/>
+        </view>
+      </view>
+    </view>
+    <view class="form-item form-item-code">
+      <view class="form-item__title">验证码</view>
+      <view class="form-item-cells form-item_after-title">
+        <view class="form-item-cells form-item_input">
+          <input class="form-input" type="number" maxlength="6" placeholder="请输入验证码"/>
+          <button class="btn-code" disabled="{{true}}">获取验证码</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="button is-submit mt-80" disabled>立即登录</button>
+  <button class="button mt-30">访客登录</button>
+  <view class="agreement {{ isAgree && 'is-active' }}"
+        bindtap="inputHandle"
+        data-value="{{ !isAgree }}"
+        data-item="isAgree">
+    <view class="agreement-icon iconfont icon-xuanzhong"></view>
+    <view class="agreement-text">
+      <text>已认真阅读xxx朝暮之家</text>
+      <text class="strong"
+            catchtap="jumpPageOrFireFn"
+            data-url="webview_index"
+            data-params="{{ { title: '用户服务协议', link: api$.H5_AGREEMENT_URL + '3' } }}"
+      >《用户服务协议》
+      </text>
+      <text class="strong"
+            catchtap="jumpPageOrFireFn"
+            data-url="webview_index"
+            data-params="{{ { title: '隐私政策', link: api$.H5_AGREEMENT_URL + '7' } }}"
+      >《隐私政策》
+      </text>
+      <text>并接受协议内容</text>
+    </view>
+  </view>
+</view>

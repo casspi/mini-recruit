@@ -1,7 +1,11 @@
 {
     "pages": [
         "pages/home/index",
-        "pages/demo/index"
+        "pages/demo/index",
+        "pages/enroll/index",
+        "pages/login/index",
+        "pages/mine/index",
+        "pages/user/index"
     ],
     "permission": {
         "scope.userLocation": {
@@ -12,6 +16,33 @@
         "navigationBarTitleText": "招募之家",
         "navigationBarTextStyle": "black",
         "navigationBarBackgroundColor": "#ffffff"
+    },
+    "tabBar": {
+        "color": "#9EA6B9",
+        "selectedColor": "#2f6ff5",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "pages/home/index",
+                "text": "项目",
+                "iconPath": "assets/images/project-icon.png",
+                "selectedIconPath": "assets/images/project-active-icon.png"
+            },
+            {
+                "pagePath": "pages/enroll/index",
+                "text": "报名",
+                "iconPath": "assets/images/enroll-icon.png",
+                "selectedIconPath": "assets/images/enroll-active-icon.png"
+            },
+            {
+                "pagePath": "pages/mine/index",
+                "text": "我的",
+                "iconPath": "assets/images/mine-icon.png",
+                "selectedIconPath": "assets/images/mine-active-icon.png"
+            }
+        ]
     },
     "subpackages": []
 }

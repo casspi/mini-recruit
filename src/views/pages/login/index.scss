@@ -1,0 +1,161 @@
+@import "src/assets/scss/define";
+
+.header {
+  padding: j(60) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    width: j(120);
+    height: j(120);
+    background: #2f6ff5;
+    border-radius: 50%;
+    margin-bottom: j(40);
+  }
+
+  .title {
+    font-size: j(36);
+    font-weight: bold;
+    line-height: j(36);
+  }
+
+  .code {
+    font-size: j(32);
+    color: $color-primary;
+    line-height: j(40);
+    margin-top: j(20);
+  }
+}
+
+.login-form {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 j(44);
+}
+
+.form-item {
+  border-bottom: 1px solid $gary;
+  padding-bottom: j(16);
+
+  &:not(frist-child) {
+    margin-top: j(50);
+  }
+}
+
+.form-item__title {
+  margin-bottom: j(20);
+  font-size: j(28);
+  font-weight: bold;
+}
+
+.form-item_input {
+  line-height: j(48);
+  font-size: j(28);
+}
+
+.btn-code {
+  border: none;
+  background-color: #fff !important;
+  color: $color-primary !important;
+  padding: 0;
+  margin: 0;
+  line-height: j(48);
+  font-size: j(28);
+
+  &::after {
+    display: none;
+  }
+
+  &[disabled] {
+    color: $primary-disabled !important;
+  }
+}
+
+.form-item-code .form-item_input {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 按钮
+@include b(button) {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  @extend %cp;
+  @extend %ma;
+  margin-top: auto;
+  font-size: j(32);
+  background-color: #fff;
+  border: 1px solid $gary;
+  color: #333;
+  height: j(88);
+  width: j(630);
+  border-radius: j(44);
+  &.disabled,
+  &:disabled,
+  &[disabled] {
+    color: #fff !important;
+    background-color: #ddd !important;
+  }
+  &:after {
+    @extend %dn;
+  }
+  @include when(submit) {
+    @extend %cfff;
+    background-color: $color-primary;
+    border: none;
+    &[disabled] {
+      background-color: $primary-disabled !important;
+    }
+  }
+}
+
+.mt-80 {
+  margin-top: j(80);
+}
+
+.mt-30 {
+  margin-top: j(30);
+}
+
+// 协议
+@include b(agreement) {
+  @extend %df;
+  @extend %aic;
+  @extend %c3;
+  width: j(630);
+  margin: j(40) auto 0;
+  font-size: j(24);
+  color: #c0c0c0;
+  @include e(icon) {
+    //@extend %df;
+    //@extend %aic;
+    //@extend %jcc;
+    //@extend %br50;
+    //@extend %bsb;
+    //@extend %cfff;
+    //border: 1px solid #e9e9e9;
+    font-size: j(36);
+    margin-right: j(16);
+    //width: j(36);
+    //height: j(36);
+  }
+
+  @include e(text) {
+    @extend %df1;
+    @extend %df;
+    @extend %fww;
+    line-height: j(36);
+    .strong {
+      color: $color-primary;
+    }
+  }
+
+  @include when(active) {
+    .agreement-icon {
+      color: $color-primary;
+    }
+  }
+
+}

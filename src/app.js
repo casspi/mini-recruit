@@ -4,6 +4,14 @@ import './project.config.json'
 import './app.scss'
 import './wxs/filter.wxs'
 
+// 图标资源
+import 'src/assets/images/project-icon.png'
+import 'src/assets/images/project-active-icon.png'
+import 'src/assets/images/mine-active-icon.png'
+import 'src/assets/images/mine-icon.png'
+import 'src/assets/images/enroll-icon.png'
+import 'src/assets/images/enroll-active-icon.png'
+
 import WowApp from 'wow-wx/lib/app'
 
 const wowApp = new WowApp()
