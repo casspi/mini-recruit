@@ -1,0 +1,24 @@
+<wxs src="/wxs/filter.wxs" module="filter"/>
+
+<view class="select-warp">
+  <text class="remind" wx:if="{{params$.remind}}">{{params$.remind}}</text>
+  <text class="selectd">已选择：
+    <block wx:for="{{filter.pickByKey(params$.options, active, 'id')}}" wx:key="index">
+      {{index > 0? ';'{{item.text}}:{{item.text}}}}
+    </block>
+  </text>
+  <view class="select-item {{filter.includes(active, item.id) && 'is-active'}}" wx:for="{{params$.options}}"
+        wx:key="index"
+        data-item="{{ item }}" bindtap="itemHandle">
+    <view class="select-item-right">
+      <text wx:if="{{item.title}}" class="title">{{item.title}}</text>
+      <text>{{item.text}}</text>
+      <text wx:if="{{item.tips}}" class="tips">{{item.tips}}</text>
+    </view>
+    <text class="iconfont icon-yuyue"></text>
+  </view>
+</view>
+<view class="c-fixed-seat"></view>
+<view class="c-fixed">
+  <view class="c-button" bindtap="handleConfirm">确定</view>
+</view>

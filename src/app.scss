@@ -1,5 +1,6 @@
 @import "src/assets/scss/define";
 @import "src/assets/scss/iconfont";
+@import "src/templates/form-view/index";
 
 page {
   @extend %bsb;
@@ -13,10 +14,14 @@ button::after {
   border: none;
 }
 
+.c-input-place {
+  color: #cecfd2;
+}
+
 @include b(c) {
-  @include e(form) {
+  @include e(block) {
     width: j(702);
-    height: j(200);
+    min-height: j(40);
     border-radius: j(20);
     margin: j(40) auto 0;
     @extend %bfff;
@@ -47,4 +52,43 @@ button::after {
       margin-left: j(30);
     }
   }
+}
+
+.c-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: j(120);
+  @extend %bfff;
+  @extend %df;
+  @extend %aic;
+
+  &-seat {
+    height: j(120);
+  }
+}
+
+.c-button {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  @extend %ma;
+  @extend %cfff;
+  height: j(100);
+  font-size: j(30);
+  padding: 0;
+  border-radius: j(50);
+  width: j(698);
+  background-color: $color-primary;
+}
+
+.c-button-plain {
+  height: j(100);
+  font-size: j(30);
+  padding: 0;
+  border-radius: j(50);
+  border: 1px solid $color-primary;
+  background: #fff;
+  color: $color-primary;
 }

@@ -1,0 +1,60 @@
+@import 'src/assets/scss/define';
+
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.remind {
+  color: #999;
+  font-size: j(24);
+}
+
+.select-warp {
+  padding: 0 j(40);
+}
+
+.select-item {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %bw05;
+  @extend %bwt;
+  padding: j(10) 0;
+  min-height: j(80);
+  color: #666;
+  font-size: j(28);
+
+  &-right {
+    @extend %df;
+    @extend %fdc;
+  }
+
+  .title {
+    color: #333;
+    font-size: j(32);
+    margin-bottom: j(10);
+  }
+
+  .tips {
+    color: $color-danger;
+    font-size: j(24);
+    display: none;
+  }
+
+  .iconfont {
+    display: none;
+  }
+
+  &.is-active {
+    .iconfont {
+      color: $color-primary;
+      display: block;
+    }
+
+    .tips {
+      display: block;
+      margin-top: j(10);
+    }
+  }
+}

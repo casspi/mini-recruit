@@ -10,6 +10,7 @@ export default {
   ],
   jumpPageOrFireFn(e) {
     const {item, ...rest} = this.inputParams(e)
+    console.log('item=>', item)
     let {
       url, params, fn, async, sync, disabled,
       close = false, event, filter, premise = ''

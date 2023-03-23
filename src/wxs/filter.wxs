@@ -61,4 +61,23 @@ module.exports = {
     }
     return data.indexOf(value) > -1
   },
+  pickByKey: function (arr, val, key){
+  console.log(arr, val, key)
+      var res = []
+      if(val && val.constructor && val.constructor == 'Array'){
+          val.forEach(function(item){
+              arr.forEach(function(o) {
+                if(o[key] === item) res.push(o)
+              })
+          })
+      }else{
+          arr.forEach(function(o) {
+            if(o[key] === val) res.push(o)
+          })
+      }
+      res.filter(function(item){
+        return item
+      })
+      return res
+  }
 };

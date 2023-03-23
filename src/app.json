@@ -5,6 +5,7 @@
         "pages/enroll/index",
         "pages/login/index",
         "pages/mine/index",
+        "pages/select/index",
         "pages/user/index"
     ],
     "permission": {

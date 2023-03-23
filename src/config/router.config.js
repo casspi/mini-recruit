@@ -4,5 +4,6 @@ export default {
     "home_index": "/pages/home/index",
     "login_index": "/pages/login/index",
     "mine_index": "/pages/mine/index",
+    "select_index": "/pages/select/index",
     "user_index": "/pages/user/index"
 }

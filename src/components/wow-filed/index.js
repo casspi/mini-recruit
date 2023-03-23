@@ -14,6 +14,5 @@ new WowComponent({
       type: Object,
       value: {},
     },
-  },
-  on
+  }
 })
