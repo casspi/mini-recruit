@@ -57,25 +57,25 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
     return reject(`网络繁忙，请稍后再试[${statusCode}]`)
   }
   console.log(`${url} [${method}] 请求返回 => `, respData)
-  let {Status, Data, Extend, Message} = respData
-  if ([201].indexOf(Status) > -1) {
-    reject(Message || 'token已过期，请重新登录')
-    return gotoLogin()
-  }
-  if (Status === 202) {
-    reject('')
-    return Router.routerPush('webview_index', {
-      link: Extend,
-      title: '关注公众号'
-    })
-  }
-  if (Status !== 0) {
-    return reject(respData)
-  }
-  if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
-    Data = Object.assign({}, Extend, Data)
-  }
-  resolve(Data)
+  let {Status, data, Extend, Message} = respData
+  // if ([201].indexOf(Status) > -1) {
+  //   reject(Message || 'token已过期，请重新登录')
+  //   return gotoLogin()
+  // }
+  // if (Status === 202) {
+  //   reject('')
+  //   return Router.routerPush('webview_index', {
+  //     link: Extend,
+  //     title: '关注公众号'
+  //   })
+  // }
+  // if (Status !== 0) {
+  //   return reject(respData)
+  // }
+  // if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
+  //   Data = Object.assign({}, Extend, Data)
+  // }
+  resolve(data)
 }), (error) => {
   if (error && error.errMsg) {
     if (error.errMsg === 'request:fail timeout') {

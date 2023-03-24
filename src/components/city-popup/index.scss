@@ -1,0 +1,110 @@
+@import 'src/assets/scss/define';
+
+.modal {
+  @extend %pf;
+  @extend %w100;
+  @extend %h100;
+  @extend %t0;
+  @extend %l0;
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.city-warp {
+  @extend %pa;
+  @extend %b0;
+  @extend %r0;
+  @extend %l0;
+  @extend %bfff;
+  @extend %df;
+  @extend %fdc;
+  @extend %c3;
+  height: j(840);
+  border-radius: j(25) j(25) 0 0;
+  overflow: hidden;
+}
+
+.header {
+  padding: j(20) j(40);
+  @extend %df;
+  @extend %aic;
+  @extend %fdc;
+
+  .title {
+    font-size: j(36);
+    font-weight: bold;
+  }
+
+  .remind {
+    padding-top: j(20);
+    font-size: j(24);
+    color: #999;
+  }
+
+  .selected {
+    padding-top: j(20);
+    width: 100%;
+    font-size: j(28);
+  }
+}
+
+.content {
+  flex: 1;
+  height: j(450);
+  @extend %df;
+  line-height: j(90);
+
+}
+
+.province {
+  width: j(250);
+  height: 100%;
+  @extend %df;
+  @extend %fdc;
+  overflow: auto;
+
+  &-item {
+    padding-left: j(30);
+    background-color: #f7f8fa;
+    @extend %pr;
+
+    &.is-active {
+      background-color: #fff;
+
+      &::after {
+        content: '';
+        width: j(5);
+        background-color: $color-primary;
+        height: 100%;
+        @extend %pa;
+        @extend %l0;
+        @extend %t0;
+      }
+    }
+  }
+}
+
+.city {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  padding: 0 j(30);
+
+  &-item {
+    @extend %df;
+    @extend %aic;
+    @extend %jcs;
+    @extend %fwb;
+
+    .iconfont {
+      font-weight: normal;
+    }
+
+    &.is-active {
+      color: $color-primary;
+    }
+  }
+}

@@ -3,10 +3,10 @@ export default {
     let res = []
     if (Array.isArray(val)) {
       val.forEach(item => {
-        res.push(arr.find(o => o[key] === item))
+        res.push(arr.find(o => o[key] === item[key]))
       })
     } else {
-      res.push(arr.find(o => o[key] === val))
+      res.push(arr.find(o => o[key] === item[key]))
     }
     res.filter(Boolean)
     return res

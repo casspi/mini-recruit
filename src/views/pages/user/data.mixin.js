@@ -43,6 +43,20 @@ export default {
         labelSuffix: "(选填)",
         maxlength: 11
       },
+      // 所在地
+      City: {
+        value: [],
+        label: '所在地',
+        key: 'objInput.City',
+        is: 'picker',
+        title: '请选择所在地',
+        fn: 'cityHandle',
+        formatter: 'formatArrayJoin',
+        use: [
+          {nonempty: true, prompt: '请选择照片'},
+          {rule: v => v.length, prompt: '请选择照片'},
+        ]
+      },
       // 体能状况
       Health: {
         value: '',
@@ -51,6 +65,7 @@ export default {
         is: 'picker',
         url: 'select_index',
         title: '请选择体能状况',
+        labelKey: 'text',
         options: [
           {id: 1, title: '2级', text: '见客户你看就看', tips: '3、4级不符合临床招募情况'},
           {id: 2, title: '2级', text: '见客户你看就看'},
@@ -66,6 +81,7 @@ export default {
         url: 'select_index',
         title: '请选择确诊疾病',
         remind: '注：最多选择10个',
+        labelKey: 'text',
         multiple: true,
         options: [
           {id: 1, text: '感冒'},
@@ -170,5 +186,7 @@ export default {
         is: 'checkbox',
       }
     },
+    // 城市数据
+    source: []
   }
 }

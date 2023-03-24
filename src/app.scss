@@ -59,14 +59,18 @@ button::after {
   bottom: 0;
   left: 0;
   right: 0;
-  min-height: j(120);
   @extend %bfff;
-  @extend %df;
-  @extend %aic;
+
 
   &-seat {
     height: j(120);
   }
+}
+
+.c-btn-bar {
+  @extend %df;
+  @extend %aic;
+  min-height: j(120);
 }
 
 .c-button {
@@ -91,4 +95,43 @@ button::after {
   border: 1px solid $color-primary;
   background: #fff;
   color: $color-primary;
+}
+
+// 表单按钮组
+.btn-bar {
+  height: j(120);
+  padding: 0 j(30);
+  @extend %bfff;
+  @extend %df;
+  @extend %aic;
+
+  .btn {
+    height: j(96);
+    line-height: j(96);
+    font-size: j(32);
+    flex: 1;
+    border-radius: j(48);
+    @extend %tac;
+  }
+
+  .btn + .btn {
+    margin-left: j(30);
+  }
+
+  .btn-reset {
+    border: 1px solid #ebedf0;
+    background-color: #f1f1f1;
+  }
+
+  .btn-confirm {
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    color: #fff;
+  }
+}
+
+.ios-seat {
+  @extend %w100;
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
 }

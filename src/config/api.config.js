@@ -19,4 +19,6 @@ export default {
 
   H5_BASE_URL: isProd ? '' : '',
 
+  // 获取城市列表
+  REQ_CITY_LIST: 'https://vas-wap.autostreets.com/violation/getCitys',
 }

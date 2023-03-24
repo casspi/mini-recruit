@@ -1,6 +1,6 @@
 export default {
   data: {
-    options: [],
-    active: []
+    active: [],
+    selectedText: ''
   }
 }

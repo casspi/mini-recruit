@@ -61,23 +61,56 @@ module.exports = {
     }
     return data.indexOf(value) > -1
   },
-  pickByKey: function (arr, val, key){
-  console.log(arr, val, key)
-      var res = []
-      if(val && val.constructor && val.constructor == 'Array'){
-          val.forEach(function(item){
-              arr.forEach(function(o) {
-                if(o[key] === item) res.push(o)
-              })
-          })
-      }else{
-          arr.forEach(function(o) {
-            if(o[key] === val) res.push(o)
-          })
-      }
-      res.filter(function(item){
-        return item
+  pickByKey: function (arr, val, key) {
+    var res = []
+    if (val && val.constructor && val.constructor == 'Array') {
+      val.forEach(function (item) {
+        arr.forEach(function (o) {
+          if (typeof item === 'object') {
+            if (o[key] === item[key]) res.push(o)
+          } else {
+            if (o[key] === item) res.push(o)
+          }
+        })
       })
-      return res
+    } else {
+      arr.forEach(function (o) {
+        if (typeof val === 'object') {
+          if (o[key] === val[key]) res.push(o)
+        } else {
+          if (o[key] === val) res.push(o)
+        }
+      })
+    }
+    res.filter(function (item) {
+      return item
+    })
+    return res
+  },
+  parsePickerValue: function (val, key) {
+    console.log(val[key], key)
+    if (val && val.constructor && val.constructor == 'Array') {
+      return val.map(function (item) {
+        return item[key]
+      }).join(';')
+    } else if (typeof val === 'object') {
+      return val[key]
+    } else {
+      return val
+    }
+  },
+  format: function (item) {
+    var value = item && item.value
+    var formatterKey = item && item.formatter
+    // todo 0
+    if (!value || !formatterKey) {
+      return value
+    }
+    var formatter = {
+      formatArrayJoin: function (val) {
+        return val.join(' ')
+      }
+    }
+    return formatter[formatterKey](value)
   }
 };

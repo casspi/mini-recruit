@@ -3,5 +3,14 @@
 <view>{{objInput.Sex.value}}</view>
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
-  <view class="c-button">提交</view>
+  <view class="c-btn-bar">
+    <view class="c-button">提交</view>
+  </view>
+  <view class="ios-seat"></view>
 </view>
+
+// 城市选择
+<city-popup
+  id="refCity"
+  bindconfirm="cityConfirm"
+></city-popup>

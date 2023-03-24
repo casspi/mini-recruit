@@ -1,4 +1,0 @@
-<view class="wow-filed">
-  <text>{{ item.label }}</text>
-  <text class="wow-filed-label">{{ item.label }}</text>
-</view>

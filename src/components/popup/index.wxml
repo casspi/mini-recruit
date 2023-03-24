@@ -1,0 +1,9 @@
+<view class="modal" bindtap="handledOverlay" wx:if="{{ visible }}">
+  <view class="wow-city" catchtap="inputEvent">
+    <view class="content"></view>
+    <view class="btn-bar">
+      <text class="btn-reset btn">重置</text>
+      <text class="btn-confirm btn" catchtap="handleConfirm">确认</text>
+    </view>
+  </view>
+</view>

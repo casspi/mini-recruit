@@ -8,6 +8,16 @@ page {
 .remind {
   color: #999;
   font-size: j(24);
+  line-height: j(40);
+  @extend %db;
+}
+
+// 已选
+.selected {
+  @extend %df;
+  @extend %aic;
+  padding: j(30) 0;
+  font-size: j(28);
 }
 
 .select-warp {
@@ -58,3 +68,4 @@ page {
     }
   }
 }
+

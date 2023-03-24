@@ -2,12 +2,8 @@
 
 <view class="select-warp">
   <text class="remind" wx:if="{{params$.remind}}">{{params$.remind}}</text>
-  <text class="selectd">已选择：
-    <block wx:for="{{filter.pickByKey(params$.options, active, 'id')}}" wx:key="index">
-      {{index > 0? ';'{{item.text}}:{{item.text}}}}
-    </block>
-  </text>
-  <view class="select-item {{filter.includes(active, item.id) && 'is-active'}}" wx:for="{{params$.options}}"
+  <text class="selected" wx:if="{{params$.multiple}}">已选择：{{selectedText}}</text>
+  <view class="select-item {{filter.includes(active, item.id, 'id') && 'is-active'}}" wx:for="{{params$.options}}"
         wx:key="index"
         data-item="{{ item }}" bindtap="itemHandle">
     <view class="select-item-right">
@@ -21,4 +17,5 @@
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
   <view class="c-button" bindtap="handleConfirm">确定</view>
+  <view class="ios-seat"></view>
 </view>
