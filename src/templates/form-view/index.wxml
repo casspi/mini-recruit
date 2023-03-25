@@ -96,8 +96,8 @@
             wx:elif="{{ item.is === 'picker' }}">
         <view class="iconfont {{ item.icon }}" wx:if="{{ item.icon }}"></view>
         <text>{{ item.label }}</text>
-        <view class="picker-value {{ !item.value && 'c-input-place'}}">
-          <text wx:if="{{ filter.format(item, item.labelKey || 'label') }}">{{ filter.format(item, item.labelKey || 'label') }}{{ item.unit }}</text>
+        <view class="picker-value {{ !item.value.length && 'c-input-place'}}">
+          <text wx:if="{{ item.value.length }}">{{ filter.format(item) }}{{ item.unit }}</text>
           <text wx:else>{{ item.placeholder || '请选择' }}</text>
         </view>
         <view class="c-arrow right"></view>

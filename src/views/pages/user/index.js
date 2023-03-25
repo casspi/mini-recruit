@@ -20,9 +20,12 @@ new WowPage({
   // 选择组件选中回调
   selectHandle(options) {
     console.log('options=>', options)
-    const {key, valkey = 'value', active} = options
+    const {key, value} = options
     this.setData({
-      [`${key}.${valkey}`]: active.length ? active : ''
+      [`${key}.value`]: value
+    }, () => {
+
+      console.log('data=>', this.data)
     })
   },
   //城市选择控件
@@ -38,7 +41,7 @@ new WowPage({
     })).then(source => {
       // 去选择城市
       return this.selectComponent('#refCity').show({
-        value: item.value,
+        ...item,
         source,
         beforeClose: (action, done) => {
           if (action === 'cancel') return done()
@@ -46,11 +49,9 @@ new WowPage({
         }
       })
     }).then(res => {
+      console.log('res', res)
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
-  },
-  cityConfirm(data) {
-    console.log('cityconfirm=>', data)
   }
 })
 

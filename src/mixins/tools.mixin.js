@@ -10,5 +10,16 @@ export default {
     }
     res.filter(Boolean)
     return res
+  },
+  includes: function (arr, value, key) {
+    if (!arr) arr = []
+    var data = arr
+    if (key) {
+      data = []
+      arr.forEach(function (item) {
+        data.push(item[key])
+      })
+    }
+    return data.indexOf(value) > -1
   }
 }

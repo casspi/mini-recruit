@@ -23,28 +23,28 @@ new WowPage({
     const {title, value} = this.data.params$
     wx.setNavigationBarTitle({title})
     this.setData({
-      active: value || []
+      value: value || []
     }, () => {
       this.renderSelected()
     })
   },
   itemHandle(event) {
     const {item} = this.inputParams(event)
-    let {params$, active} = this.data
+    let {params$, value} = this.data
     if (params$.multiple) {
-      if (active.includes(item)) {
-        active = active.filter(o => o !== item)
+      if (value.find(o => o.id === item.id)) {
+        value = value.filter(o => o.id !== item.id)
       } else {
-        active.push(item)
+        value.push(item)
       }
       this.setData({
-        active: active
+        value
       }, () => {
         this.renderSelected()
       })
     } else {
       this.setData({
-        active: [item]
+        value: [item]
       }, () => {
         this.renderSelected()
       })
@@ -52,22 +52,21 @@ new WowPage({
 
   },
   handleConfirm() {
-    const {params$, active} = this.data
+    const {params$, value} = this.data
     console.log('params$', params$)
     const {confirm} = params$
     const refPage = this.pagesGetByIndex(1)
     if (refPage && confirm && refPage[confirm]) {
       refPage[confirm](
-        {...params$, active: active.length ? active : ''}
+        {...params$, value: value.length ? value : ''}
       )
     }
     this.routerPop()
   },
   renderSelected() {
-    const {params$, active} = this.data
+    const {params$, value} = this.data
     if (!params$.multiple) return
-    console.log(params$.options, active, Tools.pickByKey(params$.options, active, 'id'))
-    const res = Tools.pickByKey(params$.options, active, 'id').map(item => item.text)
+    const res = Tools.pickByKey(params$.options, value, 'id').map(item => item.text)
     this.setData({
       selectedText: res.length ? res.join(';') : ''
     })

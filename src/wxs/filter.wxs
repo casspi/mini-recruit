@@ -44,6 +44,13 @@ function filterTime(date, fmt) {
   return filterDate(+date, fmt || 'yyyy-MM-dd');
 }
 
+function formatArrayJoin(val, labelKey, str) {
+  var separator = str || ';'
+  return val.map(function (o) {
+    return labelKey ? o[labelKey] : o
+  }).join(separator)
+}
+
 module.exports = {
   source: function (src) {
     return src ? 'https://xxx.com/images/v2/' + src : '';
@@ -99,6 +106,7 @@ module.exports = {
       return val
     }
   },
+  formatArrayJoin: formatArrayJoin,
   format: function (item) {
     var value = item && item.value
     var formatterKey = item && item.formatter
@@ -106,11 +114,9 @@ module.exports = {
     if (!value || !formatterKey) {
       return value
     }
-    var formatter = {
-      formatArrayJoin: function (val) {
-        return val.join(' ')
-      }
+    var formatter = { //格式化函数
+      formatArrayJoin: formatArrayJoin
     }
-    return formatter[formatterKey](value)
+    return formatter[formatterKey](value, item.labelKey || 'label')
   }
 };

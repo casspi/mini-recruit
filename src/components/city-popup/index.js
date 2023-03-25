@@ -3,6 +3,7 @@ import './index.wxml'
 import './index.scss'
 
 import WowComponent from 'wow-wx/lib/component'
+import Tools from 'src/mixins/tools.mixin'
 
 new WowComponent({
   mixins: [
@@ -13,10 +14,6 @@ new WowComponent({
     addGlobalClass: true,
   },
   properties: {
-    options: {
-      type: Object,
-      value: [],
-    },
     overlayClose: {
       type: Boolean,
       value: true,
@@ -42,12 +39,24 @@ new WowComponent({
     // 选择城市
     cityHandle(e) {
       const {item} = this.inputParams(e)
-      this.setData({
-        value: [item]
-      }, () => {
-        // 单选直接关闭
-        if (!this.data.multiple) this.handleConfirm(e)
-      })
+      let {multiple, value} = this.data
+      if (multiple) {
+        if (Tools.includes(value, item.id, 'id')) {
+          value = value.filter(o => o.id !== item.id)
+        } else {
+          value.push(item)
+        }
+        this.setData({
+          value
+        })
+      } else {
+        this.setData({
+          value: [item]
+        }, () => {
+          this.handleConfirm(e)
+        })
+      }
+
     },
     handledOverlay() {
       if (this.data.overlayClose) {

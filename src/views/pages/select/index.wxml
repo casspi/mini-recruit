@@ -3,7 +3,7 @@
 <view class="select-warp">
   <text class="remind" wx:if="{{params$.remind}}">{{params$.remind}}</text>
   <text class="selected" wx:if="{{params$.multiple}}">已选择：{{selectedText}}</text>
-  <view class="select-item {{filter.includes(active, item.id, 'id') && 'is-active'}}" wx:for="{{params$.options}}"
+  <view class="select-item {{filter.includes(value, item.id, 'id') && 'is-active'}}" wx:for="{{params$.options}}"
         wx:key="index"
         data-item="{{ item }}" bindtap="itemHandle">
     <view class="select-item-right">

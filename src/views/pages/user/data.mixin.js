@@ -1,9 +1,9 @@
 export default {
   data: {
     objInput: {
-      Name: {
+      name: {
         value: '',
-        key: 'objInput.Name',
+        key: 'objInput.name',
         is: 'field',
         label: '姓名',
         maxlength: 10,
@@ -11,9 +11,9 @@ export default {
           {nonempty: true, prompt: '请输入姓名'}
         ],
       },
-      Sex: {
+      sex: {
         value: 1,
-        key: 'objInput.Sex',
+        key: 'objInput.sex',
         is: 'radio-group',
         label: '性别',
         use: [
@@ -25,18 +25,18 @@ export default {
         ],
       },
       // 患者
-      Patient: {
+      patient: {
         value: '',
-        key: 'objInput.Patient',
+        key: 'objInput.patient',
         is: 'field',
         label: '患者姓名',
         labelSuffix: "(选填)",
         maxlength: 10
       },
       // 电话
-      Phone: {
+      phone: {
         value: '',
-        key: 'objInput.Phone',
+        key: 'objInput.phone',
         type: 'number',
         is: 'field',
         label: '联系电话',
@@ -44,10 +44,10 @@ export default {
         maxlength: 11
       },
       // 所在地
-      City: {
+      city: {
         value: [],
         label: '所在地',
-        key: 'objInput.City',
+        key: 'objInput.city',
         is: 'picker',
         title: '请选择所在地',
         fn: 'cityHandle',
@@ -57,15 +57,31 @@ export default {
           {rule: v => v.length, prompt: '请选择照片'},
         ]
       },
+      // 所在地
+      nowcity: {
+        value: [],
+        label: '所在城市',
+        key: 'objInput.nowcity',
+        is: 'picker',
+        title: '请选择所在地',
+        fn: 'cityHandle',
+        formatter: 'formatArrayJoin',
+        multiple: true,
+        use: [
+          {nonempty: true, prompt: '请选择照片'},
+          {rule: v => v.length, prompt: '请选择照片'},
+        ]
+      },
       // 体能状况
       Health: {
-        value: '',
+        value: [],
         label: '体能状况',
         key: 'objInput.Health',
         is: 'picker',
         url: 'select_index',
         title: '请选择体能状况',
         labelKey: 'text',
+        formatter: 'formatArrayJoin',
         options: [
           {id: 1, title: '2级', text: '见客户你看就看', tips: '3、4级不符合临床招募情况'},
           {id: 2, title: '2级', text: '见客户你看就看'},
@@ -74,15 +90,16 @@ export default {
         confirm: 'selectHandle'
       },
       Disease: {
-        value: '',
+        value: [],
         label: '确诊疾病',
         key: 'objInput.Disease',
         is: 'picker',
         url: 'select_index',
         title: '请选择确诊疾病',
         remind: '注：最多选择10个',
-        labelKey: 'text',
         multiple: true,
+        labelKey: 'text',
+        formatter: 'formatArrayJoin',
         options: [
           {id: 1, text: '感冒'},
           {id: 2, text: '发烧'},
@@ -113,6 +130,16 @@ export default {
           {rule: v => v.length, prompt: '请选择照片'},
         ],
       },
+      Content: {
+        value: '',
+        placeholder: '请输入患者简要病史或其他备注信息，最多不超过500字',
+        key: 'objInput.Content',
+        is: 'textarea',
+        maxlength: 300,
+        use: [
+          {nonempty: true, prompt: '请填写你的饮食心得和经验'},
+        ],
+      },
       Title: {
         value: '',
         placeholder: '填写标题会有更多赞哦~',
@@ -121,16 +148,6 @@ export default {
         maxlength: 50,
         use: [
           {nonempty: true, prompt: '请填写标题'},
-        ],
-      },
-      Content: {
-        value: '',
-        placeholder: '详细说说你的食材、食用量、烹饪方式和控糖经验，让更多人看到吧！',
-        key: 'objInput.Content',
-        is: 'textarea',
-        maxlength: 300,
-        use: [
-          {nonempty: true, prompt: '请填写你的饮食心得和经验'},
         ],
       },
       MealTag: {

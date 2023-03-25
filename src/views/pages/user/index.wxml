@@ -12,5 +12,4 @@
 // 城市选择
 <city-popup
   id="refCity"
-  bindconfirm="cityConfirm"
 ></city-popup>
