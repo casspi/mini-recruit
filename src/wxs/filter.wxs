@@ -51,13 +51,23 @@ function formatArrayJoin(val, labelKey, str) {
   }).join(separator)
 }
 
+function formatCity(val, labelKey, str) {
+  var separator = str || ';'
+  return val.map(function (o) {
+    return o.province[labelKey] + o.city[labelKey]
+  }).join(separator)
+}
+
 module.exports = {
   source: function (src) {
     return src ? 'https://xxx.com/images/v2/' + src : '';
   },
   filterDate: filterDate,
   filterTime: filterTime,
-  includes: function (arr, value, key) {
+  includes: function (arr, value, key, arrKey) {
+    if (arrKey) arr = arr.map(function (item) {
+      return item[arrKey]
+    })
     if (!arr) arr = []
     var data = arr
     if (key) {
@@ -115,7 +125,8 @@ module.exports = {
       return value
     }
     var formatter = { //格式化函数
-      formatArrayJoin: formatArrayJoin
+      formatArrayJoin: formatArrayJoin,
+      formatCity: formatCity
     }
     return formatter[formatterKey](value, item.labelKey || 'label')
   }

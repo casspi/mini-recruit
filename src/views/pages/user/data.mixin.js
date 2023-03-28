@@ -51,7 +51,9 @@ export default {
         is: 'picker',
         title: '请选择所在地',
         fn: 'cityHandle',
-        formatter: 'formatArrayJoin',
+        formatter: 'formatCity',
+        multiple: false,
+        limit: 10,
         use: [
           {nonempty: true, prompt: '请选择照片'},
           {rule: v => v.length, prompt: '请选择照片'},
@@ -65,8 +67,9 @@ export default {
         is: 'picker',
         title: '请选择所在地',
         fn: 'cityHandle',
-        formatter: 'formatArrayJoin',
+        formatter: 'formatCity',
         multiple: true,
+        limit: 10,
         use: [
           {nonempty: true, prompt: '请选择照片'},
           {rule: v => v.length, prompt: '请选择照片'},

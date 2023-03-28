@@ -1,3 +1,5 @@
 <view>
   <text>HOME</text>
+  <button bindtap="jumpPageOrFireFn"
+          data-url="login_index">登录页</button>
 </view>

@@ -6,17 +6,17 @@
       <view class="title"><text>{{title}}</text></view>
       <block wx:if="{{multiple}}">
         <view class="remind"><text>{{tips || '最多选择10个'}}</text></view>
-        <text class="selected">已选择：{{filter.formatArrayJoin(value, 'label')}}</text>
+        <text class="selected">已选择：{{filter.formatCity(value, 'label')}}</text>
       </block>
     </view>
     <view class="content">
       <view class="province">
-        <view class="province-item {{current === item.id && 'is-active' }}" wx:for="{{ source }}" wx:key="index" data-item="{{item}}" bindtap="provinceHandle"><text>{{item.label}}</text></view>
+        <view class="province-item {{parent.id === item.id && 'is-active' }}" wx:for="{{ source }}" wx:key="index" data-item="{{item}}" bindtap="provinceHandle"><text>{{item.label}}</text></view>
       </view>
       <view class="city">
-        <view class="city-item {{filter.includes(value, item.id, 'id') && 'is-active'}}" wx:for="{{ filter.pickByKey(source, current, 'id')[0].children }}" wx:key="index" data-item="{{item}}" bindtap="cityHandle">
+        <view class="city-item {{filter.includes(value, item.id, 'id', 'city') && 'is-active'}}" wx:for="{{ filter.pickByKey(source, parent.id, 'id')[0].children }}" wx:key="index" data-item="{{item}}" bindtap="cityHandle">
           <text>{{item.label}}</text>
-          <view class="iconfont icon-xuanzhong" wx:if="{{filter.includes(value, item.id, 'id') }}"></view>
+          <view class="iconfont icon-xuanzhong" wx:if="{{filter.includes(value, item.id, 'id', 'city') }}"></view>
         </view>
       </view>
     </view>

@@ -8,6 +8,8 @@ import Tools from 'src/mixins/tools.mixin'
 new WowComponent({
   mixins: [
     WowComponent.wow$.mixins.Input,
+    WowComponent.wow$.mixins.Modal,
+
   ],
   options: {
     multipleSlots: true,
@@ -25,7 +27,7 @@ new WowComponent({
   },
   data: {
     visible: false,
-    current: '',
+    parent: '',
     value: []
   },
   methods: {
@@ -33,25 +35,35 @@ new WowComponent({
     provinceHandle(e) {
       const {item} = this.inputParams(e)
       this.setData({
-        current: item.id
+        parent: item
       })
     },
     // 选择城市
     cityHandle(e) {
       const {item} = this.inputParams(e)
-      let {multiple, value} = this.data
+      let {multiple, value, parent, limit} = this.data
       if (multiple) {
-        if (Tools.includes(value, item.id, 'id')) {
-          value = value.filter(o => o.id !== item.id)
+        if (Tools.includes(value, item.id, 'id', 'city')) {
+          value = value.filter(o => o.city.id !== item.id)
         } else {
-          value.push(item)
+          if (value.length >= 10) {
+            this.modalToast(`最多选择${limit}个城市`)
+            return
+          }
+          value.push({
+            city: item,
+            province: {id: parent.id, label: parent.label}
+          })
         }
         this.setData({
           value
         })
       } else {
         this.setData({
-          value: [item]
+          value: [{
+            city: item,
+            province: {id: parent.id, label: parent.label}
+          }]
         }, () => {
           this.handleConfirm(e)
         })

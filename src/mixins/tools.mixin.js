@@ -11,7 +11,10 @@ export default {
     res.filter(Boolean)
     return res
   },
-  includes: function (arr, value, key) {
+  includes: function (arr, value, key, arrKey) {
+    if (arrKey) arr = arr.map(function (item) {
+      return item[arrKey]
+    })
     if (!arr) arr = []
     var data = arr
     if (key) {

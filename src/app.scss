@@ -59,8 +59,8 @@ button::after {
   bottom: 0;
   left: 0;
   right: 0;
+  padding: j(10) 0;
   @extend %bfff;
-
 
   &-seat {
     height: j(120);
@@ -70,7 +70,7 @@ button::after {
 .c-btn-bar {
   @extend %df;
   @extend %aic;
-  min-height: j(120);
+  //min-height: j(120);
 }
 
 .c-button {
