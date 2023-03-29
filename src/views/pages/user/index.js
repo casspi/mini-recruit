@@ -52,6 +52,10 @@ new WowPage({
       console.log('res', res)
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
+  },
+  // 图片上传
+  handlePics(item) {
+    console.log('handlePics=>', item)
   }
 })
 

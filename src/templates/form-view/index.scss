@@ -6,6 +6,7 @@
 
   .form-cell {
     margin: 0 j(40);
+    padding: j(10) 0;
     min-height: j(106);
     font-size: j(32);
     @extend %df;
@@ -38,10 +39,25 @@
     }
   }
 
+  .form-photo {
+    @extend %df;
+    @extend %fdc;
+    align-items: flex-start;
+
+    .tips {
+      @extend %df;
+      @extend %fdc;
+      font-size: j(24);
+      line-height: j(36);
+      padding: j(10) 0;
+      color: #666;
+    }
+  }
+
   .photo-group {
     @extend %df;
     @extend %fww;
-    padding: j(10) j(32);
+    //padding: j(10) j(32);
   }
 
   .photo-box {

@@ -18,34 +18,48 @@
           maxlength="{{ item.maxlength || 9999 }}"
         />
       </view>
-      <view class="form-cell photo-group"
+      <view class="form-cell form-photo"
             wx:if="{{ item.is === 'photo' }}">
-        <view class="photo-box"
-              wx:for-item="photo"
-              wx:for-index="i"
-              wx:key="i"
-              wx:for="{{ item.value }}">
-          <image
-            class="photo"
-            mode="aspectFill"
-            src="{{ photo.value || photo }}"
-            bindtap="jumpPageOrFireFn"
-            data-item="{{ item }}"
-            data-upt="{{ i }}"
-          ></image>
-          <view
-            bindtap="inputHandle"
-            bindtap="jumpPageOrFireFn"
-            data-item="{{ item }}"
-            data-del="{{ i }}"
-            class="iconfont icon-close"
-          ></view>
+        <view class="photo-text">
+          <text class="label">{{item.label}}</text>
+          <text class="label-suffix" wx:if="item.labelSuffix">{{item.labelSuffix}}</text>
         </view>
-        <view class="photo-box"
+        <view class="tips">
+          <block wx:for-item="tip"
+                 wx:for-index="i"
+                 wx:key="i"
+                 wx:for="{{ item.tips }}">
+            <text>{{tip}}</text>
+          </block>
+        </view>
+        <view class="photo-group">
+          <view class="photo-box"
+                wx:for-item="photo"
+                wx:for-index="i"
+                wx:key="i"
+                wx:for="{{ item.value }}">
+            <image
+              class="photo"
+              mode="aspectFill"
+              src="{{ photo.value || photo }}"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
-              wx:if="{{ item.value.length < item.maxlength }}">
-          <view class="iconfont icon-zengjia"></view>
+              data-upt="{{ i }}"
+            ></image>
+            <view
+              bindtap="inputHandle"
+              bindtap="jumpPageOrFireFn"
+              data-item="{{ item }}"
+              data-del="{{ i }}"
+              class="iconfont icon-xuanzhong"
+            ></view>
+          </view>
+          <view class="photo-box"
+                bindtap="jumpPageOrFireFn"
+                data-item="{{ item }}"
+                wx:if="{{ item.value.length < item.maxlength }}">
+            <view class="iconfont icon-xuanzhong"></view>
+          </view>
         </view>
       </view>
 

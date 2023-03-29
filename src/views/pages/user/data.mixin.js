@@ -126,8 +126,18 @@ export default {
         value: [],
         key: 'objInput.Pics',
         is: 'photo',
+        label: '病例图片',
+        labelSuffix: "(选填)",
         fn: 'handlePics',
         maxlength: 9,
+        tips: [
+          '1.最后一次入院记录，',
+          '2.最后一次出院小结',
+          '3.病理报告，',
+          '4.最近两次以上CT报告，',
+          '5.最后一次血常规、血生化、传染病结果，',
+          '6.基因报告（如有）'
+        ],
         use: [
           {nonempty: true, prompt: '请选择照片'},
           {rule: v => v.length, prompt: '请选择照片'},
