@@ -18,39 +18,47 @@ button::after {
   color: #cecfd2;
 }
 
-@include b(c) {
-  @include e(block) {
-    width: j(702);
-    min-height: j(40);
-    border-radius: j(20);
-    margin: j(40) auto 0;
-    @extend %bfff;
+.c-center {
+  @extend %tac;
+}
+
+.c-block {
+  width: j(702);
+  min-height: j(40);
+  border-radius: j(20);
+  margin: j(40) auto 0;
+  @extend %bfff;
+}
+
+.c-input-place {
+  @extend %c6;
+}
+
+.c-arrow {
+  width: j(12);
+  height: j(12);
+  border-top: 1px solid #848484;
+  border-right: 1px solid #848484;
+
+  &.right {
+    @include tfr(45deg);
+    margin-left: j(10);
   }
-  @include e(input-place) {
-    @extend %c6;
+
+  &.bottom {
+    @include tfr(135deg);
+    margin-left: j(30);
+    margin-bottom: j(20);
   }
-  @include e(arrow) {
-    width: j(12);
-    height: j(12);
-    border-top: 1px solid #848484;
-    border-right: 1px solid #848484;
-    &.right {
-      @include tfr(45deg);
-      margin-left: j(10);
-    }
-    &.bottom {
-      @include tfr(135deg);
-      margin-left: j(30);
-      margin-bottom: j(20);
-    }
-    &.left {
-      @include tfr(-135deg);
-      margin-right: j(10);
-    }
-    &.top {
-      @include tfr(-45deg);
-      margin-left: j(30);
-    }
+
+  &.left {
+    @include tfr(-135deg);
+    margin-right: j(10);
+  }
+
+  &.top {
+    @include tfr(-45deg);
+    margin-left: j(30);
   }
 }
 
@@ -118,12 +126,13 @@ button::after {
     margin-left: j(30);
   }
 
-  .btn-reset {
+  .btn-info {
     border: 1px solid #ebedf0;
     background-color: #f1f1f1;
+    color: #333;
   }
 
-  .btn-confirm {
+  .btn-primary {
     border: 1px solid $color-primary;
     background-color: $color-primary;
     color: #fff;

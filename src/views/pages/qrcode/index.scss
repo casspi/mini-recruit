@@ -1,0 +1,87 @@
+@import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+}
+
+// 用户信息
+@include b(user) {
+  padding: j(42) 0;
+  border-bottom: 1px double $page-bg;
+  @extend %bsb;
+  @extend %df;
+  @extend %pr;
+  &::after, &::before {
+    content: '';
+    width: j(40);
+    height: j(40);
+    border-radius: 50%;
+    background-color: $page-bg;
+    @extend %pa;
+  }
+  &::after {
+    right: j(-20);
+    top: j(196);
+  }
+  &::before {
+    left: j(-20);
+    top: j(196);
+  }
+  @include e(avatar) {
+    width: j(130);
+    height: j(130);
+    line-height: j(130);
+    background-color: $color-primary;
+    font-size: j(44);
+    color: #fff;
+    margin-left: j(48);
+    @extend %fwb;
+    @extend %br50;
+    @extend %tac;
+  }
+  @include e(detail) {
+    margin-left: j(18);
+    font-size: j(30);
+
+  }
+  @include e(name) {
+    @extend %df;
+    @extend %aic;
+    margin-bottom: j(16);
+    text:first-child {
+      font-size: j(48);
+    }
+  }
+}
+
+.content {
+  color: $color-primary;
+  padding: j(40) 0 j(80);
+  @extend %df;
+  @extend %fdc;
+  @extend %aic;
+
+  .code {
+    @extend %fwb;
+    font-size: j(48);
+  }
+
+  .copy-btn {
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    border: 1px solid $color-primary;
+    height: j(60);
+    width: j(200);
+    border-radius: j(30);
+    margin-top: j(20);
+  }
+
+  .code-img {
+    width: j(400);
+    height: j(400);
+    margin-top: j(40);
+  }
+}

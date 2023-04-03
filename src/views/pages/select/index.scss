@@ -28,8 +28,12 @@ page {
   @extend %df;
   @extend %aic;
   @extend %jcs;
-  @extend %bw05;
-  @extend %bwt;
+
+  &:not(:first-child) {
+    @extend %bw05;
+    @extend %bwt;
+  }
+
   padding: j(10) 0;
   min-height: j(80);
   color: #666;

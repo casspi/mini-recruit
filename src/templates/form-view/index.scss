@@ -13,9 +13,9 @@
     @extend %aic;
     @extend %bsb;
     @extend %c3;
-    @extend %bwb;
 
     &:not(:last-child) {
+      @extend %bwb;
       @extend %bw05;
     }
 
@@ -30,16 +30,16 @@
     }
   }
 
+  // 单元表单
   .form-field {
-
-
     .form-field-input {
       @extend %tar;
       @extend %df1;
     }
   }
 
-  .form-photo {
+
+  .form-photo, .form-file {
     @extend %df;
     @extend %fdc;
     align-items: flex-start;
@@ -116,6 +116,49 @@
     height: j(48);
   }
 
+  .form-file {
+    .file-btn {
+      padding: j(6) j(10);
+      border-radius: j(8);
+      font-size: j(24);
+      color: $color-primary;
+      border: 1px solid $color-primary;
+    }
+
+    .file-group {
+      padding: j(10) 0;
+      width: 100%;
+      @extend %df;
+      @extend %fdc;
+
+      .file-box {
+        @extend %df;
+        @extend %aic;
+        @extend %pr;
+        height: j(40);
+        padding: j(10) j(20);
+        background: linear-gradient(to top right, $color-primary, $primary-disabled);
+        margin-bottom: j(8);
+        border-radius: j(8);
+      }
+
+      .icon-close {
+        @extend %pa;
+        @extend %br50;
+        @extend %df;
+        @extend %aic;
+        @extend %jcc;
+        @extend %cp;
+        @extend %cfff;
+        top: j(-10);
+        right: j(-10);
+        width: j(32);
+        height: j(32);
+        background-color: #7d7c7c;
+      }
+    }
+  }
+
   .form-input {
     @extend %bsb;
     @extend %c3;
@@ -127,9 +170,11 @@
   }
 
   .textarea {
-    @extend %bw05;
     margin: 0 j(32);
     line-height: 1.6;
+    @extend %df;
+    @extend %fdc;
+    align-items: flex-start;
 
     .textarea-content {
       @extend %w100;
@@ -180,11 +225,9 @@
     @extend %df;
     @extend %aic;
     //@extend %cp;
-    @extend %bw05;
     @extend %bwb;
     color: #424242;
     min-height: j(100);
-    margin: 0 j(32);
 
     .iconfont {
       margin-right: j(8);

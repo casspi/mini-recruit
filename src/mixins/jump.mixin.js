@@ -10,13 +10,13 @@ export default {
   ],
   jumpPageOrFireFn(e) {
     const {item, ...rest} = this.inputParams(e)
-    console.log('item=>', item)
+    console.log(item, rest)
     let {
-      url, params, fn, async, sync, disabled,
+      url, params, fn, async, sync, disabled, alwaysfire = false,
       close = false, event, filter, premise = ''
     } = Object.assign({}, rest, typeof item === 'object' ? item : {})
 
-    if (disabled) {
+    if (disabled && !alwaysfire) {
       return null
     }
 

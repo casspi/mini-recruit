@@ -36,7 +36,7 @@ export default {
 
   onShareAppMessage(options) {
     return Object.assign({
-      title: '车养护达人选油助手',
+      title: '招募之家',
       path: 'pages/home/index',
       imageUrl: s('icon-share.jpg'),
     }, this.shareGetConfig(options))

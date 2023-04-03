@@ -13,19 +13,19 @@
     </view>
   </view>
   <view class="menu-section">
-    <view class="menu-item"
+    <view class="menu-item {{item.className}}"
           bindtap="jumpPageOrFireFn"
           data-item="{{ item }}"
           wx:for="{{ arrMenu }}"
           wx:key="index">
-      <view class="iconfont {{ item.icon }}"></view>
+      <view wx:if="{{item.icon}}" class="iconfont {{ item.icon }}"></view>
       <view class="menu-label">
         <text>{{ item.label }}</text>
       </view>
       <view class="menu-value">
         <text>{{ item.value }}</text>
       </view>
-      <view class="c-arrow right"></view>
+      <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
     </view>
   </view>
 </view>

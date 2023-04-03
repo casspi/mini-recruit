@@ -1,0 +1,30 @@
+<view class="c-block">
+  <view class="user">
+    <text class="user-avatar">呵</text>
+    <view class="user-detail">
+      <view class="user-name">
+        <text>呵呵</text>
+      </view>
+      <view>
+        <text>13817674594</text>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="code"><text>jhjjhh</text></view>
+    <view class="copy-btn" bindtap="handleCopy"><text>复制邀请码</text></view>
+    <image
+      class="code-img"
+      mode="aspectFill"
+      src="/assets/images/mini-code.jpg"
+    ></image>
+  </view>
+</view>
+<!--<view class="c-fixed-seat"></view>-->
+<view class="c-fixed">
+  <view class="btn-bar">
+    <view class="btn btn-info">保存图片</view>
+    <view class="btn btn-primary" bindtap="onShareAppMessage">分享给好友</view>
+  </view>
+  <view class="ios-seat"></view>
+</view>

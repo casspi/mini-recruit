@@ -2,8 +2,8 @@
   <view class="wow-city" catchtap="inputEvent">
     <view class="content"></view>
     <view class="btn-bar">
-      <text class="btn-reset btn">重置</text>
-      <text class="btn-confirm btn" catchtap="handleConfirm">确认</text>
+      <text class="btn-info btn">重置</text>
+      <text class="btn-primary btn" catchtap="handleConfirm">确认</text>
     </view>
   </view>
 </view>

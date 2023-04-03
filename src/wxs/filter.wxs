@@ -52,6 +52,7 @@ function formatArrayJoin(val, labelKey, str) {
 }
 
 function formatCity(val, labelKey, str) {
+  console.log(JSON.stringify(val))
   var separator = str || ';'
   return val.map(function (o) {
     return o.province[labelKey] + o.city[labelKey]
@@ -59,6 +60,13 @@ function formatCity(val, labelKey, str) {
 }
 
 module.exports = {
+  filterImage: function (v) {
+    if (!v) return ''
+    var arr = v.split('.')
+    var x1 = arr[0]
+    var x2 = arr[1]
+    return 'https://images.autostreets.com/' + x1 + '*375*375.' + x2
+  },
   source: function (src) {
     return src ? 'https://xxx.com/images/v2/' + src : '';
   },
@@ -104,19 +112,8 @@ module.exports = {
     })
     return res
   },
-  parsePickerValue: function (val, key) {
-    console.log(val[key], key)
-    if (val && val.constructor && val.constructor == 'Array') {
-      return val.map(function (item) {
-        return item[key]
-      }).join(';')
-    } else if (typeof val === 'object') {
-      return val[key]
-    } else {
-      return val
-    }
-  },
   formatArrayJoin: formatArrayJoin,
+  formatCity: formatCity,
   format: function (item) {
     var value = item && item.value
     var formatterKey = item && item.formatter

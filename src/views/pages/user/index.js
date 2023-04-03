@@ -13,6 +13,8 @@ new WowPage({
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Jump,
     WowPage.wow$.mixins.Curl,
+    WowPage.wow$.mixins.Format,
+    WowPage.wow$.mixins.Validate,
   ],
   onLoad(options) {
     this.routerGetParams(options)
@@ -30,6 +32,7 @@ new WowPage({
   },
   //城市选择控件
   cityHandle(item) {
+    const {value} = item
     const {api$, source = []} = this.data
     ;(source.length ? Promise.resolve(source) : this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
       this.data.source = res.map(item => {
@@ -42,6 +45,7 @@ new WowPage({
       // 去选择城市
       return this.selectComponent('#refCity').show({
         ...item,
+        parent: value.length ? value[0].province : '',
         source,
         beforeClose: (action, done) => {
           if (action === 'cancel') return done()
@@ -53,9 +57,17 @@ new WowPage({
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
   },
-  // 图片上传
-  handlePics(item) {
-    console.log('handlePics=>', item)
+  submitHandle() {
+    // true 有问题
+    this.validateCheck(this.data.objInput)
+    //
+    this.validateAssignment(this, {
+      //
+    }, this.data.objInput, 'objInput')
+
+    // 提取参数
+    const options = this.validateInput(this.data.objInput, this.data.objInput)
+    console.log(options)
   }
 })
 

@@ -2,7 +2,6 @@
 
 <template name="formView">
   <view class="form-view c-block">
-
     <block wx:for="{{ objInput }}" wx:key="index">
       <view class="form-cell form-field" wx:if="{{ item.is === 'field' }}">
         <text class="label">{{item.label}}</text>
@@ -16,6 +15,7 @@
           placeholder-class="c-input-place"
           placeholder="{{ item.placeholder || '请输入' }}"
           maxlength="{{ item.maxlength || 9999 }}"
+          disabled="{{item.disabled}}"
         />
       </view>
       <view class="form-cell form-photo"
@@ -41,25 +41,62 @@
             <image
               class="photo"
               mode="aspectFill"
-              src="{{ photo.value || photo }}"
+              src="{{ filter.filterImage(photo) }}"
               bindtap="jumpPageOrFireFn"
+              data-alwaysfire="{{true}}"
               data-item="{{ item }}"
               data-upt="{{ i }}"
             ></image>
             <view
-              bindtap="inputHandle"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
               data-del="{{ i }}"
-              class="iconfont icon-xuanzhong"
+              class="iconfont icon-close"
             ></view>
           </view>
           <view class="photo-box"
                 bindtap="jumpPageOrFireFn"
                 data-item="{{ item }}"
-                wx:if="{{ item.value.length < item.maxlength }}">
+                wx:if="{{ !item.disabled && item.value.length < item.limit }}">
             <view class="iconfont icon-xuanzhong"></view>
           </view>
+        </view>
+      </view>
+      <view class="form-cell form-file"
+            wx:if="{{ item.is === 'file' }}">
+        <view class="photo-text">
+          <text class="label">{{item.label}}</text>
+          <text class="label-suffix" wx:if="item.labelSuffix">{{item.labelSuffix}}</text>
+        </view>
+        <view class="tips">
+          <block wx:for-item="tip"
+                 wx:for-index="i"
+                 wx:key="i"
+                 wx:for="{{ item.tips }}">
+            <text>{{tip}}</text>
+          </block>
+        </view>
+        <view class="file-group">
+          <view class="file-box"
+                wx:for-item="file"
+                wx:for-index="i"
+                wx:key="i"
+                wx:for="{{ item.value }}">
+            <text>{{file.name}}</text>
+            <view
+              bindtap="jumpPageOrFireFn"
+              data-item="{{ item }}"
+              data-del="{{ i }}"
+              class="iconfont icon-close"
+            ></view>
+          </view>
+        </view>
+        <view
+          class="file-btn"
+          wx:if="{{ !item.disabled && item.value.length < item.limit }}"
+          data-item="{{ item }}"
+          bindtap="jumpPageOrFireFn">
+          <text>选择微信聊天文件</text>
         </view>
       </view>
 
@@ -79,29 +116,21 @@
         </view>
       </view>
 
-      <input
-        wx:elif="{{ item.is === 'input' }}"
-        class="form-cell form-input"
-        type="{{ item.type || 'text' }}"
-        value="{{ item.value }}"
-        bindinput="inputHandle"
-        data-item="{{ item }}"
-        placeholder-class="c-input-place"
-        placeholder="{{ item.placeholder }}"
-        maxlength="{{ item.maxlength || 9999 }}"
-      />
-
       <view class="form-cell textarea"
             wx:if="{{ item.is === 'textarea' }}">
-                <textarea
-                  class="textarea-content"
-                  value="{{ item.value }}"
-                  bindinput="inputHandle"
-                  data-item="{{ item }}"
-                  placeholder-class="c-input-place"
-                  placeholder="{{ item.placeholder }}"
-                  maxlength="{{ item.maxlength || 9999 }}"
-                ></textarea>
+        <view class="label">
+          <text>{{ item.label }}</text>
+          <text class="label-suffix" wx:if="item.labelSuffix">{{item.labelSuffix}}</text>
+        </view>
+        <textarea
+          class="textarea-content"
+          value="{{ item.value }}"
+          bindinput="inputHandle"
+          data-item="{{ item }}"
+          placeholder-class="c-input-place"
+          placeholder="{{ item.placeholder }}"
+          maxlength="{{ item.maxlength || 9999 }}"
+        ></textarea>
       </view>
 
       <view class="form-cell picker-cell"
@@ -125,7 +154,17 @@
         <view class="iconfont icon-duigou"></view>
         <text>{{ item.label }}</text>
       </view>
-
+      <input
+        wx:elif="{{ item.is === 'input' }}"
+        class="form-cell form-input"
+        type="{{ item.type || 'text' }}"
+        value="{{ item.value }}"
+        bindinput="inputHandle"
+        data-item="{{ item }}"
+        placeholder-class="c-input-place"
+        placeholder="{{ item.placeholder }}"
+        maxlength="{{ item.maxlength || 9999 }}"
+      />
     </block>
 
   </view>

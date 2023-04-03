@@ -5,7 +5,9 @@
         "pages/enroll/index",
         "pages/login/index",
         "pages/mine/index",
+        "pages/qrcode/index",
         "pages/select/index",
+        "pages/subject/index",
         "pages/user/index"
     ],
     "permission": {
@@ -19,8 +21,8 @@
         "navigationBarBackgroundColor": "#ffffff"
     },
     "tabBar": {
-        "color": "#9EA6B9",
-        "selectedColor": "#2f6ff5",
+        "color": "#707070",
+        "selectedColor": "#f0831f",
         "backgroundColor": "#fff",
         "borderStyle": "black",
         "position": "bottom",
@@ -28,22 +30,23 @@
             {
                 "pagePath": "pages/home/index",
                 "text": "项目",
-                "iconPath": "assets/images/project-icon.png",
-                "selectedIconPath": "assets/images/project-active-icon.png"
+                "iconPath": "assets/images/project.png",
+                "selectedIconPath": "assets/images/project-active.png"
             },
             {
                 "pagePath": "pages/enroll/index",
                 "text": "报名",
-                "iconPath": "assets/images/enroll-icon.png",
-                "selectedIconPath": "assets/images/enroll-active-icon.png"
+                "iconPath": "assets/images/enroll.png",
+                "selectedIconPath": "assets/images/enroll-active.png"
             },
             {
                 "pagePath": "pages/mine/index",
                 "text": "我的",
-                "iconPath": "assets/images/mine-icon.png",
-                "selectedIconPath": "assets/images/mine-active-icon.png"
+                "iconPath": "assets/images/mine.png",
+                "selectedIconPath": "assets/images/mine-active.png"
             }
         ]
     },
-    "subpackages": []
+    "subpackages": [],
+    "lazyCodeLoading": "requiredComponents"
 }

@@ -40,6 +40,11 @@ export default {
       result.push(arr.slice(i, i + size))
     }
     return result
-  }
+  },
+  formatImage(v) {
+    if (!v) return ''
+    const [x1, x2] = v.split('.')
+    return 'https://images.autostreets.com/' + x1 + '*750*750.' + x2
+  },
 
 }

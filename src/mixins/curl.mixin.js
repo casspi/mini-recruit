@@ -5,7 +5,8 @@ import Router from 'wow-wx/mixins/wx/router.mixin'
 import ApiConfig, {isProd} from 'src/config/api.config'
 
 const curl = new Curl({
-  baseURI: isProd ? 'https://rochecrm.g2digi.com/' : 'https://roche.jiappo.cn/',
+  baseURI: 'https://epms-app.autostreets.com/',
+  // baseURI: isProd ? 'https://rochecrm.g2digi.com/' : 'https://roche.jiappo.cn/',
 })
 
 // 日志输出
@@ -49,12 +50,19 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
 }))
 
 curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
-  const {requestConfig, statusCode, data: respData} = response
+  console.log(response)
+  let {requestConfig, statusCode, data: respData} = response
   delete response.requestConfig
   let {url, method} = requestConfig
   if (statusCode !== 200 || !respData) {
     console.log(`${url} [${method}] 请求失败 => `, response)
     return reject(`网络繁忙，请稍后再试[${statusCode}]`)
+  }
+  if (typeof respData !== 'object') {
+    try {
+      respData = JSON.parse(respData)
+    } catch (e) {
+    }
   }
   console.log(`${url} [${method}] 请求返回 => `, respData)
   let {Status, data, Extend, Message} = respData
@@ -75,7 +83,8 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
   // if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
   //   Data = Object.assign({}, Extend, Data)
   // }
-  resolve(data)
+  console.log(data);
+  return resolve(data)
 }), (error) => {
   if (error && error.errMsg) {
     if (error.errMsg === 'request:fail timeout') {

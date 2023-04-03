@@ -1,1 +1,18 @@
 @import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+  color: #333333;
+}
+
+.enroll-item {
+  width: j(702);
+  min-height: j(140);
+  border-radius: j(20);
+  margin: j(20) auto 0;
+  padding: j(20) j(30);
+  @extend %bsb;
+  @extend %bfff;
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新建患者",
+  "usingComponents": {
+    "city-popup": "/components/city-popup/index"
+  }
+}

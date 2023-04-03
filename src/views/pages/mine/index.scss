@@ -84,3 +84,10 @@ page {
     @extend %c6;
   }
 }
+
+.logout-item {
+  .menu-label {
+    @extend %tac;
+    font-weight: normal;
+  }
+}
