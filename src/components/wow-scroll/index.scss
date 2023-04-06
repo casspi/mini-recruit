@@ -1,5 +1,6 @@
 @import 'src/assets/scss/wow-define';
 
+$namespace: 'wow';
 @include b(scroll) {
   @extend %w100;
   @extend %h100;

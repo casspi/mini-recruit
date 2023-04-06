@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "患者推荐"
+  "navigationBarTitleText": "患者推荐",
+  "component": true,
+  "usingComponents": {
+    "wow-scroll": "/components/wow-scroll/index",
+    "wow-skeleton": "/components/wow-skeleton/index",
+    "wow-end": "/components/wow-end/index"
+  }
 }

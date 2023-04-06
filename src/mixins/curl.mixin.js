@@ -4,11 +4,16 @@ import User from 'wow-wx/mixins/utils/user.mixin'
 import Router from 'wow-wx/mixins/wx/router.mixin'
 import ApiConfig, {isProd} from 'src/config/api.config'
 
-const curl = new Curl({
-  baseURI: 'https://epms-app.autostreets.com/',
-  // baseURI: isProd ? 'https://rochecrm.g2digi.com/' : 'https://roche.jiappo.cn/',
-})
+// const curl = new Curl({
+//   baseURI: 'https://epms-app.autostreets.com/',
+//   // baseURI: isProd ? 'https://rochecrm.g2digi.com/' : 'https://roche.jiappo.cn/',
+// })
 
+const curl = new Curl({
+  baseURI: 'https://fe-auction.autostreets.com/',
+  header: {},
+  timeout: 60 * 1000,
+})
 // 日志输出
 curl.interceptors.request.use((config) => {
   const {url, method, data} = config

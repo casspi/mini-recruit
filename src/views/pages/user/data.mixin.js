@@ -56,10 +56,10 @@ export default {
           {rule: v => v.length, prompt: '请选择服务城市'},
         ]
       },
-      Disease: {
+      disease: {
         value: [],
         label: '疾病',
-        key: 'objInput.Disease',
+        key: 'objInput.disease',
         is: 'picker',
         url: 'select_index',
         title: '请选择疾病',

@@ -23,4 +23,7 @@ export default {
   REQ_CITY_LIST: 'https://vas-wap.autostreets.com/violation/getCitys',
   // 上传地址
   DO_IMAGE_UPLOAD: 'certificateBosOrder/imageFileUpload',
+
+  // list
+  REQ_AUCTION_LIST: 'auction/una/index-page'
 }

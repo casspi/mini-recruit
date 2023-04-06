@@ -7,12 +7,67 @@ page {
   color: #333333;
 }
 
+.enroll-list {
+  padding: j(20) 0;
+}
+
 .enroll-item {
   width: j(702);
   min-height: j(140);
   border-radius: j(20);
   margin: j(20) auto 0;
   padding: j(20) j(30);
+  font-size: j(24);
+  color: #333333;
   @extend %bsb;
   @extend %bfff;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .enroll-item-top {
+    @extend %df;
+    @extend %aic;
+    @extend %jcs;
+  }
+}
+
+.patient {
+  @extend %df;
+  @extend %aic;
+}
+
+.name {
+  font-size: j(28);
+  font-weight: bold;
+}
+
+.status {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  background-color: $color-primary-light;
+  color: $color-primary;
+  height: j(44);
+  padding: 0 j(18);
+  font-size: j(24);
+  font-weight: bold;
+  border-radius: j(8);
+  margin-left: j(24);
+}
+
+.time {
+  color: #999;
+}
+
+.disease {
+  font-size: j(26);
+  line-height: j(30);
+  padding: j(20) 0;
+}
+
+.number-label {
+  color: #999999;
+  margin-right: j(20);
 }
