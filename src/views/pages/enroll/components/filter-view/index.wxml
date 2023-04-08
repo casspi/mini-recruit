@@ -1,0 +1,48 @@
+
+<view class="filter-view {{ visible && 'active' }}">
+    <scroll-view scroll-y class="filter-view-content">
+        <as-filter-label
+            label="{{ item.label }}"
+            wx:for="{{objFilter}}"
+            wx:key="index">
+
+            <wow-picker
+                range="{{ item.options }}"
+                range-key="label"
+                bindchange="inputHandle"
+                data-item="{{ item }}"
+                bindcancel="handlePickerHide"
+                is-show="{{ item.isPicker }}"
+                wx:if="{{ item.is === 'wow-picker' }}">
+                <view class="filter-cell-picker"
+                      data-item="{{ item }}"
+                      bindtap="jumpPageOrFireFn">
+                    <text class="filter-cell-picker-value {{ !item.value && 'c-form-place' }}">{{ item.value || item.placeholder }}</text>
+                    <view class="c-arrow right"></view>
+                </view>
+            </wow-picker>
+
+            <as-filter-checkbox
+                wx:elif="{{ item.is === 'checkbox' }}"
+                value="{{ item.value }}"
+                options="{{ item.options }}"
+                data-item="{{ item.key }}.value"
+                bindinput="inputHandle"
+            ></as-filter-checkbox>
+
+            <as-filter-datepicker
+                bindinput="inputHandle"
+                wx:elif="{{ item.is === 'datepicker' }}"
+                children="{{ item.children }}"
+            ></as-filter-datepicker>
+
+        </as-filter-label>
+
+        <view class="c-ios-seat"></view>
+    </scroll-view>
+
+    <view class="filter-button-group" wx:if="{{ !objFilter.certificateCity.isPicker }}">
+        <button class="filter-button" bindtap="handleReset">重置</button>
+        <button class="filter-button" bindtap="handleConfirm">确定</button>
+    </view>
+</view>

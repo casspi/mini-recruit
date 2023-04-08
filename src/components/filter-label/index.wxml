@@ -1,0 +1,7 @@
+
+<view class="as-filter-label">
+    <view class="as-filter-label-title">
+        <text>{{ label }}</text>
+    </view>
+    <slot></slot>
+</view>

@@ -10,7 +10,6 @@ export default {
   ],
   jumpPageOrFireFn(e) {
     const {item, ...rest} = this.inputParams(e)
-    console.log(item, rest)
     let {
       url, params, fn, async, sync, disabled, alwaysfire = false,
       close = false, event, filter, premise = ''
@@ -47,47 +46,8 @@ export default {
       return this.routerPush('login_index')
     }
 
-    if (async || premise) {
-      return this.userGet().then(res => {
-        const {IsTestPlan, IsBindMachine, UserNewAct, Identity} = res
-        const {IsNewUser, IsDrawPrize, PrizeBasic} = UserNewAct || {}
-        const {PrizeBasicId} = PrizeBasic || {}
-        premise = premise.split(',')
-        for (let i = 0, len = premise.length; i < len; i++) {
-          const p = premise[i]
-          // 未绑定机器
-          if (p === 'isBindDevice' && !IsBindMachine) {
-            return this.modalConfirm({
-              confirmText: '立即绑定',
-              cancelText: '以后再说',
-              content: '请先绑定您的血糖仪，绑定罗氏血糖仪，获取更多积分',
-            }).then(() => {
-              this.routerPush('device_ocr_index')
-            }).catch(() => {
-              fireFn()
-            })
-          }
-
-          // 新客身份 是否选择
-          if (
-            p === 'isGuestIdentity'
-            && IsNewUser // 新客
-            && !IsDrawPrize // 没有抽奖
-          ) {
-            // 没有身份 或者身份不是糖尿病患者
-            if (Identity !== 1) {
-              return this.jumpPopupGuestHandle()
-            }
-            // 没有建档
-            if (!IsTestPlan) {
-              return this.routerPush('measure_diagnose_index')
-            }
-            // 没有抽奖
-            if (!IsDrawPrize && PrizeBasicId) {
-              return this.routerPush('turntable_index', {Type: 2, PrizeBasicId})
-            }
-          }
-        }
+    if (async) {
+      return this.userGet().then(() => {
         fireFn()
       }).catch((err) => {
         console.log(err)

@@ -60,6 +60,21 @@ function formatCity(val, labelKey, str) {
 }
 
 module.exports = {
+  isPhone: function (val) {
+    return getRegExp('^1\d{10}$').test(val)
+  },
+  isCode: function (val) {
+    return getRegExp('^\d{6}$').test(val)
+  },
+  // 验证码文案
+  renderCodeBtn: function (conut) {
+    if (conut === '') return '获取验证码'
+    if (conut > 0) {
+      return conut + '秒后重新获取'
+    } else {
+      return '重新获取'
+    }
+  },
   filterImage: function (v) {
     if (!v) return ''
     var arr = v.split('.')
@@ -126,5 +141,8 @@ module.exports = {
       formatCity: formatCity
     }
     return formatter[formatterKey](value, item.labelKey || 'label')
-  }
+  },
+  filterIncludes: function (arr, v) {
+    return arr.indexOf(v) > -1
+  },
 };

@@ -1,0 +1,52 @@
+@import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+  color: #333333;
+  @extend %df;
+  @extend %fdc;
+}
+
+.info-detail{
+  padding: j(20) j(30);
+  box-sizing: border-box;
+}
+.patient-top{
+  @extend %df;
+  @extend %aic;
+}
+
+
+.name {
+  font-size: j(28);
+  font-weight: bold;
+}
+
+.status {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  background-color: $color-primary-light;
+  color: $color-primary;
+  height: j(44);
+  padding: 0 j(18);
+  font-size: j(24);
+  font-weight: bold;
+  border-radius: j(8);
+  margin-left: j(24);
+}
+
+.info-item{
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  font-size: j(28);
+  height: j(60);
+  padding-top: j(10);
+}
+.info-item-value{
+  @extend %df;
+  @extend %aic;
+}

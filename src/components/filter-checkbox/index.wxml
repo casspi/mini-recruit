@@ -1,0 +1,12 @@
+
+<wxs src="/wxs/filter.wxs" module="filter" />
+
+<view class="as-filter-checkbox">
+    <view class="as-filter-checkbox-item {{ filter.filterIncludes(value, item.value) && 'active' }}"
+          bindtap="handleSelect"
+          data-item="{{ item }}"
+          wx:for="{{ options }}"
+          wx:key="index">
+        <text>{{ item.label }}</text>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+<view class="bill-warp">
+  <image class="bill" src="/assets/images/bill.png" mode="aspectFill"></image>
+  <image class="logo" mode="aspectFill"></image>
+  <view class="title">
+    <text>中毅医疗临床试验\n受试者招募平台</text>
+  </view>
+  <view class="ass-title">
+    <text>为肿瘤、慢病等患者推荐临床项目</text>
+  </view>
+  <view >
+
+  </view>
+</view>
+

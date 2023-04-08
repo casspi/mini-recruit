@@ -1,0 +1,13 @@
+@import 'src/assets/scss/define';
+
+.as-filter-label {
+  padding: j(20) j(30);
+
+  &-title {
+    @extend %c3;
+    @extend %fwb;
+    font-size: j(30);
+    line-height: j(42);
+    padding: j(20) 0;
+  }
+}

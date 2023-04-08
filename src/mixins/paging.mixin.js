@@ -45,11 +45,11 @@ export default {
       ...options,
     }
     this.curl(url, {
-      PageIndex: pagingIndex,
-      PageSize: pagingSize,
+      pageNum: pagingIndex,
+      pageSize: pagingSize,
       ...params,
     }, options).then((res) => {
-      const {Count: pagingTotal = 0, Data: list = []} = this.pagingFormatResult(res)
+      const {total: pagingTotal = 0, pageList: list = []} = this.pagingFormatResult(res)
       if (this.pagingCallbackResult) {
         this.pagingCallbackResult({
           list,
@@ -92,6 +92,7 @@ export default {
   },
 
   pagingFormatResult(res) {
+    console.log(res)
     if (Array.isArray(res)) {
       res = {Count: res.length, Data: res}
     }

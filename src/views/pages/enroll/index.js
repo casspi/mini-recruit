@@ -12,52 +12,65 @@ new WowPage({
     WowPage.wow$.mixins.Paging,
     WowPage.wow$.mixins.Broadcast,
     WowPage.wow$.mixins.Config,
-
-
+    WowPage.wow$.mixins.Loadmore,
+    WowPage.wow$.mixins.Input,
+    WowPage.wow$.mixins.Refresh,
+    WowPage.wow$.mixins.Jump,
   ],
   data: {
     event: 'enrollList',
     selected: [],
+    isOpen: false,
+    queryText: '',
+    objFilter: {}
   },
-  lifetimes: {
-    attached() {
-      this.data.unbind = this.broadcastAddEventListener(this.data.event, this.handleLocation.bind(this))
-      this.getenrollList()
-    },
-    detached() {
-      if (this.data.unbind) {
-        this.data.unbind()
-      }
-    },
+  onShow() {
+    this.handleRefresh()
   },
-  methods: {
-    handleRefresh(type) {
-      const refWowScroll = this.selectComponent('#wowScroll')
-      if (refWowScroll) {
-        refWowScroll.returnTop()
+  handleRefresh (cb) {
+    this.pagingRefresh(cb)
+  },
+  pagingGetUrlParamsOptions() {
+    const {api$} = this.data
+    return {
+      // url: api$.subjectList,
+      // params:{
+      //   selectClewPage: false
+      // },
+      url: api$.homeList,
+      params: {
+        AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
+        'departmentId': 0,
+        'illness': 0,
+        'genetic': 0,
+        'treatmentLines': 0,
+        'province': 0,
+        'cityId': 0,
+        'researchCenterIdList': '',
+        'centerStartState': 0,
+        'searchContent': '',
+        'collectInfo': false,
+        'addedTimeSort': 0,
+      },
+      options:{
+        method: 'get',
+        loading: false
       }
-      this.pagingRefresh(type)
-    },
-    getenrollList() {
-      const {api$} = this.data
-      this.curl(api$.REQ_NATIONWIDE_AUCTION_LIST, {}, {
-        method: 'GET'
-      }).then(res => {
-        this.setData({
-          nationwideAuctionList: res.dataList,
-        })
-        console.log("res=>", res)
-      }).toast()
-    },
-    pagingGetUrlParamsOptions() {
-      const {api$, selected} = this.data
-      console.log("api$=>", api$)
-      const cityList = selected.length ? selected.map(item => item.value) : ['全国']
-      return {
-        url: api$.REQ_AUCTION_LIST,
-        params: {cityList}
-      }
-    },
-  }
+    }
+  },
+  // 搜索
+  handleFilter() {
+    const {objFilter} = this.data
+    this.selectComponent('#filter-view').show(objFilter)
+  },
+  handleFilterConfirm(event) {
+    // const {objFilter} = this.inputParams(event)
+    // this.setData({objFilter}, () => {
+    //   const {numCurrIndex} = this.data
+    //   const $elNode = this.selectComponent(`#content-${numCurrIndex}`)
+    //   if ($elNode) $elNode.handleRefresh(true)
+    // })
+    // this.reqCertificateOrderBadge()
+  },
 })
 

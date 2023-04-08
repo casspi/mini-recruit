@@ -14,7 +14,7 @@
   </view>
   <view class="menu-section">
     <view class="menu-item {{item.className}}"
-          bindtap="jumpPageOrFireFn"
+          catchtap="jumpPageOrFireFn"
           data-item="{{ item }}"
           wx:for="{{ arrMenu }}"
           wx:key="index">

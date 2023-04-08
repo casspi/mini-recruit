@@ -3,33 +3,34 @@ export default {
     objInput: {
       // 患者
       patient: {
-        value: 'zb',
+        value: 'lss',
         key: 'objInput.patient',
         is: 'field',
         label: '患者姓名',
         labelSuffix: "(字母缩写)",
         maxlength: 10,
-        disabled: true,
+        disabled: false,
         use: [
           {nonempty: true, prompt: '请输入患者姓名'},
         ],
       },
       // 电话
       phone: {
-        value: '',
+        value: '13817672345',
         key: 'objInput.phone',
         type: 'number',
         is: 'field',
         label: '联系电话',
         labelSuffix: "(选填)",
-        maxlength: 11
+        maxlength: 11,
+        disabled: false,
       },
       sex: {
-        value: '',
+        value: 1,
         key: 'objInput.sex',
         is: 'radio-group',
         label: '患者性别',
-        disabled: true,
+        disabled: false,
         use: [
           {nonempty: true, prompt: '请选择性别'},
         ],
@@ -40,7 +41,7 @@ export default {
       },
       // 年龄
       age: {
-        value: '',
+        value: '18',
         key: 'objInput.age',
         type: 'number',
         is: 'field',
@@ -70,6 +71,7 @@ export default {
           // {nonempty: true, prompt: '请选择体能状况'},
           {rule: v => v.length, prompt: '请选择体能状况'},
         ],
+        disabled: false,
       },
       // 所在地
       nowcity: {
@@ -85,7 +87,8 @@ export default {
         use: [
           {nonempty: true, prompt: '请选择所在城市'},
           {rule: v => v.length, prompt: '请选择所在城市'},
-        ]
+        ],
+        disabled: false,
       },
       disease: {
         value: [],
@@ -120,6 +123,7 @@ export default {
           {nonempty: true, prompt: '请选择确诊疾病'},
           {rule: v => v.length, prompt: '请选择确诊疾病'},
         ],
+        disabled: false,
       },
       pics: {
         value: ["group1/M00/95/D2/10bb0f36f8c040c78204632278d8ab0b.png"],
@@ -141,9 +145,10 @@ export default {
           {nonempty: true, prompt: '请选择照片'},
           {rule: v => v.length, prompt: '请选择照片'},
         ],
+        disabled: false,
       },
       file: {
-        value: [{name: 'xxx.pdf', src: 'xxx'}, {name: 'xxx1.xls', src: 'xxx'}],
+        // value: [{name: 'xxx.pdf', src: 'xxx'}, {name: 'xxx1.xls', src: 'xxx'}],
         key: 'objInput.file',
         is: 'file',
         label: '病例文档',
@@ -157,6 +162,7 @@ export default {
           {nonempty: true, prompt: '请选择病例文档'},
           {rule: v => v.length, prompt: '请选择病例文档'},
         ],
+        disabled: false,
       },
       dsc: {
         value: '',
@@ -166,6 +172,7 @@ export default {
         key: 'objInput.dsc',
         is: 'textarea',
         maxlength: 300,
+        disabled: false,
       }
     },
     // 城市数据

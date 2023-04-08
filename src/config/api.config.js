@@ -25,5 +25,8 @@ export default {
   DO_IMAGE_UPLOAD: 'certificateBosOrder/imageFileUpload',
 
   // list
-  REQ_AUCTION_LIST: 'auction/una/index-page'
+  REQ_AUCTION_LIST: 'auction/una/index-page',
+
+  homeList: 'https://api.shuidichou.com/api/cf/pr/mini/recruit-project/list',
+  subjectList: 'https://api.shuidichou.com/api/cf/pr/mini/patient/search-info'
 }

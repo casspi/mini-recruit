@@ -24,5 +24,13 @@ export default {
       })
     }
     return data.indexOf(value) > -1
-  }
+  },
+  // 手机号
+  isPhone: function (val) {
+    return /^1\d{10}$/.test(val)
+  },
+  // 验证码
+  isCode: function (val) {
+    return /\d{6}$/.test(val)
+  },
 }

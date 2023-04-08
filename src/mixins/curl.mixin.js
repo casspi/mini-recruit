@@ -55,7 +55,6 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
 }))
 
 curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
-  console.log(response)
   let {requestConfig, statusCode, data: respData} = response
   delete response.requestConfig
   let {url, method} = requestConfig
@@ -88,7 +87,6 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
   // if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
   //   Data = Object.assign({}, Extend, Data)
   // }
-  console.log(data);
   return resolve(data)
 }), (error) => {
   if (error && error.errMsg) {

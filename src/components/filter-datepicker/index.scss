@@ -1,0 +1,31 @@
+@import 'src/assets/scss/define';
+
+.as-filter-datepicker {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+
+  &-item {
+    @extend %df;
+    @extend %aic;
+    @extend %bsb;
+    @extend %jcc;
+    @extend %c3;
+    @extend %cp;
+    @extend %ao8;
+    font-size: j(22);
+    border: 1px solid #e6e6e6;
+    border-radius: j(4);
+    width: j(320);
+    height: j(72);
+  }
+
+  &-bar {
+    @extend %c6;
+  }
+
+  .iconfont {
+    margin-right: j(12);
+    font-size: j(32);
+  }
+}

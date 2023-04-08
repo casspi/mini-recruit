@@ -1,16 +1,17 @@
 <import src="/templates/form-view/index.wxml"/>
 <template is="formView" data="{{ objInput: objInput }}"></template>
-<view>{{objInput.Sex.value}}</view>
-<view class="c-fixed-seat"></view>
-<view class="c-fixed">
-  <view class="btn-bar">
-    <view class="btn btn-info">保存草稿</view>
-    <view class="btn btn-primary" bindtap="handleSubmit">提交</view>
-  </view>
-  <view class="ios-seat"></view>
-</view>
 
-// 城市选择
+<block wx:if="{{!(params$ && params$.isDetail)}}">
+  <view class="c-fixed-seat"></view>
+  <view class="c-fixed">
+    <view class="btn-bar">
+      <view class="btn btn-info">保存草稿</view>
+      <view class="btn btn-primary" bindtap="handleSubmit">提交</view>
+    </view>
+    <view class="ios-seat"></view>
+  </view>
+</block>
+
 <city-popup
   id="refCity"
 ></city-popup>

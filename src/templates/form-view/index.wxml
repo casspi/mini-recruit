@@ -48,6 +48,7 @@
               data-upt="{{ i }}"
             ></image>
             <view
+              wx:if="{{ !item.disabled }}"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
               data-del="{{ i }}"
@@ -84,6 +85,7 @@
                 wx:for="{{ item.value }}">
             <text>{{file.name}}</text>
             <view
+              wx:if="{{ !item.disabled }}"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
               data-del="{{ i }}"
@@ -105,6 +107,7 @@
         <view class="radio-group-content">
           <view class="radio-item {{ option.value === item.value && 'is-active' }}"
                 bindtap="inputHandle"
+                data-disabled="{{item.disabled}}"
                 data-item="{{ item.key }}.value"
                 data-value="{{ option.value }}"
                 wx:key="index"
@@ -125,6 +128,7 @@
         <textarea
           class="textarea-content"
           value="{{ item.value }}"
+          disabled="{{ item.disabled }}"
           bindinput="inputHandle"
           data-item="{{ item }}"
           placeholder-class="c-input-place"

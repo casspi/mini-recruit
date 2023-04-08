@@ -11,6 +11,7 @@ import 'src/assets/images/mine-active.png'
 import 'src/assets/images/mine.png'
 import 'src/assets/images/enroll.png'
 import 'src/assets/images/enroll-active.png'
+import 'src/assets/images/bill.png'
 
 import WowApp from 'wow-wx/lib/app'
 

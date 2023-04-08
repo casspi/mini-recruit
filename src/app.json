@@ -5,9 +5,11 @@
         "pages/enroll/index",
         "pages/login/index",
         "pages/mine/index",
+        "pages/patient/index",
         "pages/qrcode/index",
         "pages/select/index",
         "pages/subject/index",
+        "pages/submit/index",
         "pages/user/index"
     ],
     "permission": {

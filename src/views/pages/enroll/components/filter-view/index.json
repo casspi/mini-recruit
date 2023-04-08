@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "as-filter-checkbox": "/components/filter-checkbox/index",
+    "as-filter-datepicker": "/components/filter-datepicker/index",
+    "as-filter-label": "/components/filter-label/index"
+  }
+}

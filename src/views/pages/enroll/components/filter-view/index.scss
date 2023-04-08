@@ -1,0 +1,98 @@
+@import 'src/assets/scss/define';
+
+.filter-view {
+  @extend %pf;
+  @extend %t0;
+  @extend %l0;
+  @extend %r0;
+  @extend %b0;
+  @extend %df;
+  @extend %fdc;
+  @include tft(translate3d(0, -100%, 0));
+  @include tst(all, .3s);
+  background-color: #fff;
+  z-index: 3;
+
+  &.active {
+    @include tft(translate3d(0, 0, 0))
+  }
+
+  &-content {
+    @extend %df;
+    @extend %df1;
+    @extend %fdc;
+    @extend %oya;
+    @extend %pr;
+  }
+}
+
+.filter-button-group {
+  @extend %pf;
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %l0;
+  @extend %r0;
+  @extend %b0;
+  @extend %fww;
+  background-color: #fff;
+  box-shadow: 0 0 j(16) rgba(0, 0, 0, 0.08);
+  padding: j(10) j(30) j(40);
+
+  &:after {
+    @extend %w100;
+    @extend %db;
+    content: '';
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+.filter-button {
+  border-radius: j(4);
+  width: j(320);
+  height: j(88);
+  font-size: j(28);
+
+  &:nth-child(1) {
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cp;
+    @extend %ao8;
+    @extend %c6;
+    @extend %bsb;
+    border: 1px solid #666;
+    background-color: transparent;
+  }
+
+  &:nth-child(2) {
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cp;
+    @extend %ao8;
+    @extend %cfff;
+    @extend %bsb;
+    background-color: $color-primary;
+  }
+}
+
+.filter-cell-picker {
+  @extend %df;
+  @extend %aic;
+  @extend %c3;
+  @extend %ao8;
+  @extend %cp;
+  @extend %bw05;
+  @extend %bwb;
+  height: j(88);
+
+  &-value {
+    @extend %df1;
+  }
+}
+
+.c-ios-seat {
+  height: j(200);
+}

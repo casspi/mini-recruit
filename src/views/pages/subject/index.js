@@ -20,6 +20,19 @@ new WowPage({
   ],
   onLoad(options) {
     this.routerGetParams(options)
+    console.log('data=>', this.data)
+    const { params$:{isDetail}, objInput } = this.data
+    if(isDetail){
+      wx.setNavigationBarTitle({title:'患者详情'})
+      console.log(objInput)
+      for (let key in objInput){
+        this.setData({
+          [`${objInput[key].key}.disabled`]: true
+        })
+      }
+
+    }
+
   },
   // 选择组件选中回调
   selectHandle(options) {

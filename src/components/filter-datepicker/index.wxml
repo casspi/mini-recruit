@@ -1,0 +1,19 @@
+
+<view class="as-filter-datepicker">
+    <block
+        wx:for="{{ children }}"
+        wx:key="index">
+        <picker
+            bindchange="handleChange"
+            data-item="{{ item }}"
+            start="{{ item.start }}"
+            end="{{ item.end }}"
+            mode="{{ item.mode }}">
+            <view class="as-filter-datepicker-item {{ !item.value && 'c-form-place' }}">
+                <view class="iconfont icon-riqi"></view>
+                <text>{{ item.value || item.label }}</text>
+            </view>
+        </picker>
+        <text wx:if="{{ item.useBar }}" class="as-filter-datepicker-bar">-</text>
+    </block>
+</view>
