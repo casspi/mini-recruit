@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "患者提报"
+  "navigationBarTitleText": "患者提报",
+  "usingComponents": {
+    "city-popup": "/components/city-popup/index"
+  }
 }

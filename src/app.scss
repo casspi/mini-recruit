@@ -137,6 +137,11 @@ button::after {
     border: 1px solid $color-primary;
     background-color: $color-primary;
     color: #fff;
+    &.disabled {
+      border-color: $primary-disabled !important;
+      background-color: $primary-disabled !important;
+      opacity: 0.6;
+    }
   }
 }
 
@@ -144,4 +149,45 @@ button::after {
   @extend %w100;
   height: constant(safe-area-inset-bottom);
   height: env(safe-area-inset-bottom);
+}
+
+// 协议
+@include b(agreement) {
+  @extend %df;
+  @extend %aic;
+  @extend %c3;
+  width: j(630);
+  margin: j(40) auto 0;
+  font-size: j(24);
+  color: #c0c0c0;
+  @include e(icon) {
+    //@extend %df;
+    //@extend %aic;
+    //@extend %jcc;
+    //@extend %br50;
+    //@extend %bsb;
+    //@extend %cfff;
+    //border: 1px solid #e9e9e9;
+    font-size: j(36);
+    margin-right: j(16);
+    //width: j(36);
+    //height: j(36);
+  }
+
+  @include e(text) {
+    @extend %df1;
+    @extend %df;
+    @extend %fww;
+    line-height: j(36);
+    .strong {
+      color: $color-primary;
+    }
+  }
+
+  @include when(active) {
+    .agreement-icon {
+      color: $color-primary;
+    }
+  }
+
 }

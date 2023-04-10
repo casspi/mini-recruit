@@ -24,7 +24,7 @@ new WowPage({
     queryText: '',
     objFilter: {}
   },
-  onShow() {
+  onLoad() {
     this.handleRefresh()
   },
   handleRefresh (cb) {

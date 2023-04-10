@@ -9,6 +9,7 @@ page {
   height: j(480);
   width: 100%;
   color: $color-primary;
+  margin-bottom: j(170);
   @extend %pr;
   .bill{
     width: 100%;
@@ -34,4 +35,42 @@ page {
     border-radius: j(30);
     font-size: j(24);
   }
+}
+.merit-list{
+  @extend %pa;
+  @extend %df;
+  @extend %bsb;
+  background-color: #fff;
+  padding: j(40) j(10);
+  bottom: j(-150);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: j(0) j(0) j(5) j(0) #ddd;
+  margin: 0;
+  .merit-item{
+    @extend %df;
+    @extend %fdc;
+    @extend %aic;
+    flex: 1;
+    &:not(:last-child){
+      border-right: 1px #ddd solid;
+    }
+    .iconfont{
+      font-size: j(50);
+      margin-bottom: j(20);
+    }
+    >view:nth-child(2){
+      text-align: center;
+      font-size: j(28);
+    }
+  }
+}
+.c-fixed-seat{
+  height: j(320);
+}
+.agreement{
+  width: 100%;
+  margin: j(30) 0 0 0;
+  padding: j(20) j(50);
+  background-color: #fff;
 }

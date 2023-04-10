@@ -3,7 +3,6 @@
 .form-view {
   @extend %c3;
   padding: j(20) 0;
-
   .form-cell {
     margin: 0 j(40);
     padding: j(10) 0;
@@ -182,8 +181,10 @@
       @extend %db;
       @extend %w100;
       @extend %bsb;
+      background-color: #f6f6f6;
+      border-radius: j(8);
       height: j(340);
-      padding: j(30) 0;
+      padding: j(30) j(20);
       font-size: j(30);
     }
   }
