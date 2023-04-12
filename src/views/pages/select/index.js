@@ -15,7 +15,7 @@ new WowPage({
     WowPage.wow$.mixins.Config,
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Page,
-    WowComponent.wow$.mixins.Modal,
+    WowPage.wow$.mixins.Modal,
     Tools
   ],
   onLoad(p) {

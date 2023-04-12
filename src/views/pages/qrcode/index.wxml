@@ -23,8 +23,17 @@
 <!--<view class="c-fixed-seat"></view>-->
 <view class="c-fixed">
   <view class="btn-bar">
-    <view class="btn btn-info">保存图片</view>
+    <view class="btn btn-info" bindtap="saveHandle">保存图片</view>
     <view class="btn btn-primary" bindtap="onShareAppMessage">分享给好友</view>
   </view>
   <view class="ios-seat"></view>
 </view>
+
+<block>
+  <canvas
+    type="2d"
+    id="canvas"
+    style="{{'width: ' + (canvasW) + 'px; height: ' + (canvasH) + 'px;'}}"
+    hidden="true"
+    ></canvas>
+</block>
