@@ -1,0 +1,23 @@
+
+<view class="log-list">
+  <view class="log-title">
+    <view class="title-name">
+      <text>变更内容</text>
+    </view>
+    <view class="title-time">
+      <text>时间</text>
+    </view>
+  </view>
+  <view
+    class="log-item"
+    data-item="{{ item }}"
+    wx:for="{{ logList }}"
+    wx:key="index">
+    <view>
+      <text>{{item.text}}</text>
+    </view>
+    <view>
+      <text>{{item.time}}</text>
+    </view>
+  </view>
+</view>

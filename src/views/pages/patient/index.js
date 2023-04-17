@@ -11,8 +11,8 @@ new WowPage({
     WowPage.wow$.mixins.Jump,
 
   ],
-  data:{
-    infoObj:[
+  data: {
+    infoObj: [
       {
         label: '所患疾病',
         value: '感冒'
@@ -33,8 +33,24 @@ new WowPage({
         params: {
           isDetail: true
         }
+      },
+      {
+        label: '状态',
+        value: '变更记录',
+        arrow: true,
+        url: 'patientlog_index',
+        params: {
+          isDetail: true
+        }
       }
     ]
+  },
+  onLoad() {
+    const pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2]
+    prevPage.setData({
+      form: 'detail'
+    })
   }
 })
 

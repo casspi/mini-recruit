@@ -17,15 +17,18 @@ new WowPage({
     WowPage.wow$.mixins.Format,
     WowPage.wow$.mixins.Helper,
     WowPage.wow$.mixins.Validate,
+    WowPage.wow$.mixins.File,
+    WowPage.wow$.mixins.Loading,
+    WowPage.wow$.mixins.Modal,
   ],
   onLoad(options) {
     this.routerGetParams(options)
     console.log('data=>', this.data)
-    const { params$:{isDetail}, objInput } = this.data
-    if(isDetail){
-      wx.setNavigationBarTitle({title:'患者详情'})
+    const {params$: {isDetail}, objInput} = this.data
+    if (isDetail) {
+      wx.setNavigationBarTitle({title: '患者详情'})
       console.log(objInput)
-      for (let key in objInput){
+      for (let key in objInput) {
         this.setData({
           [`${objInput[key].key}.disabled`]: true
         })
@@ -72,24 +75,30 @@ new WowPage({
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
   },
-  // 图片上传
+  // 图片上传控件事件
   handlePics(item, e) {
     console.log('handlePics=>', item)
     let {value, limit} = item
-    const {upt, del} = this.inputParams(e)
-    if (upt >= 0) {// 预览
+    const {pre, del} = this.inputParams(e)
+    if (pre >= 0) {// 预览
       const urls = value.map(item => {
         return this.formatImage(item)
       })
       this.imagePreview({
-        current: this.formatImage(value[upt]),
+        current: this.formatImage(value[pre]),
         urls,
       }).toast()
       return
     }
     if (del >= 0) {// 删除
-      value.splice(del, 1)
-      this.setData({[`${item.key}.value`]: value})
+      this.modalConfirm({
+        content: `是否确定删除？`,
+        confirmText: '确定',
+        cancelText: '取消'
+      }).then(() => {
+        value.splice(del, 1)
+        this.setData({[`${item.key}.value`]: value})
+      }).toast()
       return
     }
     const {api$} = this.data
@@ -117,19 +126,32 @@ new WowPage({
   // 文件选择上传
   handleFile(item, e) {
     let {value} = item
-    const {del} = this.inputParams(e)
-    if (del >= 0) {// 删除
-      value.splice(del, 1)
-      this.setData({[`${item.key}.value`]: value})
+    const {del, pre} = this.inputParams(e)
+    // 删除
+    if (del >= 0) {
+      this.modalConfirm({
+        content: `是否确定删除？`,
+        confirmText: '确定',
+        cancelText: '取消'
+      }).then(() => {
+        value.splice(del, 1)
+        this.setData({[`${item.key}.value`]: value})
+      }).toast()
+      return
+    }
+    // 文件预览
+    if (pre >= 0) {
+      const {src} = value[pre]
+      this.previewFile(src)
       return
     }
     const {api$} = this.data
+    // 上传
     this.helperFnPromise('chooseMessageFile', {
       count: 1,
       type: 'file',
       extension: ['xls', 'xlsx', 'doc', 'docx']
     }).then(res => {
-      console.log('chooseMessageFile', res.tempFiles)
       const tasks = res.tempFiles.map(temp => this.curl(api$.DO_IMAGE_UPLOAD, {}, {
         loading: true,
         fn: 'uploadFile',
@@ -139,6 +161,19 @@ new WowPage({
       return Promise.all(tasks)
     }).catch(msg => {
       console.log(msg)
+    })
+  },
+  // 文档预览
+  previewFile(url) {
+    this.loadingShow({
+      title: '文档下载中...',
+      mask: true
+    })
+    this.fileDownload(url).then(res => {
+      const {tempFilePath} = res
+      return this.fileOpenDocument(tempFilePath)
+    }).toast().finally(() => {
+      this.loadingHide()
     })
   },
   handleSubmit() {

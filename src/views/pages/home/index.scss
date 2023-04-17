@@ -1,1 +1,188 @@
 @import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+  @extend %df;
+  @extend %fdc;
+  @extend %bsb;
+
+}
+
+.header {
+  position: static;
+  z-index: 2;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+// 搜索区域
+.header-section {
+  @extend %df;
+  @extend %aic;
+  @extend %bsb;
+  height: j(108);
+  padding: 0 j(30);
+  background-color: #fff;
+  width: 100%;
+}
+
+.search-box {
+  @extend %df;
+  @extend %df1;
+  @extend %aic;
+  height: j(72);
+  padding: 0 j(24);
+  background-color: #F6F7FA;
+  border-radius: j(8);
+
+  .iconfont {
+    @extend %c9;
+  }
+}
+
+.search-input {
+  @extend %df1;
+  @extend %h100;
+  @extend %c9;
+  height: j(72);
+  margin-left: j(16);
+  font-size: j(30);
+  font-weight: 300;
+}
+
+.filter-button {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  @extend %c3;
+  font-size: j(30);
+  color: $color-primary;
+  padding: 0;
+  margin: 0;
+  height: j(72);
+  width: j(148);
+  background-color: transparent;
+
+  &:after {
+    @extend %dn;
+  }
+
+  .iconfont {
+    margin: 0 j(8);
+    font-size: j(26);
+  }
+
+  &.active {
+    color: $color-primary;
+  }
+}
+
+.filter-view {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %bfff;
+  padding: 0 j(80) j(10);
+  font-size: j(28);
+
+  .filter-item {
+    @extend %df;
+    @extend %aic;
+
+    &.is-active {
+      color: $color-primary;
+    }
+
+    .c-arrow {
+      margin-bottom: j(6);
+      margin-left: j(10);
+    }
+  }
+}
+
+.total-view {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %bsb;
+  width: 100%;
+  padding: j(10) j(30);
+  font-size: j(24);
+  @extend %c6;
+  background-color: $page-bg;
+
+  .status-num {
+    color: $color-primary;
+  }
+
+  .collect {
+    padding: j(20) j(30);
+    border-radius: j(50);
+    @extend %bfff;
+
+    &.is-active {
+      color: $color-primary;
+      background-color: $color-primary-light;
+    }
+  }
+}
+
+.content {
+  @extend %df1;
+  overflow: auto;
+  height: j(200);
+  word-break: break-all;
+
+  .project-item {
+    padding: j(30) j(30) j(30) j(30);
+    margin-top: j(20);
+    @extend %bsb;
+    @extend %pr;
+    @extend %oh;
+
+    .status {
+      @extend %pa;
+      font-size: j(22);
+      padding: j(10) j(50);
+      background-color: orangered;
+      color: #fff;
+      right: j(-40);
+      top: j(10);
+      z-index: 2;
+      transform: rotate(45deg);
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .project-name {
+    font-weight: 700;
+    font-size: j(28);
+    line-height: j(40);
+    margin-bottom: j(20);
+    padding-right: j(20);
+  }
+
+  .info-item {
+    line-height: j(40);
+    font-size: j(26);
+    @extend %df;
+    @extend %w100;
+  }
+
+  .info-label {
+    width: j(140);
+    @extend %c9;
+  }
+
+  .info-value {
+    @extend %df1;
+  }
+}
+
+

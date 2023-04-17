@@ -1,5 +1,83 @@
-<view>
-  <text>HOME</text>
-  <button bindtap="jumpPageOrFireFn"
-          data-url="login_index">登录页</button>
+<view class="header">
+  <view class="header-section">
+    <view class="search-box">
+      <view class="iconfont icon-search"></view>
+      <input
+        bindconfirm="handleKeywordConfirm"
+        confirm-type="search"
+        value="{{ queryText }}"
+        bindinput="handleKeywordInput"
+        type="text"
+        class="search-input"
+        placeholder="项目名称、编号/药物/适应症/申办方"
+      />
+    </view>
+  </view>
+  <view class="filter-view">
+    <view
+      bindtap="jumpPageOrFireFn"
+      data-item="{{ {objFilter: objFilter, item: item, active: index} }}"
+      data-url="home_filter_index"
+      class="filter-item"
+      wx:for="{{ objFilter  }}"
+      wx:key="index"
+    >
+      <text>{{item.name}}</text>
+      <view class="c-arrow bottom"></view>
+    </view>
+  </view>
+  <view class="total-view">
+    <view>
+      <text>共找到{{pagingTotal || pagingNumTotal}}个项目</text>
+    </view>
+    <view class="collect {{collect && 'is-active'}}" bindtap="collectHandle">
+      <text>收藏0</text>
+    </view>
+  </view>
 </view>
+<wow-scroll
+  id="wowScroll"
+  bindscrolltolower="pagingLoad"
+  bindrefresh="pagingRefresh"
+  class="content">
+  <block
+    wx:for="{{ pagingData  }}"
+    wx:key="arrIndex"
+    wx:for-item="arrData"
+    wx:for-index="arrIndex">
+    <view
+      class="project-item c-block"
+      bindtap="jumpPageOrFireFn"
+      data-url="project_index"
+      data-item="{{ item }}"
+      data-params="{{ { id: item.id, publishNumber: item.publishNumber, projectName: item.projectName  } }}"
+      wx:for="{{ arrData }}"
+      wx:key="id">
+      <view class="status">
+        <text>招募中</text>
+      </view>
+      <view class="project-name">【{{item.publishNumber}}】{{item.projectName}}</view>
+      <view class="staging info-item">
+        <view class="info-label">
+          <text>实验阶段</text>
+        </view>
+        <view class="info-value">
+          <text>{{item.experimentStage}}</text>
+        </view>
+      </view>
+
+      <view class="indication info-item">
+        <view class="info-label">
+          <text>适应症</text>
+        </view>
+        <view class="info-value">
+          <text>{{item.adaptSymptom}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <wow-end
+    wx:if="{{ pagingTotal > 0}}"
+    is-loading="{{ pagingTotal > pagingNumTotal }}"
+  ></wow-end>
+</wow-scroll>

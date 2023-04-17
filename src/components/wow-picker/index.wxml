@@ -1,0 +1,11 @@
+<view class="wow-picker">
+  <view class="label">{{item.label}}</view>
+  <picker
+    bindchange="handleChange"
+    range="{{item.options}}"
+    value="{{item.value}}"
+    data-item="{{item}}"
+    >
+    <view class="value">{{ item.value || item.placeholder }}<view class="c-arrow right"></view></view>
+  </picker>
+</view>

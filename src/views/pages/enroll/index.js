@@ -14,7 +14,7 @@ new WowPage({
     WowPage.wow$.mixins.Config,
     WowPage.wow$.mixins.Loadmore,
     WowPage.wow$.mixins.Input,
-    WowPage.wow$.mixins.Refresh,
+    // WowPage.wow$.mixins.Refresh,
     WowPage.wow$.mixins.Jump,
   ],
   data: {
@@ -27,7 +27,7 @@ new WowPage({
   onLoad() {
     this.handleRefresh()
   },
-  handleRefresh (cb) {
+  handleRefresh(cb) {
     this.pagingRefresh(cb)
   },
   pagingGetUrlParamsOptions() {
@@ -52,7 +52,7 @@ new WowPage({
         'collectInfo': false,
         'addedTimeSort': 0,
       },
-      options:{
+      options: {
         method: 'get',
         loading: false
       }
@@ -64,13 +64,10 @@ new WowPage({
     this.selectComponent('#filter-view').show(objFilter)
   },
   handleFilterConfirm(event) {
-    // const {objFilter} = this.inputParams(event)
-    // this.setData({objFilter}, () => {
-    //   const {numCurrIndex} = this.data
-    //   const $elNode = this.selectComponent(`#content-${numCurrIndex}`)
-    //   if ($elNode) $elNode.handleRefresh(true)
-    // })
-    // this.reqCertificateOrderBadge()
+    const {objFilter} = this.inputParams(event)
+    console.log(objFilter)
+    this.setData({objFilter})
+    this.handleRefresh()
   },
 })
 

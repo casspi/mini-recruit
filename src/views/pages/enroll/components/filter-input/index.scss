@@ -1,0 +1,24 @@
+@import 'src/assets/scss/define';
+
+// 单元表单
+.filter-input {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  font-size: j(28);
+  border-radius: j(8);
+  padding: j(20) j(30);
+
+  .label {
+    font-size: j(30);
+    line-height: j(42);
+    font-weight: 700;
+  }
+
+  .input {
+    @extend %df1;
+    padding: j(20) j(20);
+    background-color: #f6f6f6;
+    margin-left: j(30);
+  }
+}

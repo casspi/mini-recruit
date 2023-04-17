@@ -1,0 +1,56 @@
+@import 'src/assets/scss/define';
+
+page {
+  //background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+  color: #333333;
+  @extend %df;
+  @extend %fdc;
+}
+
+.log-title, .log-item {
+  width: j(702);
+  margin: 0 auto;
+  border-bottom: 1px $page-bg solid;
+  padding: j(20) 0;
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+}
+
+.log-title {
+  font-size: j(28);
+  font-weight: 500;
+}
+
+.log-item {
+  font-size: j(26);
+}
+
+.left {
+  @extend %df;
+  @extend %aic;
+
+  .iconfont {
+    margin-right: j(20);
+    font-size: j(32);
+
+    &.icon-add {
+      color: $color-warning;
+    }
+
+    &.icon-change {
+      color: $color-success;
+    }
+
+  }
+}
+
+.text {
+  view:last-child {
+    margin-top: j(10);
+    font-size: j(24);
+    @extend %c9;
+  }
+}

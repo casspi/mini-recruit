@@ -27,5 +27,7 @@
       </view>
       <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
     </view>
+    <button bindtap="jumpPageOrFireFn"
+            data-url="login_index">登录页</button>
   </view>
 </view>

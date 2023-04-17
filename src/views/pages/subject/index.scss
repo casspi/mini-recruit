@@ -4,4 +4,12 @@ page {
   background-color: $page-bg;
   height: 100%;
   width: 100%;
+  @extend %df;
+  @extend %fdc;
+}
+
+.form {
+  flex: 1;
+  overflow-y: auto;
+  //margin-bottom: j(120);
 }

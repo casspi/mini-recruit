@@ -11,35 +11,36 @@ new WowPage({
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Jump,
   ],
-  data:{
+  data: {
     isAgreement: false,
+    invitationCode: 'wqwff1',
     phone: '',
-    code: '',
-    conut:''
+    code: 'wqwff1',
+    conut: ''
   },
   // 获取验证码
-  handleCode(){
+  handleCode() {
     const {phone, code} = this.data
     console.log(phone, code)
     this.countDown()
   },
   // 倒计时
-  countDown(){
+  countDown() {
     let conut = 10
     this.setData({
       conut
     })
-    const timer = setInterval(()=>{
-      if(conut > 0){
+    const timer = setInterval(() => {
+      if (conut > 0) {
         this.setData({
           conut: --conut
         })
-      }else {
+      } else {
         clearInterval(timer)
       }
-    },1000)
+    }, 1000)
   },
-  handleSubmit(){
+  handleSubmit() {
     const {phone, code} = this.data
     console.log(phone, code)
   }

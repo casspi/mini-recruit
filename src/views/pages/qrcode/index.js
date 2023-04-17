@@ -12,6 +12,7 @@ new WowPage({
     WowPage.wow$.mixins.User,
     WowPage.wow$.mixins.Helper,
     WowPage.wow$.mixins.Modal,
+
   ],
   data: {
     canvas: null,
@@ -30,7 +31,7 @@ new WowPage({
   },
   // 获取小程序码
   getMiniCode() {
-    
+
   },
   // 单位转换
   rpx2px(value) {
@@ -182,14 +183,19 @@ new WowPage({
         icon: 'success',
         message: '已保存到相册'
       })
-    }).toast()
+    }).toast(({errMsg}) => {
+      if (errMsg === 'saveImageToPhotosAlbum:fail cancel') {// 取消不提示
+        return true
+      }
+    }).finally((res) => {
+      console.log('finally=>', res)
+    })
   },
   // 复制
   handleCopy() {
-    this.saveHandle()
-    // this.helperFnPromise('setClipboardData', {
-    //   data: '222'
-    // }).toast()
+    this.helperFnPromise('setClipboardData', {
+      data: '222'
+    }).toast()
   },
   shareGetConfig() {
     // const {params$, user$, objData} = this.data

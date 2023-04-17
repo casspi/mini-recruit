@@ -1,0 +1,194 @@
+@import 'src/assets/scss/define';
+
+page {
+  width: 100%;
+  height: 100%;
+  @extend %df;
+  @extend %fdc;
+  word-break: break-all;
+}
+
+.detail {
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+  @extend %df;
+  @extend %fdc;
+  @extend %bsb;
+}
+
+.name {
+  @extend %bsb;
+  font-size: j(28);
+  line-height: j(40);
+  font-weight: 700;
+  margin-top: j(20);
+}
+
+.tabs {
+  @extend %df;
+  @extend %aic;
+
+  .tabs-item {
+    flex: 1;
+    text-align: center;
+    height: j(80);
+    font-size: j(28);
+    font-weight: 700;
+    @extend %pr;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+
+    &.is-active {
+      &::after {
+        content: '';
+        @extend %pa;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $color-primary;
+        width: j(80);
+        height: j(6);
+      }
+    }
+
+  }
+}
+
+.tab-view {
+  padding: 0 j(30) j(30);
+  width: 100%;
+  @extend %bsb;
+}
+
+.title {
+  font-size: j(28);
+  padding-left: j(20);
+  margin-top: j(40);
+
+  @extend %pr;
+
+  &::after {
+    height: j(32);
+    width: j(4);
+    background-color: $color-primary;
+    content: '';
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    @extend %pa;
+  }
+}
+
+.info-item {
+  margin-top: j(20);
+  line-height: j(40);
+  font-size: j(26);
+  @extend %df;
+  @extend %w100;
+}
+
+.info-label {
+  width: j(140);
+  @extend %c9;
+}
+
+.info-value {
+  @extend %df1;
+}
+
+// 研究中心
+.tab-title {
+  @extend %bsb;
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  padding: j(10) j(20);
+  margin-top: j(20);
+  width: 100%;
+
+  font-size: j(28);
+  color: $color-primary;
+  background-color: #f7efe8;
+
+  .more {
+    @extend %df;
+    @extend %aic;
+  }
+}
+
+.c-item {
+  padding: j(20);
+  margin-top: j(20);
+  border: 1px solid #f6f6f6;
+  border-radius: j(10);
+}
+
+.hospital {
+  @extend %df;
+  font-size: j(24);
+  align-items: flex-start;
+}
+
+.status {
+  width: j(120);
+  height: j(40);
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+
+  &.status-1 {
+    color: $color-success;
+  }
+
+  &.status-2 {
+    color: $color-primary;
+  }
+}
+
+.city {
+  @extend %df;
+  @extend %aic;
+  font-size: j(28);
+  font-weight: 500;
+  margin-bottom: j(20);
+
+  .iconfont {
+    color: #466a9d;
+    margin-right: j(20);
+  }
+
+}
+
+.range {
+  @extend %c9;
+}
+
+// 底部按钮
+.icon-bar {
+  width: j(260);
+  margin-right: j(30);
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+
+  .iconfont {
+    text-align: center;
+    font-size: j(50);
+    color: #333333;
+
+    &.is-active {
+      color: $color-primary;
+    }
+
+    &.disabled {
+      @extend %c9;
+    }
+  }
+
+  .btn-text {
+    margin-top: j(6);
+    font-size: j(24);
+  }
+}

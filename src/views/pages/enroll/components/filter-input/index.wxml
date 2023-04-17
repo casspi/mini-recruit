@@ -1,0 +1,14 @@
+<view class="filter-input">
+  <view class="label">{{item.label}}</view>
+  <input
+    class="form-field-input input"
+    type="{{ item.type || 'text' }}"
+    value="{{ item.value }}"
+    bindinput="inputHandle"
+    data-item="{{ item }}"
+    placeholder-class="c-input-place"
+    placeholder="{{ item.placeholder || '请输入' }}"
+    maxlength="{{ item.maxlength || 9999 }}"
+    disabled="{{item.disabled}}"
+  />
+</view>

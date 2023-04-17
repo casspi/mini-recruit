@@ -16,7 +16,7 @@
       <view class="city">
         <view class="city-item {{filter.includes(value, item.id, 'id', 'city') && 'is-active'}}" wx:for="{{ filter.pickByKey(source, parent.id, 'id')[0].children }}" wx:key="index" data-item="{{item}}" bindtap="cityHandle">
           <text>{{item.label}}</text>
-          <view class="iconfont icon-xuanzhong" wx:if="{{filter.includes(value, item.id, 'id', 'city') }}"></view>
+          <view class="iconfont icon-duihao" wx:if="{{filter.includes(value, item.id, 'id', 'city') }}"></view>
         </view>
       </view>
     </view>

@@ -4,11 +4,11 @@
   <view class="header">
     <image class="logo"/>
     <text class="title">xx招募之家</text>
-    <text class="code" space="false">推荐码:2222</text>
+    <text wx:if="{{invitationCode}}" class="code" space="false">推荐码:{{invitationCode}}</text>
   </view>
   <view class="login-form">
     <view class="form-item">
-      <view class="form-item__title">手机号{{phone}}</view>
+      <view class="form-item__title">手机号</view>
       <view class="form-item-cells form-item_after-title">
         <view class="form-item-cells form-item_input">
           <input
@@ -23,7 +23,7 @@
       </view>
     </view>
     <view class="form-item form-item-code">
-      <view class="form-item__title">验证码{{code}}</view>
+      <view class="form-item__title">验证码</view>
       <view class="form-item-cells form-item_after-title">
         <view class="form-item-cells form-item_input">
           <input value="{{code}}"
@@ -54,13 +54,13 @@
       <text class="strong"
             catchtap="jumpPageOrFireFn"
             data-url="webview_index"
-            data-params="{{ { title: '用户服务协议', link: api$.H5_AGREEMENT_URL + '3' } }}"
+            data-params="{{ { title: '用户服务协议', link: 'https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onReady' } }}"
       >《用户服务协议》
       </text>
       <text class="strong"
             catchtap="jumpPageOrFireFn"
             data-url="webview_index"
-            data-params="{{ { title: '隐私政策', link: api$.H5_AGREEMENT_URL + '7' } }}"
+            data-params="{{ { title: '隐私政策', link: 'https://www.baidu.com' } }}"
       >《隐私政策》
       </text>
       <text>并接受协议内容</text>

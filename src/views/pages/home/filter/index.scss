@@ -1,0 +1,49 @@
+@import 'src/assets/scss/define';
+
+page {
+  width: 100%;
+  height: 100%;
+  @extend %df;
+  @extend %fdc;
+}
+
+.content {
+  @extend %df1;
+  @extend %df;
+  @extend %fdc;
+  @extend %oh;
+}
+
+.filter-view {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %bfff;
+  padding: 0 j(80) j(10);
+  font-size: j(28);
+
+  .filter-item {
+    @extend %df;
+    @extend %aic;
+
+    &.is-active {
+      color: $color-primary;
+    }
+
+    &.is-active .c-arrow {
+      border-color: $color-primary;
+    }
+
+    .c-arrow {
+      margin-bottom: j(6);
+      margin-left: j(10);
+    }
+  }
+}
+
+.filter-view-content {
+  @extend %df1;
+  @extend %bsb;
+  //background-color: rebeccapurple;
+  overflow-y: auto;
+}

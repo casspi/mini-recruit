@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "患者推荐",
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "wow-scroll": "/components/wow-scroll/index",
     "wow-skeleton": "/components/wow-skeleton/index",

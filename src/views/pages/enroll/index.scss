@@ -7,13 +7,15 @@ page {
   @extend %df;
   @extend %fdc;
 }
-.header{
+
+.header {
   position: fixed;
   z-index: 2;
   width: 100%;
-  top:0;
+  top: 0;
   left: 0;
 }
+
 // 搜索区域
 .header-section {
   @extend %df;
@@ -66,7 +68,7 @@ page {
   }
 
   .iconfont {
-    margin-left: j(8);
+    margin: 0 j(8);
     font-size: j(26);
   }
 
@@ -74,15 +76,17 @@ page {
     color: $color-primary;
   }
 }
-.total-view{
+
+.total-view {
   width: 100%;
   height: j(60);
   line-height: j(60);
   padding-left: j(30);
   font-size: j(24);
-  @extend %c9;
+  @extend %c6;
   background-color: $page-bg;
-  .status-num{
+
+  .status-num {
     color: $color-primary;
   }
 }
@@ -100,8 +104,13 @@ page {
   padding: j(20) j(30);
   font-size: j(24);
   color: #333333;
+  border: 1px solid transparent;
   @extend %bsb;
   @extend %bfff;
+
+  &.no-read {
+    border-color: $primary-disabled;
+  }
 
   &:first-child {
     margin-top: 0;
@@ -153,7 +162,7 @@ page {
   margin-right: j(20);
 }
 
-.enroll-btn{
+.enroll-btn {
   position: fixed;
   font-size: j(28);
   font-weight: 500;

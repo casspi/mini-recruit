@@ -2,7 +2,7 @@
 <view class="header">
   <view class="header-section">
     <view class="search-box">
-      <view class="iconfont icon-xuanzhong"></view>
+      <view class="iconfont icon-search"></view>
       <input
         bindconfirm="handleKeywordConfirm"
         confirm-type="search"
@@ -18,7 +18,7 @@
       data-item="{{objFilter}}"
       class="filter-button {{ isOpen && 'active' }}">
       筛选
-      <view class="iconfont {{ isOpen ? 'icon-xuanzhong' : 'icon-xuanzhong' }}"></view>
+      <view class="iconfont icon-shaixuan"></view>
     </button>
   </view>
   <view class="total-view">找到了{{pagingTotal||pagingNumTotal}}个患者，状态更新<text class="status-num">{{'8'}}</text>条</view>
@@ -37,7 +37,7 @@
     wx:for-item="arrData"
     wx:for-index="arrIndex">
     <view
-      class="enroll-item"
+      class="enroll-item {{ item.experimentStage == 2 && 'no-read'}}"
       bindtap="jumpPageOrFireFn"
       data-url="patient_index"
       wx:for="{{ arrData }}"

@@ -1,8 +1,10 @@
 {
   "component": true,
   "usingComponents": {
-    "as-filter-checkbox": "/components/filter-checkbox/index",
-    "as-filter-datepicker": "/components/filter-datepicker/index",
-    "as-filter-label": "/components/filter-label/index"
+    "filter-checkbox": "../filter-checkbox/index",
+    "filter-datepicker": "../filter-datepicker/index",
+    "filter-label": "../filter-label/index",
+    "filter-input": "../filter-input/index",
+    "wow-picker": "../../../../components/wow-picker/index"
   }
 }

@@ -1,0 +1,180 @@
+<view
+  class="tabs">
+  <view
+    class="tabs-item {{ active === index && 'is-active'}}"
+    wx:for="{{ tabs }}"
+    wx:key="index"
+    data-item="{{index}}"
+    bindtap="jupHandle"
+  >
+    <text>{{item}}</text>
+  </view>
+</view>
+<view class="detail">
+  <scroll-view
+    style="height: 100%"
+    scroll-y="true"
+    bindscroll="handelScroll">
+    <view wx:if="{{active === 0}}" class="tab-view">
+      <view class="name">
+        <text>【{{params$.publishNumber}}】{{params$.projectName}}</text>
+      </view>
+      <view class="title">
+        <text>项目基本信息</text>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验分期</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.publishNumber}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验分期</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.projectName}}</text>
+        </view>
+      </view>
+      <view class="title">
+        <text>项目基本信息</text>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验分期</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.publishNumber}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{active === 1}}" class="tab-view">
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验药组</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.publishNumber}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>用药介绍</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.projectName}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>用药介绍</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.projectName}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{active === 2}}" class="tab-view">
+      <view class="title">
+        <text>简要入排</text>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验分期</text>
+        </view>
+        <view class="info-value">
+          <text>{{params$.publishNumber}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{active === 3}}" class="tab-view">
+      <view
+        class="tab-title"
+        bindtap="jumpPageOrFireFn"
+        data-url="hospitallog_index">
+        <text>研究中心</text>
+        <view class="more">
+          <text>查看更多</text>
+          <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
+        </view>
+      </view>
+      <view
+        class="c-item"
+        wx:for="{{ 9 }}"
+        wx:key="index">
+        <view class="city">
+          <view class="iconfont icon-dingwei"></view>
+          <view>
+            <text>安徽省合肥市</text>
+          </view>
+        </view>
+        <view class="hospital">
+          <view class="status {{item%2 === 0?'status-1':'status-2'}}">
+            <text>已启动</text>
+          </view>
+          <view class="detail">
+            <view>
+              <text>安徽医科大学附属第二医院</text>
+            </view>
+            <view class="range">
+              <text>招募范围：院外；</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="c-fixed-seat"></view>
+<view class="c-fixed">
+  <view class="btn-bar">
+    <block wx:if="{{true}}">
+      <view class="icon-bar">
+        <view class="iconfont icon-fenxiang">
+          <view class="btn-text">
+            <text>分享</text>
+          </view>
+        </view>
+        <view
+          bindtap="inputHandle"
+          data-value="{{ !collect }}"
+          data-item="collect"
+          class="iconfont icon-shoucang {{collect && 'is-active'}}">
+          <view class="btn-text">
+            <text>{{collect ? '已收藏':'收藏'}}</text>
+          </view>
+        </view>
+        <view
+          bindtap="billHandle"
+          data-item="{{ {url: 'https://images.autostreets.com/group1/M00/B3/E0/667B02E3-4E4F-460E-8236-8F4BDA276BB5.jpg'} }}"
+          data-disabled="{{ !'xxx' }}"
+          class="iconfont icon-haibaozujian {{!'xxx' && 'disabled'}}" >
+          <view class="btn-text">
+            <text>海报</text>
+          </view>
+        </view>
+      </view>
+      <view
+        class="btn btn-primary"
+        bindtap="jumpPageOrFireFn"
+        data-url="subject_index"
+        data-params="{{ {id:1} }}">
+        <text>立即报名</text>
+      </view>
+    </block>
+    <view
+      wx:else
+      class="btn btn-primary"
+      bindtap="jumpPageOrFireFn"
+      data-url="login_index"
+      data-params="{{ {id:1} }}">
+      <text>立即加入xx招募</text>
+    </view>
+  </view>
+  <view class="ios-seat"></view>
+</view>
+
+
+

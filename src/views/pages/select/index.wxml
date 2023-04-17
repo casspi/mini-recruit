@@ -11,7 +11,7 @@
       <text>{{item.text}}</text>
       <text wx:if="{{item.tips}}" class="tips">{{item.tips}}</text>
     </view>
-    <text class="iconfont icon-xuanzhong"></text>
+    <text class="iconfont icon-duihao"></text>
   </view>
 </view>
 <view class="c-fixed-seat"></view>

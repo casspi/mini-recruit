@@ -1,0 +1,24 @@
+@import 'src/assets/scss/define';
+
+.filter-select {
+  width: 100%;
+  height: 100%;
+  @extend %bsb;
+  padding: j(10) j(30);
+}
+
+.item {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  border-bottom: 1px solid #f6f6f6;
+  padding: j(10) 0;
+  min-height: j(80);
+  color: #666;
+  font-size: j(28);
+
+  &.is-active {
+    color: $color-primary;
+  }
+
+}

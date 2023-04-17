@@ -1,0 +1,49 @@
+<view class="content">
+  <view class="filter-view">
+    <block
+      wx:for="{{ params$.objFilter  }}"
+      wx:key="index">
+        <view
+          bindtap="inputHandle"
+          data-value="{{ index }}"
+          data-item="params$.active"
+          class="filter-item {{params$.active === index && 'is-active'}}"
+        >
+          <text>{{item.name}}{{item.value}}</text>
+          <view class="c-arrow bottom"></view>
+        </view>
+    </block>
+  </view>
+  <view>params$.active=>{{params$.active}},params$.active=>{{params$.active}}</view>
+  <scroll-view scroll-y class="filter-view-content" enable-flex>
+    <filter-sort
+      wx:if="{{ params$.active === 'sort' }}"
+      key="{{params$.objFilter.sort.key}}"
+      value="{{params$.objFilter.sort.value}}"
+      bindselect="handleSelect"
+      options="{{params$.objFilter.sort.options}}"
+    ></filter-sort>
+    <filter-cascade
+      wx:if="{{ params$.active === 'area' }}"
+      key="{{params$.objFilter.area.key}}"
+      value="{{params$.objFilter.area.value}}"
+      bindselect="handleSelect"
+      options="{{params$.objFilter.area.options}}"
+    ></filter-cascade>
+  </scroll-view>
+</view>
+
+<view class="c-fixed-seat"></view>
+<view class="c-fixed">
+  <view class="btn-bar">
+    <view class="btn btn-info">重置</view>
+    <view
+      class="btn btn-primary"
+      bindtap="jumpPageOrFireFn"
+      data-url="subject_index"
+      data-params="{{ {id:1} }}">
+      <text>确定</text>
+    </view>
+  </view>
+  <view class="ios-seat"></view>
+</view>

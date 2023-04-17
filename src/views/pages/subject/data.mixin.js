@@ -126,7 +126,7 @@ export default {
         disabled: false,
       },
       pics: {
-        value: ["group1/M00/95/D2/10bb0f36f8c040c78204632278d8ab0b.png"],
+        value: ["group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg"],
         key: 'objInput.pics',
         is: 'photo',
         label: '病例图片',
@@ -148,7 +148,12 @@ export default {
         disabled: false,
       },
       file: {
-        // value: [{name: 'xxx.pdf', src: 'xxx'}, {name: 'xxx1.xls', src: 'xxx'}],
+        value: [
+          {name: 'c06419728.pdf', src: 'http://h10032.www1.hp.com/ctg/Manual/c06419728.pdf'},
+          {
+            name: 'xxx1.xls',
+            src: 'xxx'
+          }],
         key: 'objInput.file',
         is: 'file',
         label: '病例文档',

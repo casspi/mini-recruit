@@ -3,14 +3,20 @@
         "pages/home/index",
         "pages/demo/index",
         "pages/enroll/index",
+        "pages/home/filter/index",
+        "pages/hospitallog/index",
         "pages/login/index",
         "pages/mine/index",
         "pages/patient/index",
+        "pages/patientlog/index",
+        "pages/project/bill/index",
+        "pages/project/index",
         "pages/qrcode/index",
         "pages/select/index",
         "pages/subject/index",
         "pages/submit/index",
-        "pages/user/index"
+        "pages/user/index",
+        "pages/webview/index"
     ],
     "permission": {
         "scope.userLocation": {

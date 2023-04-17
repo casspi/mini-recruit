@@ -45,21 +45,21 @@
               bindtap="jumpPageOrFireFn"
               data-alwaysfire="{{true}}"
               data-item="{{ item }}"
-              data-upt="{{ i }}"
+              data-pre="{{ i }}"
             ></image>
             <view
               wx:if="{{ !item.disabled }}"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
               data-del="{{ i }}"
-              class="iconfont icon-close"
+              class="iconfont icon-shanchu"
             ></view>
           </view>
           <view class="photo-box"
                 bindtap="jumpPageOrFireFn"
                 data-item="{{ item }}"
                 wx:if="{{ !item.disabled && item.value.length < item.limit }}">
-            <view class="iconfont icon-xuanzhong"></view>
+            <view class="iconfont icon-xiangji"></view>
           </view>
         </view>
       </view>
@@ -83,13 +83,20 @@
                 wx:for-index="i"
                 wx:key="i"
                 wx:for="{{ item.value }}">
-            <text>{{file.name}}</text>
+            <view
+              class="file-name"
+              bindtap="jumpPageOrFireFn"
+              data-alwaysfire="{{true}}"
+              data-item="{{ item }}"
+              data-pre="{{ i }}">
+              <text>{{file.name}}</text>
+            </view>
             <view
               wx:if="{{ !item.disabled }}"
               bindtap="jumpPageOrFireFn"
               data-item="{{ item }}"
               data-del="{{ i }}"
-              class="iconfont icon-close"
+              class="iconfont icon-shanchu"
             ></view>
           </view>
         </view>

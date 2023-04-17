@@ -3,6 +3,7 @@
 .form-view {
   @extend %c3;
   padding: j(20) 0;
+
   .form-cell {
     margin: 0 j(40);
     padding: j(10) 0;
@@ -85,7 +86,7 @@
       font-size: j(42);
     }
 
-    .icon-close {
+    .icon-shanchu {
       @extend %pa;
       @extend %br50;
       @extend %df;
@@ -133,27 +134,22 @@
       .file-box {
         @extend %df;
         @extend %aic;
+        @extend %jcs;
         @extend %pr;
+        color: $color-primary;
         height: j(40);
         padding: j(10) j(20);
-        background: linear-gradient(to top right, $color-primary, $primary-disabled);
+        background: #f6f6f6; //linear-gradient(to top right, $color-primary, $primary-disabled);
         margin-bottom: j(8);
         border-radius: j(8);
+
+        .iconfont {
+          @extend %cp;
+        }
       }
 
-      .icon-close {
-        @extend %pa;
-        @extend %br50;
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        @extend %cp;
-        @extend %cfff;
-        top: j(-10);
-        right: j(-10);
-        width: j(32);
-        height: j(32);
-        background-color: #7d7c7c;
+      .file-name {
+        text-decoration: underline;
       }
     }
   }

@@ -1,0 +1,23 @@
+<wxs src="/wxs/filter.wxs" module="filter"/>
+
+<view class="warp">
+  <view class="parent">
+    <view
+      class="parent-item {{value.parent.value === item.value && 'is-active' }}"
+      wx:for="{{ options }}"
+      wx:key="index" data-item="{{item}}"
+      bindtap="parentHandle">
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+  <view class="children">
+    <view
+      class="children-item {{item.value === value.children.value && 'is-active'}}"
+      wx:for="{{ filter.pickByKey(options, value.parent.value, 'value')[0].children }}"
+      wx:key="index" data-item="{{item}}"
+      bindtap="childrenHandle">
+      <text>{{item.label}}</text>
+      <view class="iconfont icon-duihao"></view>
+    </view>
+  </view>
+</view>

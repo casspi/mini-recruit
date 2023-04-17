@@ -10,19 +10,19 @@
   </view>
   <view class="merit-list c-block">
     <view class="merit-item">
-      <view class="iconfont icon-xuanzhong"></view>
+      <view class="iconfont icon-tuandui"></view>
       <view>
         <text>医学团队全程\n1对1免费服务</text>
       </view>
     </view>
     <view class="merit-item">
-      <view class="iconfont icon-xuanzhong"></view>
+      <view class="iconfont icon-jiyin"></view>
       <view>
         <text>承接临床研究\n项目300+</text>
       </view>
     </view>
     <view class="merit-item">
-      <view class="iconfont icon-xuanzhong"></view>
+      <view class="iconfont icon-yiyuan"></view>
       <view>
         <text>覆盖临床研究\n中心700+</text>
       </view>

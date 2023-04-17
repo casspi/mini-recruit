@@ -1,0 +1,12 @@
+
+<view class="filter-select">
+  <view
+    wx:for="{{options}}"
+    wx:key="index"
+    data-item="{{item}}"
+    bindtap="handleSelect"
+    class="item {{value === item.value && 'is-active'}}">
+    <text>{{item.label}}</text>
+    <view class="iconfont icon-duihao" wx:if="{{ value === item.value }}"></view>
+  </view>
+</view>

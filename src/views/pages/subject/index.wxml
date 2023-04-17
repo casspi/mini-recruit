@@ -1,5 +1,7 @@
 <import src="/templates/form-view/index.wxml"/>
-<template is="formView" data="{{ objInput: objInput }}"></template>
+<view class="form">
+  <template is="formView" data="{{ objInput: objInput }}"></template>
+</view>
 
 <block wx:if="{{!(params$ && params$.isDetail)}}">
   <view class="c-fixed-seat"></view>
