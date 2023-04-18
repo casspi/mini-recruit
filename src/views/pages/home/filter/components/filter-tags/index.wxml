@@ -8,7 +8,7 @@
     <view class="left">
       <text>{{label}}</text>
     </view>
-    <view class="right">
+    <view class="right" wx:if="{{options.length>8}}">
       <text>{{expand?'收起':'展开'}}</text>
       <view class="c-arrow {{!expand? 'bottom':'top'}}"></view>
     </view>

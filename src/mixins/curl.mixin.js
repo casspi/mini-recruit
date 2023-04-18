@@ -10,7 +10,7 @@ import ApiConfig, {isProd} from 'src/config/api.config'
 // })
 
 const curl = new Curl({
-  baseURI: 'https://fe-auction.autostreets.com/',
+  baseURI: 'http://testchw.w1.luyouxia.net/',
   header: {},
   timeout: 60 * 1000,
 })
@@ -69,7 +69,7 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
     }
   }
   console.log(`${url} [${method}] 请求返回 => `, respData)
-  let {Status, data, Extend, Message} = respData
+  let {status, data, Extend, Message} = respData
   // if ([201].indexOf(Status) > -1) {
   //   reject(Message || 'token已过期，请重新登录')
   //   return gotoLogin()

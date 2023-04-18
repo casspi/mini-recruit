@@ -12,6 +12,7 @@ new WowPage({
     WowPage.wow$.mixins.Router,
     WowPage.wow$.mixins.Paging,
     WowPage.wow$.mixins.Input,
+    WowPage.wow$.mixins.Modal,
 
   ],
   data: {
@@ -27,15 +28,10 @@ new WowPage({
       },
       disease: {
         name: '疾病',
-        key: 'objFilter.area',
-        value: '',
+        key: 'objFilter.disease',
+        value: {},
         defaultValue: '',
-        options: [{
-          value: '1', label: '全部肿瘤',
-          children: [{value: '11', label: '全部'}]
-        }, {
-          value: '2', label: 'jkkk'
-        }],
+        options: [],
       },
       area: {
         name: '地区',
@@ -46,7 +42,7 @@ new WowPage({
       },
       hospital: {
         name: '研究中心',
-        key: 'objFilter.area',
+        key: 'objFilter.hospital',
         value: '',
         defaultValue: ''
       },
@@ -58,144 +54,21 @@ new WowPage({
             name: '科室',
             value: '',
             defaultValue: '',
-            options: [{
-              value: '1',
-              label: '妇科'
-            }, {
-              value: '2',
-              label: '消化内科2222'
-            }, {
-              value: '3',
-              label: '妇科'
-            }, {
-              value: '4',
-              label: '消化内科'
-            }, {
-              value: '5',
-              label: '妇科'
-            }, {
-              value: '6',
-              label: '消化内科'
-            }, {
-              value: '7',
-              label: '妇科'
-            }, {
-              value: '8',
-              label: '消化内科'
-            }, {
-              value: '9',
-              label: '妇科'
-            }, {
-              value: '10',
-              label: '消化内科'
-            }, {
-              value: '11',
-              label: '妇科'
-            }, {
-              value: '12',
-              label: '消化内科'
-            }]
+            options: []
           },
           gene: {
             key: 'objFilter.more.children.gene',
             name: '基因型',
             value: '',
             defaultValue: '',
-            options: [{
-              value: '1',
-              label: '妇科'
-            }, {
-              value: '2',
-              label: '消化内科'
-            }, {
-              value: '3',
-              label: '妇科'
-            }, {
-              value: '4',
-              label: '消化内科'
-            }, {
-              value: '5',
-              label: '妇科'
-            }, {
-              value: '6',
-              label: '消化内科'
-            }, {
-              value: '7',
-              label: '妇科'
-            }, {
-              value: '8',
-              label: '消化内科'
-            }, {
-              value: '9',
-              label: '妇科'
-            }, {
-              value: '10',
-              label: '消化内科'
-            }, {
-              value: '11',
-              label: '妇科'
-            }, {
-              value: '12',
-              label: '消化内科'
-            }]
+            options: []
           },
           treatment: {
             key: 'objFilter.more.children.treatment',
             name: '治疗线数要求',
             value: '',
             defaultValue: '',
-            options: [{
-              value: '1',
-              label: '妇科'
-            }, {
-              value: '2',
-              label: '消化内科'
-            }, {
-              value: '3',
-              label: '妇科'
-            }, {
-              value: '4',
-              label: '消化内科'
-            }, {
-              value: '5',
-              label: '妇科'
-            }, {
-              value: '6',
-              label: '消化内科'
-            }, {
-              value: '7',
-              label: '妇科'
-            }, {
-              value: '8',
-              label: '消化内科'
-            }, {
-              value: '9',
-              label: '妇科'
-            }, {
-              value: '10',
-              label: '消化内科'
-            }, {
-              value: '11',
-              label: '妇科'
-            }, {
-              value: '12',
-              label: '消化内科'
-            }, {
-              value: '91',
-              label: '妇科'
-            }, {
-              value: '101',
-              label: '消化内科'
-            }, {
-              value: '111',
-              label: '妇科'
-            }, {
-              value: '121',
-              label: '消化内科'
-            }, {
-              value: '19',
-              label: '妇科'
-            }]
+            options: []
           }
         }
       },
@@ -248,7 +121,16 @@ new WowPage({
   // 筛选
   filterHandle(e) {
     const {item} = this.inputParams(e)
-    console.log(item)
+    console.log('1111=>', item)
+  },
+  validateArea(data) {
+    const {objFilter, item} = data
+    console.log('validateArea=>', data)
+    if (item.name === 'hospital' && objFilter.area.value.children) {
+      this.modalToast('请选择地区')
+      return true
+    }
   }
+
 })
 

@@ -16,6 +16,7 @@
   <view class="filter-view">
     <view
       bindtap="jumpPageOrFireFn"
+      data-filter="validateArea"
       data-item="{{ {objFilter: objFilter, item: item, active: index} }}"
       data-url="home_filter_index"
       class="filter-item"
