@@ -30,7 +30,7 @@
   wx:if="{{ pagingTotal <= 0 }}"
   is-loading="{{ pagingTotal === -1 }}"
 ></wow-skeleton>
-<view class="enroll-list">
+<view class="enroll-list" wx:else>
   <block
     wx:for="{{ pagingData  }}"
     wx:key="arrIndex"

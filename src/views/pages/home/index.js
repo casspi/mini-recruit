@@ -21,6 +21,7 @@ new WowPage({
         name: '排序',
         key: 'objFilter.sort',
         value: '',
+        defaultValue: '',
         options: [{value: '1', label: 'xx'}, {value: '2', label: 'jkkk'}],
         range: 'sort',
       },
@@ -28,6 +29,7 @@ new WowPage({
         name: '疾病',
         key: 'objFilter.area',
         value: '',
+        defaultValue: '',
         options: [{
           value: '1', label: '全部肿瘤',
           children: [{value: '11', label: '全部'}]
@@ -39,31 +41,161 @@ new WowPage({
         name: '地区',
         key: 'objFilter.area',
         value: {},
+        defaultValue: {},
         options: []
       },
       hospital: {
         name: '研究中心',
         key: 'objFilter.area',
-        value: ''
+        value: '',
+        defaultValue: ''
       },
       more: {
         name: '更多',
-        key: 'objFilter.area',
         children: {
           department: {
+            key: 'objFilter.more.children.department',
             name: '科室',
             value: '',
-            options: []
+            defaultValue: '',
+            options: [{
+              value: '1',
+              label: '妇科'
+            }, {
+              value: '2',
+              label: '消化内科2222'
+            }, {
+              value: '3',
+              label: '妇科'
+            }, {
+              value: '4',
+              label: '消化内科'
+            }, {
+              value: '5',
+              label: '妇科'
+            }, {
+              value: '6',
+              label: '消化内科'
+            }, {
+              value: '7',
+              label: '妇科'
+            }, {
+              value: '8',
+              label: '消化内科'
+            }, {
+              value: '9',
+              label: '妇科'
+            }, {
+              value: '10',
+              label: '消化内科'
+            }, {
+              value: '11',
+              label: '妇科'
+            }, {
+              value: '12',
+              label: '消化内科'
+            }]
           },
           gene: {
+            key: 'objFilter.more.children.gene',
             name: '基因型',
             value: '',
-            options: []
+            defaultValue: '',
+            options: [{
+              value: '1',
+              label: '妇科'
+            }, {
+              value: '2',
+              label: '消化内科'
+            }, {
+              value: '3',
+              label: '妇科'
+            }, {
+              value: '4',
+              label: '消化内科'
+            }, {
+              value: '5',
+              label: '妇科'
+            }, {
+              value: '6',
+              label: '消化内科'
+            }, {
+              value: '7',
+              label: '妇科'
+            }, {
+              value: '8',
+              label: '消化内科'
+            }, {
+              value: '9',
+              label: '妇科'
+            }, {
+              value: '10',
+              label: '消化内科'
+            }, {
+              value: '11',
+              label: '妇科'
+            }, {
+              value: '12',
+              label: '消化内科'
+            }]
           },
           treatment: {
+            key: 'objFilter.more.children.treatment',
             name: '治疗线数要求',
             value: '',
-            options: []
+            defaultValue: '',
+            options: [{
+              value: '1',
+              label: '妇科'
+            }, {
+              value: '2',
+              label: '消化内科'
+            }, {
+              value: '3',
+              label: '妇科'
+            }, {
+              value: '4',
+              label: '消化内科'
+            }, {
+              value: '5',
+              label: '妇科'
+            }, {
+              value: '6',
+              label: '消化内科'
+            }, {
+              value: '7',
+              label: '妇科'
+            }, {
+              value: '8',
+              label: '消化内科'
+            }, {
+              value: '9',
+              label: '妇科'
+            }, {
+              value: '10',
+              label: '消化内科'
+            }, {
+              value: '11',
+              label: '妇科'
+            }, {
+              value: '12',
+              label: '消化内科'
+            }, {
+              value: '91',
+              label: '妇科'
+            }, {
+              value: '101',
+              label: '消化内科'
+            }, {
+              value: '111',
+              label: '妇科'
+            }, {
+              value: '121',
+              label: '消化内科'
+            }, {
+              value: '19',
+              label: '妇科'
+            }]
           }
         }
       },

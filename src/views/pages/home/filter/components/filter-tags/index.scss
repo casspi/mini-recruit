@@ -1,0 +1,73 @@
+@import 'src/assets/scss/define';
+
+.filter-tags {
+  font-size: j(24);
+  padding: j(10) j(30);
+  @extend %c3;
+  //width: 100%;
+  //height: 100%;
+  //@extend %bsb;
+  //padding: j(10) j(30);
+}
+
+.label {
+  @extend %df;
+  @extend %jcs;
+  @extend %aic;
+  padding: j(20) 0;
+}
+
+.right {
+  @extend %df;
+  @extend %aic;
+
+  .bottom {
+    margin-bottom: j(10);
+    margin-left: j(10);
+  }
+
+  .top {
+    margin-bottom: j(-6);
+    margin-left: j(10);
+  }
+}
+
+.tag-list {
+  @extend %df;
+  @extend %fww;
+  @extend %jcs;
+  @extend %bsb;
+  padding: j(20) j(30);
+  height: j(160);
+  overflow: hidden;
+
+  &.is-expand {
+    height: auto;
+  }
+}
+
+.tag-item {
+  width: j(140);
+  padding: 0 j(20);
+  @extend %bsb;
+  @extend %df;
+  @extend %aic;
+  @extend %c6;
+
+  text {
+    text-align: center;
+    width: 100%;
+    @extend %twno;
+  }
+
+  background: #f6f6f6;
+  height: j(60);
+  margin-bottom: j(20);
+  border-radius: j(6);
+
+  &.is-active {
+    color: $color-primary;
+    background: $color-primary-light;
+  }
+
+}

@@ -4,6 +4,7 @@ export default {
     "home_filter_index": "/pages/home/filter/index",
     "home_index": "/pages/home/index",
     "hospitallog_index": "/pages/hospitallog/index",
+    "invited_index": "/pages/invited/index",
     "login_index": "/pages/login/index",
     "mine_index": "/pages/mine/index",
     "patient_index": "/pages/patient/index",

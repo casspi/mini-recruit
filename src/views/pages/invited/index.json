@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我邀请的好友",
+  "usingComponents": {
+    "wow-skeleton": "/components/wow-skeleton/index",
+    "wow-end": "/components/wow-end/index"
+  }
+}

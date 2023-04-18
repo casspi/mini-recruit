@@ -1,0 +1,26 @@
+
+<view class="filter-tags">
+  <view
+    class="label"
+    bindtap="inputHandle"
+    data-value="{{ !expand }}"
+    data-item="expand">
+    <view class="left">
+      <text>{{label}}</text>
+    </view>
+    <view class="right">
+      <text>{{expand?'收起':'展开'}}</text>
+      <view class="c-arrow {{!expand? 'bottom':'top'}}"></view>
+    </view>
+  </view>
+  <view class="tag-list {{expand && 'is-expand'}}">
+    <view
+      wx:for="{{options}}"
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="handleSelect"
+      class="tag-item {{value === item.value && 'is-active'}}">
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+</view>

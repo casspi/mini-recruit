@@ -1,0 +1,16 @@
+@import 'src/assets/scss/define';
+
+.invited-list {
+  padding: j(20);
+  background-color: $page-bg;
+  @extend %c3;
+  @extend %df;
+  @extend %fdc;
+}
+
+.invited-item {
+  font-size: j(28);
+  padding: j(30);
+  margin-top: j(20);
+  background-color: #fff;
+}

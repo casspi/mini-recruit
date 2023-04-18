@@ -18,6 +18,12 @@ new WowPage({
     let {params$, api$} = this.data
     Object.keys(params$.objFilter).forEach(item => {
       params$.objFilter[item].key = `params$.${params$.objFilter[item].key}`
+      let children = params$.objFilter[item].children
+      if (children) {
+        Object.keys(children).forEach(o => {
+          children[o].key = `params$.${children[o].key}`
+        })
+      }
     })
     this.setData({
       params$
@@ -41,7 +47,7 @@ new WowPage({
     const {item, value} = this.inputParams(e)
     const {params$} = this.data
     // 选中心前必选地区
-    if (value === "hospital" && !params$.objFilter.area.value) {
+    if (value === "hospital" && !Object.keys(params$.objFilter.area.value).length) {
       this.modalToast('请选择地区')
       return
     }
@@ -56,6 +62,21 @@ new WowPage({
     const {detail} = options
     console.log(detail)
     this.setData({[`${detail.key}.value`]: detail.value})
+  },
+  resetHandle() {
+    let {params$: {objFilter}} = this.data
+    Object.keys(objFilter).forEach(item => {
+      objFilter[item].value = objFilter[item].defaultValue
+      let children = objFilter[item].children
+      if (children) {
+        Object.keys(children).forEach(i => {
+          children[i].value = children[i].defaultValue
+        })
+      }
+    })
+    this.setData({
+      ['params$.objFilter']: objFilter
+    })
   }
 })
 

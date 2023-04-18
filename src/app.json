@@ -5,6 +5,7 @@
         "pages/enroll/index",
         "pages/home/filter/index",
         "pages/hospitallog/index",
+        "pages/invited/index",
         "pages/login/index",
         "pages/mine/index",
         "pages/patient/index",

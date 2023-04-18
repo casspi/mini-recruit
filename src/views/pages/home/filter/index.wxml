@@ -9,12 +9,11 @@
           data-item="params$.active"
           class="filter-item {{params$.active === index && 'is-active'}}"
         >
-          <text>{{item.name}}{{item.value}}</text>
+          <text>{{item.name}}</text>
           <view class="c-arrow bottom"></view>
         </view>
     </block>
   </view>
-  <view>params$.active=>{{params$.active}},params$.active=>{{params$.active}}</view>
   <scroll-view scroll-y class="filter-view-content" enable-flex>
     <filter-sort
       wx:if="{{ params$.active === 'sort' }}"
@@ -30,13 +29,26 @@
       bindselect="handleSelect"
       options="{{params$.objFilter.area.options}}"
     ></filter-cascade>
+    <block
+      wx:if="{{ params$.active === 'more' }}"
+      wx:for="{{params$.objFilter.more.children}}"
+      wx:key="index"
+    >
+      <filter-tags
+        label="{{item.name}}"
+        key="{{item.key}}"
+        value="{{item.value}}"
+        bindselect="handleSelect"
+        options="{{item.options}}"
+      ></filter-tags>
+    </block>
   </scroll-view>
 </view>
 
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
   <view class="btn-bar">
-    <view class="btn btn-info">重置</view>
+    <view class="btn btn-info" bindtap="resetHandle">重置</view>
     <view
       class="btn btn-primary"
       bindtap="jumpPageOrFireFn"
