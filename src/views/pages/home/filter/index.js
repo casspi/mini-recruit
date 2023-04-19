@@ -11,20 +11,22 @@ new WowPage({
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Modal,
     WowPage.wow$.mixins.Curl,
+    WowPage.wow$.mixins.Jump,
+    WowPage.wow$.mixins.Page,
   ],
   data: {},
   onLoad(o) {
     this.routerGetParams(o)
     let {params$, api$} = this.data
-    Object.keys(params$.objFilter).forEach(item => {
-      params$.objFilter[item].key = `params$.${params$.objFilter[item].key}`
-      let children = params$.objFilter[item].children
-      if (children) {
-        Object.keys(children).forEach(o => {
-          children[o].key = `params$.${children[o].key}`
-        })
-      }
-    })
+    // Object.keys(params$.objFilter).forEach(item => {
+    //   params$.objFilter[item].key = `params$.${params$.objFilter[item].key}`
+    //   let children = params$.objFilter[item].children
+    //   if (children) {
+    //     Object.keys(children).forEach(o => {
+    //       children[o].key = `params$.${children[o].key}`
+    //     })
+    //   }
+    // })
     const d = [{
       "value": "402882408754384e018754384ebf0015",
       "label": "全部慢病",
@@ -1462,6 +1464,14 @@ new WowPage({
     this.setData({
       ['params$.objFilter']: objFilter
     })
+  },
+  confirmHandle(e) {
+    const refHomePage = this.pagesGetByIndex(1)
+    let {params$: {confirm, objFilter}} = this.data
+    if (refHomePage && confirm && refHomePage[confirm]) {
+      refHomePage[confirm](objFilter)
+    }
+    this.jumpTabBarPage(e)
   }
 })
 

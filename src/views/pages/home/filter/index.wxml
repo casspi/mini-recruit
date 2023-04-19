@@ -65,9 +65,9 @@
     <view class="btn btn-info" bindtap="resetHandle">重置</view>
     <view
       class="btn btn-primary"
-      bindtap="jumpPageOrFireFn"
-      data-url="subject_index"
-      data-params="{{ {id:1} }}">
+      bindtap="confirmHandle"
+      data-url="home_index"
+      data-params="{{ params$ }}">
       <text>确定</text>
     </view>
   </view>

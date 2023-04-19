@@ -45,11 +45,11 @@ export default {
       ...options,
     }
     this.curl(url, {
-      pageNum: pagingIndex,
+      currentPage: pagingIndex,
       pageSize: pagingSize,
       ...params,
     }, options).then((res) => {
-      const {total: pagingTotal = 0, pageList: list = []} = this.pagingFormatResult(res)
+      const {total: pagingTotal = 0, dataList: list = []} = this.pagingFormatResult(res)
       if (this.pagingCallbackResult) {
         this.pagingCallbackResult({
           list,

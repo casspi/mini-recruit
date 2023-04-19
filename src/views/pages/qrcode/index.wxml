@@ -16,7 +16,7 @@
     <image
       class="code-img"
       mode="aspectFill"
-      src="/assets/images/mini-code.jpg"
+      src="{{codeUrl}}"
     ></image>
   </view>
 </view>

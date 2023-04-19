@@ -17,7 +17,7 @@
     <view
       bindtap="jumpPageOrFireFn"
       data-filter="validateArea"
-      data-item="{{ {objFilter: objFilter, item: item, active: index} }}"
+      data-item="{{ {objFilter: objFilter, item: item, active: index, confirm: 'filterConfirm'} }}"
       data-url="home_filter_index"
       class="filter-item"
       wx:for="{{ objFilter  }}"

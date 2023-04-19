@@ -83,7 +83,8 @@ export default {
   },
 
   jumpTabBarPage(e) {
-    const {url} = this.inputParams(e)
-    this.routerRoot(url)
+    const {url, params} = this.inputParams(e)
+    console.log(url, params)
+    this.routerRoot(url, params)
   },
 }

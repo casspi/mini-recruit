@@ -15,6 +15,7 @@ new WowPage({
 
   ],
   data: {
+    codeUrl: 'https://miniapp.shuidichou.com/miniapp/c8e09e73a37d400dbaacbcadb347b543.png',
     canvas: null,
     canvasW: '',
     canvasH: ''
@@ -160,8 +161,7 @@ new WowPage({
         this.rpx2px(400), this.rpx2px(400)
       )
     }
-    image.src = '/assets/images/mini-code.jpg'
-    console.log()
+    image.src = this.data.codeUrl
   },
   saveHandle() {
     // 第一步，把canvas画布转换成临时图片

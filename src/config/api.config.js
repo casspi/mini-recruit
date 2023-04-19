@@ -14,10 +14,7 @@ export const isProd = (() => {
   return result
 })()
 
-
 export default {
-
-  H5_BASE_URL: isProd ? '' : '',
 
   // 首页筛选-疾病
   DIC_FILTER_DISEASE: 'mini/recruit/dic/listDiseaseSelect',
@@ -35,6 +32,8 @@ export default {
 
   // 查询项目列表
   REQ_PROJECT_LIST: 'mini/recruit/pub/project/listProject',
+  // 项目详情
+  REQ_PROJECT_DETAIL: 'mini/recruit/pub/project/getProject',
 
 
   // 获取城市列表

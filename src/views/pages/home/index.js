@@ -20,7 +20,7 @@ new WowPage({
     objFilter: {
       sort: {
         name: '排序',
-        key: 'objFilter.sort',
+        key: 'params$.objFilter.sort',
         value: '',
         defaultValue: '',
         options: [{value: '1', label: 'xx'}, {value: '2', label: 'jkkk'}],
@@ -28,21 +28,21 @@ new WowPage({
       },
       disease: {
         name: '疾病',
-        key: 'objFilter.disease',
+        key: 'params$.objFilter.disease',
         value: {},
         defaultValue: '',
         options: [],
       },
       area: {
         name: '地区',
-        key: 'objFilter.area',
+        key: 'params$.objFilter.area',
         value: {},
         defaultValue: {},
         options: []
       },
       hospital: {
         name: '研究中心',
-        key: 'objFilter.hospital',
+        key: 'params$.objFilter.hospital',
         value: '',
         defaultValue: ''
       },
@@ -50,21 +50,21 @@ new WowPage({
         name: '更多',
         children: {
           department: {
-            key: 'objFilter.more.children.department',
+            key: 'params$.objFilter.more.children.department',
             name: '科室',
             value: '',
             defaultValue: '',
             options: []
           },
           gene: {
-            key: 'objFilter.more.children.gene',
+            key: 'params$.objFilter.more.children.gene',
             name: '基因型',
             value: '',
             defaultValue: '',
             options: []
           },
           treatment: {
-            key: 'objFilter.more.children.treatment',
+            key: 'params$.objFilter.more.children.treatment',
             name: '治疗线数要求',
             value: '',
             defaultValue: '',
@@ -75,7 +75,8 @@ new WowPage({
 
     }
   },
-  onShow() {
+  onShow(options) {
+    console.log(options)
     this.handleRefresh()
   },
   handleRefresh(cb) {
@@ -88,28 +89,50 @@ new WowPage({
         refWowScroll.returnTop()
       }
     }
-    const {api$} = this.data
+    const {api$, objFilter, collect} = this.data
+    // hospitalId  中心
+    // projectGeneType  gene
+    // projectTreatmentDemand  治疗
+    // sectionId 科室
+    // diseaseId  疾病
+    // areaId  地区
+    // isSort  是否排序
+    // userId  是否收藏 要是收藏就传当前登录者id，没登录就传'0'
     return {
-      url: api$.homeList,
+      url: api$.REQ_PROJECT_LIST,
       params: {
-        AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
-        'departmentId': 0,
-        'illness': 0,
-        'genetic': 0,
-        'treatmentLines': 0,
-        'province': 0,
-        'cityId': 0,
-        'researchCenterIdList': '',
-        'centerStartState': 0,
-        'searchContent': '',
-        'collectInfo': false,
-        'addedTimeSort': 0,
+        hospitalId: objFilter.hospital.value.value || '',
+        projectGeneType: objFilter.more.children.gene.value.value || '',
+        projectTreatmentDemand: objFilter.more.children.treatment.value.value || '',
+        sectionId: objFilter.more.children.department.value.value || '',
+        userId: collect ? 'xxx' : '0'
       },
       options: {
         method: 'get',
         loading: false
       }
     }
+    // return {
+    //   url: api$.homeList,
+    //   params: {
+    //     AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
+    //     'departmentId': 0,
+    //     'illness': 0,
+    //     'genetic': 0,
+    //     'treatmentLines': 0,
+    //     'province': 0,
+    //     'cityId': 0,
+    //     'researchCenterIdList': '',
+    //     'centerStartState': 0,
+    //     'searchContent': '',
+    //     'collectInfo': false,
+    //     'addedTimeSort': 0,
+    //   },
+    //   options: {
+    //     method: 'get',
+    //     loading: false
+    //   }
+    // }
   },
   collectHandle() {
     const collect = !this.data.collect
@@ -123,6 +146,7 @@ new WowPage({
     const {item} = this.inputParams(e)
     console.log('1111=>', item)
   },
+  // 验证
   validateArea(data) {
     const {objFilter, item} = data
     console.log('validateArea=>', data)
@@ -130,6 +154,14 @@ new WowPage({
       this.modalToast('请选择地区')
       return true
     }
+  },
+  // 筛选确定
+  filterConfirm(objFilter) {
+    this.setData({
+      objFilter
+    }, () => {
+      console.log('filterConfirm=>', this.data)
+    })
   }
 
 })
