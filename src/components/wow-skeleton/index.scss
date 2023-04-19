@@ -66,8 +66,8 @@
     @include m(icon) {
       @extend %db;
       margin-bottom: j(10);
-      width: j(130 / 2);
-      height: j(126 / 2);
+      width: j(130);
+      height: j(130);
     }
   }
 

@@ -28,7 +28,7 @@
   bindrefresh="pagingRefresh"
   error="{{ error }}"
   wx:if="{{ pagingTotal <= 0 }}"
-  is-loading="{{ pagingTotal === -1 }}"
+  is-loading="{{ false || pagingTotal === -1 }}"
 ></wow-skeleton>
 <view class="enroll-list" wx:else>
   <block
@@ -37,35 +37,36 @@
     wx:for-item="arrData"
     wx:for-index="arrIndex">
     <view
-      class="enroll-item {{ item.experimentStage == 2 && 'no-read'}}"
+      class="enroll-item {{ item.readStatus == '0' && 'no-read'}}"
       bindtap="jumpPageOrFireFn"
       data-url="patient_index"
       wx:for="{{ arrData }}"
       wx:key="id">
       <view class="enroll-item-top">
         <view class="patient">
-          <view class="name">刘备</view>
+          <view class="name">{{item.patientName}}</view>
           <view class="status">
-            <text>医学审核中</text>
+            <text>{{item.patientStatusName}}</text>
           </view>
         </view>
         <view class="time">
-          <tex>03-18 16:05</tex>
+          <tex>{{item.modifyTime}}</tex>
         </view>
       </view>
       <view class="enroll-item-detail">
         <view class="disease">
-          <block
-            wx:for="{{ 3 }}"
-            wx:key="index"
-            wx:for-item="i"
-          >
-            <text >{{index === 0?item.secondLevelDiseaseNames:';拉肚子'}}</text>
-          </block>
+          <text>{{item.diseaseName}}</text>
+<!--          <block-->
+<!--            wx:for="{{ 3 }}"-->
+<!--            wx:key="index"-->
+<!--            wx:for-item="i"-->
+<!--          >-->
+<!--            <text >{{index === 0?item.secondLevelDiseaseNames:';拉肚子'}}</text>-->
+<!--          </block>-->
         </view>
         <view class="number-warp">
           <text class="number-label">患者编码</text>
-          <text class="number-value">555#hjbkkkkj</text>
+          <text class="number-value">{{item.patientNo}}</text>
         </view>
       </view>
     </view>

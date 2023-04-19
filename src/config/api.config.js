@@ -29,11 +29,15 @@ export default {
   DIC_FILTER_GENE: 'mini/recruit/dic/listGene',
   // 首页筛选-更多-基因
   DIC_FILTER_TREATMENT: 'mini/recruit/dic/listTreatmentDemand',
-
   // 查询项目列表
   REQ_PROJECT_LIST: 'mini/recruit/pub/project/listProject',
   // 项目详情
   REQ_PROJECT_DETAIL: 'mini/recruit/pub/project/getProject',
+  // 中心变更记录
+  REQ_HOSPITAL_LOG: 'mini/recruit/app/listAppProjectHospitalStatus',
+
+  // 患者列表
+  REQ_PATIENT_LIST: 'mini/recruit/app/listPatient',
 
 
   // 获取城市列表

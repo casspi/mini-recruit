@@ -5,13 +5,13 @@ const {config$} = WowPage.wow$.mixins.Config.data
 export default {
   data: {
     objFilter: {
-      name: {
-        label: '患者姓名或编号:',
-        key: 'objFilter.name',
-        is: 'input',
-        placeholder: '请输入患者姓名、患者编号搜索',
-        maxlength: 10,
-      },
+      // name: {
+      //   label: '患者姓名或编号:',
+      //   key: 'objFilter.name',
+      //   is: 'input',
+      //   placeholder: '请输入患者姓名、患者编号搜索',
+      //   maxlength: 10,
+      // },
       datetime: {
         label: '创建日期:',
         is: 'datepicker',

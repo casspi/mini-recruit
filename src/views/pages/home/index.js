@@ -16,14 +16,15 @@ new WowPage({
 
   ],
   data: {
+    projectQuery: '',
     collect: false,
     objFilter: {
       sort: {
         name: '排序',
         key: 'params$.objFilter.sort',
-        value: '',
+        value: '0',
         defaultValue: '',
-        options: [{value: '1', label: 'xx'}, {value: '2', label: 'jkkk'}],
+        options: [{value: '0', label: '默认排序'}, {value: '1', label: '最新上架'}],
         range: 'sort',
       },
       disease: {
@@ -89,24 +90,24 @@ new WowPage({
         refWowScroll.returnTop()
       }
     }
-    const {api$, objFilter, collect} = this.data
-    // hospitalId  中心
-    // projectGeneType  gene
-    // projectTreatmentDemand  治疗
-    // sectionId 科室
-    // diseaseId  疾病
-    // areaId  地区
-    // isSort  是否排序
-    // userId  是否收藏 要是收藏就传当前登录者id，没登录就传'0'
+    const {api$, objFilter, collect, projectQuery} = this.data
+    let params = {
+      projectQuery,
+      diseaseId: objFilter.disease.value.children? objFilter.disease.value.children.value:'',
+      areaId: objFilter.area.value.children? objFilter.area.value.children.value:'',
+      hospitalId: objFilter.hospital.value || '',
+      sectionId: objFilter.more.children.department.value || '',
+      projectGeneType: objFilter.more.children.gene.value || '',
+      projectTreatmentDemand: objFilter.more.children.treatment.value || '',
+      pageSize: 10,
+      // userId: collect ? 'xxx' : '0'
+    }
+    if(objFilter.sort.value === '1'){
+      params.isSort = '1'
+    }
     return {
       url: api$.REQ_PROJECT_LIST,
-      params: {
-        hospitalId: objFilter.hospital.value.value || '',
-        projectGeneType: objFilter.more.children.gene.value.value || '',
-        projectTreatmentDemand: objFilter.more.children.treatment.value.value || '',
-        sectionId: objFilter.more.children.department.value.value || '',
-        userId: collect ? 'xxx' : '0'
-      },
+      params,
       options: {
         method: 'get',
         loading: false
@@ -133,6 +134,16 @@ new WowPage({
     //     loading: false
     //   }
     // }
+  },
+  handleKeywordInput(event) {
+    const { value } = this.inputParams(event)
+    if (!value.trim()) this.handleKeywordConfirm(event)
+  },
+  handleKeywordConfirm(event) {
+    const { value } = this.inputParams(event)
+    this.setData({ projectQuery: value.trim() }, () => {
+      this.handleRefresh()
+    })
   },
   collectHandle() {
     const collect = !this.data.collect

@@ -127,13 +127,14 @@ page {
 
 .hospital {
   @extend %df;
+  margin-top: j(10);
   font-size: j(24);
   align-items: flex-start;
 }
 
 .status {
-  width: j(120);
   height: j(40);
+  margin-right: j(20);
   @extend %df;
   @extend %aic;
   @extend %jcc;
@@ -152,8 +153,6 @@ page {
   @extend %aic;
   font-size: j(28);
   font-weight: 500;
-  margin-bottom: j(20);
-
   .iconfont {
     color: #466a9d;
     margin-right: j(20);

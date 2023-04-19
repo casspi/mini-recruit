@@ -1,5 +1,10 @@
+<wow-skeleton
+  wx:if="{{ !logList.length }}"
+  isLoading="{{false}}"
+>
 
-<view class="log-list">
+</wow-skeleton>
+<view class="log-list" wx:else>
   <view class="log-title">
     <view class="title-name">
       <text>变更内容</text>

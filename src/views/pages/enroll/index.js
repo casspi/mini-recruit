@@ -19,6 +19,7 @@ new WowPage({
   ],
   data: {
     event: 'enrollList',
+    patientName: '',
     selected: [],
     isOpen: false,
     queryText: '',
@@ -31,26 +32,15 @@ new WowPage({
     this.pagingRefresh(cb)
   },
   pagingGetUrlParamsOptions() {
-    const {api$} = this.data
+    const {api$, objFilter, patientName} = this.data
     return {
-      // url: api$.subjectList,
-      // params:{
-      //   selectClewPage: false
-      // },
-      url: api$.homeList,
+      url: api$.REQ_PATIENT_LIST,
       params: {
-        AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
-        'departmentId': 0,
-        'illness': 0,
-        'genetic': 0,
-        'treatmentLines': 0,
-        'province': 0,
-        'cityId': 0,
-        'researchCenterIdList': '',
-        'centerStartState': 0,
-        'searchContent': '',
-        'collectInfo': false,
-        'addedTimeSort': 0,
+        patientName,
+        patientDisease:'',
+        patientStatus:'',
+        createBeginTime:'',
+        createEndTime:''
       },
       options: {
         method: 'get',
@@ -58,7 +48,17 @@ new WowPage({
       }
     }
   },
-  // 搜索
+  handleKeywordInput(event) {
+    const { value } = this.inputParams(event)
+    if (!value.trim()) this.handleKeywordConfirm(event)
+  },
+  handleKeywordConfirm(event) {
+    const { value } = this.inputParams(event)
+    this.setData({ patientName: value.trim() }, () => {
+      this.handleRefresh()
+    })
+  },
+  // 详细搜索
   handleFilter() {
     const {objFilter} = this.data
     this.selectComponent('#filter-view').show(objFilter)
@@ -66,8 +66,10 @@ new WowPage({
   handleFilterConfirm(event) {
     const {objFilter} = this.inputParams(event)
     console.log(objFilter)
-    this.setData({objFilter})
-    this.handleRefresh()
+    this.setData({objFilter},()=>{
+      this.handleRefresh()
+    })
+
   },
 })
 

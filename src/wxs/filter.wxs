@@ -60,6 +60,12 @@ function formatCity(val, labelKey, str) {
 }
 
 module.exports = {
+  lineFeedFilter: function (val){
+    if (!val) {
+      return
+    }
+    return val.replace(getRegExp('\\\\n', 'g'), '\n')
+  },
   isPhone: function (val) {
     return getRegExp('^1\d{10}$').test(val)
   },

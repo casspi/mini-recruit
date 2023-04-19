@@ -32,7 +32,7 @@
       <text>共找到{{pagingTotal || pagingNumTotal}}个项目</text>
     </view>
     <view class="collect {{collect && 'is-active'}}" bindtap="collectHandle">
-      <text>收藏0</text>
+      <text>收藏</text>
     </view>
   </view>
 </view>
@@ -51,28 +51,35 @@
       bindtap="jumpPageOrFireFn"
       data-url="project_index"
       data-item="{{ item }}"
-      data-params="{{ { id: item.id, publishNumber: item.publishNumber, projectName: item.projectName  } }}"
+      data-params="{{ { projectId: item.projectId, publishNumber: item.publishNumber, projectName: item.projectName  } }}"
       wx:for="{{ arrData }}"
       wx:key="id">
-      <view class="status">
+      <view class="status" wx:if="{{item.projectStatusName === '招募中'}}">
         <text>招募中</text>
       </view>
-      <view class="project-name">【{{item.publishNumber}}】{{item.projectName}}</view>
+      <view class="project-name">{{item.studyFullName? '【'+item.studyFullName+'】':''}}{{item.projectName}}</view>
       <view class="staging info-item">
         <view class="info-label">
-          <text>实验阶段</text>
+          <text>实验分期</text>
         </view>
         <view class="info-value">
-          <text>{{item.experimentStage}}</text>
+          <text>{{item.projectTrialPeriod}}</text>
         </view>
       </view>
-
+      <view class="info-item" wx:if="{{item.projectTrialMedicine === '招募中'}}">
+        <view class="info-label">
+          <text>药物名称</text>
+        </view>
+        <view class="info-value">
+          <text>{{item.projectTrialMedicine }}</text>
+        </view>
+      </view>
       <view class="indication info-item">
         <view class="info-label">
           <text>适应症</text>
         </view>
         <view class="info-value">
-          <text>{{item.adaptSymptom}}</text>
+          <text>{{item.projectIndication }}</text>
         </view>
       </view>
     </view>

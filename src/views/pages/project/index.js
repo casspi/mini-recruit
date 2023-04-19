@@ -12,18 +12,29 @@ new WowPage({
     WowPage.wow$.mixins.Jump,
     WowPage.wow$.mixins.Image,
     WowPage.wow$.mixins.Modal,
+    WowPage.wow$.mixins.Curl,
     WowPage.wow$.mixins.Loading
   ],
   data: {
-    tabs: ['项目接受', '治疗方案', '入排标准', '研究中心'],
+    tabs: ['项目介绍', '治疗方案', '入排标准', '研究中心'],
+    detailInfo: {},
     active: 0,
     collect: false
   },
   onLoad(options) {
     this.routerGetParams(options)
+    this.getDetail()
     console.log(this.data)
   },
-
+  getDetail() {
+    const {api$, params$} = this.data
+    this.curl(api$.REQ_PROJECT_DETAIL, {projectId: params$.projectId}, {method: 'get'}).then(res=>{
+      console.log(res)
+      this.setData({
+        detailInfo: res
+      })
+    })
+  },
   jupHandle(e) {
     const {item} = this.inputParams(e)
     this.setData({

@@ -1,5 +1,12 @@
+<wow-skeleton
+  wx:if="{{ !logList.length }}"
+  isLoading="{{false}}"
+>
 
-<view class="log-list">
+</wow-skeleton>
+<view
+  wx:else
+  class="log-list">
   <view class="log-title">
     <view class="title-name">
       <text>研究中心</text>
@@ -8,28 +15,36 @@
       <text>类型及时间</text>
     </view>
   </view>
+<!--  areaName: "安徽省-合肥市"-->
+<!--  changeAfterName: "已启动"-->
+<!--  changeAfterStatus: "2"-->
+<!--  changeBeforeName: "计划启动"-->
+<!--  changeBeforeStatus: "1"-->
+<!--  hospitalName: "安徽医科大学第二附属医院"-->
+<!--  modifyTime: "2023-04-19 10:05:10"-->
   <view
     class="log-item"
     data-item="{{ item }}"
     wx:for="{{ logList }}"
     wx:key="index">
     <view class="left">
-      <view class="iconfont {{index%2 === 0?'icon-add':'icon-change'}}"></view>
+      <view class="iconfont {{item.newAdd?'icon-add':'icon-change'}}"></view>
       <view class="text">
         <view>
-          <text>山东省-青岛市</text>
+          <text>{{item.areaName}}</text>
         </view>
         <view>
-          <text>青岛市立医院</text>
+          <text>{{item.hospitalName}}</text>
         </view>
       </view>
     </view>
     <view class="text">
       <view>
-        <text>待审核 变为 审核失败</text>
+        <text wx:if="{{!item.newAdd}}">{{item.changeBeforeName}} 变为 {{item.changeAfterName}}</text>
+        <text wx:else>新增研究中心</text>
       </view>
       <view>
-        <text>{{item.time}}</text>
+        <text>{{item.modifyTime}}</text>
       </view>
     </view>
   </view>

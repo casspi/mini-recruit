@@ -2,9 +2,8 @@
   bindrefresh="pagingRefresh"
   error="{{ error }}"
   wx:if="{{ pagingTotal <= 0 }}"
-  is-loading="{{ pagingTotal === -1 }}"
+  is-loading="{{ false }}"
 >
-
 </wow-skeleton>
 <view class="invited-list" wx:else>
   <block
@@ -13,9 +12,7 @@
     wx:for-item="arrData"
     wx:for-index="arrIndex">
     <view
-      class="invited-item {{ item.experimentStage == 2 && 'no-read'}}"
-      bindtap="jumpPageOrFireFn"
-      data-url="patient_index"
+      class="invited-item"
       wx:for="{{ arrData }}"
       wx:key="id">
       <view class="invited-item-top">
@@ -29,11 +26,7 @@
           <tex>03-18 16:05</tex>
         </view>
       </view>
-
     </view>
   </block>
-  <wow-end
-    wx:if="{{ pagingTotal > 0}}"
-    is-loading="{{ pagingTotal > pagingNumTotal }}"
-  ></wow-end>
 </view>
+

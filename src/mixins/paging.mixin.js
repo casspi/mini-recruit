@@ -94,7 +94,7 @@ export default {
   pagingFormatResult(res) {
     console.log(res)
     if (Array.isArray(res)) {
-      res = {Count: res.length, Data: res}
+      res = {total: res.length, dataList: res}
     }
     return res
   },

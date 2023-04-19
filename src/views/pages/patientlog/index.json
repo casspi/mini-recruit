@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "变更记录"
+  "navigationBarTitleText": "变更记录",
+  "usingComponents": {
+    "wow-skeleton": "/components/wow-skeleton/index"
+  }
 }

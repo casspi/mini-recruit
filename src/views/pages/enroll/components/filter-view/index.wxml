@@ -4,6 +4,12 @@
         <block
           wx:for="{{objFilter}}"
           wx:key="index">
+            <filter-input
+              wx:if="{{ item.is === 'input' }}"
+              item="{{ item }}"
+              bindinput="handleInput"
+            >
+              </filter-input>
             <wow-picker
               wx:if="{{ item.is === 'picker' }}"
               item="{{ item }}"
@@ -11,12 +17,6 @@
               bindpicker="handlePicker"
             >
             </wow-picker>
-            <filter-input
-              wx:if="{{ item.is === 'input' }}"
-              item="{{ item }}"
-              bindinput="handleInput"
-            >
-            </filter-input>
             <filter-label
               wx:elif="{{ item.is === 'checkbox' }}"
               label="{{ item.label }}">

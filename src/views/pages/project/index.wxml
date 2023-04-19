@@ -1,3 +1,5 @@
+<wxs src="/wxs/filter.wxs" module="filter"/>
+
 <view
   class="tabs">
   <view
@@ -13,11 +15,10 @@
 <view class="detail">
   <scroll-view
     style="height: 100%"
-    scroll-y="true"
-    bindscroll="handelScroll">
+    scroll-y="true">
     <view wx:if="{{active === 0}}" class="tab-view">
       <view class="name">
-        <text>【{{params$.publishNumber}}】{{params$.projectName}}</text>
+        <text>{{detailInfo.studyFullName? '【'+detailInfo.studyFullName+'】':''}}{{detailInfo.projectName}}</text>
       </view>
       <view class="title">
         <text>项目基本信息</text>
@@ -27,26 +28,31 @@
           <text>实验分期</text>
         </view>
         <view class="info-value">
-          <text>{{params$.publishNumber}}</text>
+          <text>{{detailInfo.projectTrialPeriod}}</text>
         </view>
       </view>
       <view class="info-item">
         <view class="info-label">
-          <text>实验分期</text>
+          <text>适应症</text>
         </view>
         <view class="info-value">
-          <text>{{params$.projectName}}</text>
+          <text>{{detailInfo.projectIndication}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>实验名称</text>
+        </view>
+        <view class="info-value">
+          <text>{{detailInfo.projectTrialName}}</text>
         </view>
       </view>
       <view class="title">
-        <text>项目基本信息</text>
+        <text>报名材料</text>
       </view>
       <view class="info-item">
-        <view class="info-label">
-          <text>实验分期</text>
-        </view>
         <view class="info-value">
-          <text>{{params$.publishNumber}}</text>
+          <text>{{detailInfo.projectEnrollMaterial}}</text>
         </view>
       </view>
     </view>
@@ -56,7 +62,23 @@
           <text>实验药组</text>
         </view>
         <view class="info-value">
-          <text>{{params$.publishNumber}}</text>
+          <text>{{detailInfo.projectTrialMedicine}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>对照药组</text>
+        </view>
+        <view class="info-value">
+          <text>{{detailInfo.projectContrastMedicine}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <text>药物介绍</text>
+        </view>
+        <view class="info-value">
+          <text>{{detailInfo.projectMedicineInfo}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -64,15 +86,7 @@
           <text>用药介绍</text>
         </view>
         <view class="info-value">
-          <text>{{params$.projectName}}</text>
-        </view>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>用药介绍</text>
-        </view>
-        <view class="info-value">
-          <text>{{params$.projectName}}</text>
+          <text>{{detailInfo.projectMedicineUse}}</text>
         </view>
       </view>
     </view>
@@ -80,12 +94,23 @@
       <view class="title">
         <text>简要入排</text>
       </view>
+      <view>
+        <text>{{detailInfo.projectAccessSimple}}</text>
+      </view>
+      <view class="title">
+        <text>完整入选标准</text>
+      </view>
       <view class="info-item">
-        <view class="info-label">
-          <text>实验分期</text>
-        </view>
         <view class="info-value">
-          <text>{{params$.publishNumber}}</text>
+          <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete)}}</text>
+        </view>
+      </view>
+      <view class="title">
+        <text>完整排除标准</text>
+      </view>
+      <view class="info-item">
+        <view class="info-value">
+          <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete)}}</text>
         </view>
       </view>
     </view>
@@ -93,6 +118,7 @@
       <view
         class="tab-title"
         bindtap="jumpPageOrFireFn"
+        data-params="{{ {projectId: params$.projectId} }}"
         data-url="hospitallog_index">
         <text>研究中心</text>
         <view class="more">
@@ -102,24 +128,29 @@
       </view>
       <view
         class="c-item"
-        wx:for="{{ 9 }}"
+        wx:for="{{ detailInfo.projectHospitalVOList }}"
         wx:key="index">
         <view class="city">
           <view class="iconfont icon-dingwei"></view>
           <view>
-            <text>安徽省合肥市</text>
+            <text>{{item.areaName}}</text>
           </view>
         </view>
-        <view class="hospital">
-          <view class="status {{item%2 === 0?'status-1':'status-2'}}">
-            <text>已启动</text>
+        <view
+          wx:for="{{item.detailVOList}}"
+          wx:key="i"
+          wx:for-item="hospital"
+          wx:for-index="i"
+          class="hospital">
+          <view class="status {{hospital.statusName === '已启动'?'status-1':'status-2'}}">
+            <text>{{hospital.statusName}}</text>
           </view>
           <view class="detail">
             <view>
-              <text>安徽医科大学附属第二医院</text>
+              <text>{{hospital.hospitalName}}</text>
             </view>
             <view class="range">
-              <text>招募范围：院外；</text>
+              <text>招募范围：{{hospital.recruitRangeName}}</text>
             </view>
           </view>
         </view>

@@ -37,6 +37,7 @@ new WowPage({
         'searchContent': '',
         'collectInfo': false,
         'addedTimeSort': 0,
+        pageNum:1
       },
       options: {
         method: 'get',
