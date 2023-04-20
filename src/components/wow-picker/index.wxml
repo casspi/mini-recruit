@@ -3,9 +3,11 @@
   <picker
     bindchange="handleChange"
     range="{{item.options}}"
+    range-key="{{item.rangeKey}}"
     value="{{item.value}}"
     data-item="{{item}}"
+    mode="selector"
     >
-    <view class="value">{{ item.value || item.placeholder }}<view class="c-arrow right"></view></view>
+    <view class="value">{{ item.value.label || item.placeholder }}<view class="c-arrow right"></view></view>
   </picker>
 </view>

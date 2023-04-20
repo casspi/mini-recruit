@@ -82,12 +82,12 @@ export default {
         is: 'picker',
         url: 'select_index',
         title: '请选择体能状况',
-        labelKey: 'text',
+        labelKey: 'name',
         formatter: 'formatArrayJoin',
         options: [
-          {id: 1, title: '2级', text: '见客户你看就看', tips: '3、4级不符合临床招募情况'},
-          {id: 2, title: '2级', text: '见客户你看就看'},
-          {id: 3, title: '3级', text: '见客户你看就看'}
+          // {id: 1, title: '2级', text: '见客户你看就看', tips: '3、4级不符合临床招募情况'},
+          // {id: 2, title: '2级', text: '见客户你看就看'},
+          // {id: 3, title: '3级', text: '见客户你看就看'}
         ],
         confirm: 'selectHandle',
         use: [
@@ -96,7 +96,7 @@ export default {
         ],
         disabled: false,
       },
-      // 所在地
+      // 所在城市
       cityId: {
         value: [],
         label: '所在城市',
@@ -105,8 +105,6 @@ export default {
         title: '请选择所在地',
         fn: 'cityHandle',
         formatter: 'formatCity',
-        multiple: true,
-        limit: 10,
         use: [
           {nonempty: true, prompt: '请选择所在城市'},
           {rule: v => v.length, prompt: '请选择所在城市'},
@@ -122,26 +120,11 @@ export default {
         title: '请选择确诊疾病',
         remind: '注：最多选择10个',
         multiple: true,
-        labelKey: 'text',
+        labelKey: 'label',
         formatter: 'formatArrayJoin',
-        options: [
-          {id: 1, text: '感冒'},
-          {id: 2, text: '发烧'},
-          {id: 3, text: '拉肚子'},
-          {id: 32, text: '拉肚子1'},
-          {id: 22, text: '拉肚子2'},
-          {id: 31, text: '拉肚子3'},
-          {id: 336, text: '拉肚子4'},
-          {id: 12, text: '拉肚子1'},
-          {id: 3112, text: '拉肚子2'},
-          {id: 3122, text: '拉肚子3'},
-          {id: 332226, text: '拉肚子4'},
-          {id: 1220, text: '拉肚子1'},
-          {id: 31102, text: '拉肚子2'},
-          {id: 31202, text: '拉肚子3'},
-          {id: 3326, text: '拉肚子4'},
-        ],
+        options: [],
         confirm: 'selectHandle',
+        limit: 10,
         use: [
           {nonempty: true, prompt: '请选择确诊疾病'},
           {rule: v => v.length, prompt: '请选择确诊疾病'},

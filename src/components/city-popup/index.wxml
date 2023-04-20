@@ -11,12 +11,12 @@
     </view>
     <view class="content">
       <view class="province">
-        <view class="province-item {{parent.id === item.id && 'is-active' }}" wx:for="{{ source }}" wx:key="index" data-item="{{item}}" bindtap="provinceHandle"><text>{{item.label}}</text></view>
+        <view class="province-item {{parent.value === item.value && 'is-active' }}" wx:for="{{ source }}" wx:key="index" data-item="{{item}}" bindtap="provinceHandle"><text>{{item.label}}</text></view>
       </view>
       <view class="city">
-        <view class="city-item {{filter.includes(value, item.id, 'id', 'city') && 'is-active'}}" wx:for="{{ filter.pickByKey(source, parent.id, 'id')[0].children }}" wx:key="index" data-item="{{item}}" bindtap="cityHandle">
+        <view class="city-item {{filter.includes(value, item.value, 'value', 'city') && 'is-active'}}" wx:for="{{ filter.pickByKey(source, parent.value, 'value')[0].children }}" wx:key="index" data-item="{{item}}" bindtap="cityHandle">
           <text>{{item.label}}</text>
-          <view class="iconfont icon-duihao" wx:if="{{filter.includes(value, item.id, 'id', 'city') }}"></view>
+          <view class="iconfont icon-duihao" wx:if="{{filter.includes(value, item.value, 'value', 'city') }}"></view>
         </view>
       </view>
     </view>

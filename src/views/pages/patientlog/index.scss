@@ -26,4 +26,8 @@ page {
 
 .log-item {
   font-size: j(24);
+  >view{
+    @extend %df;
+    @extend %fdc;
+  }
 }

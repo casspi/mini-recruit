@@ -53,7 +53,7 @@ page {
   .tips {
     color: $color-danger;
     font-size: j(24);
-    display: none;
+    visibility: hidden;
   }
 
   .iconfont {
@@ -67,7 +67,7 @@ page {
     }
 
     .tips {
-      display: block;
+      visibility: visible;
       margin-top: j(10);
     }
   }

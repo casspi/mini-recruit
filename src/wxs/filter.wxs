@@ -45,17 +45,16 @@ function filterTime(date, fmt) {
 }
 
 function formatArrayJoin(val, labelKey, str) {
-  var separator = str || ';'
+  var separator = str
   return val.map(function (o) {
     return labelKey ? o[labelKey] : o
   }).join(separator)
 }
 
-function formatCity(val, labelKey, str) {
-  console.log(JSON.stringify(val))
-  var separator = str || ';'
+function formatCity(val, labelKey, str, hiddenProvince) {
+  var separator = str
   return val.map(function (o) {
-    return o.province[labelKey] + o.city[labelKey]
+    return hiddenProvince? o.city[labelKey] : o.province[labelKey] +'-'+ o.city[labelKey]
   }).join(separator)
 }
 
@@ -146,7 +145,7 @@ module.exports = {
       formatArrayJoin: formatArrayJoin,
       formatCity: formatCity
     }
-    return formatter[formatterKey](value, item.labelKey || 'label')
+    return formatter[formatterKey](value, item.labelKey || 'label', ';', item.hiddenProvince)
   },
   filterIncludes: function (arr, v) {
     return arr.indexOf(v) > -1

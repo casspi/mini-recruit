@@ -33,9 +33,29 @@ new WowPage({
           [`${objInput[key].key}.disabled`]: true
         })
       }
-
     }
+    this.getDic()
 
+  },
+  // 获取字典
+  getDic() {
+    const {api$} = this.data
+    this.curl(api$.DIC_CONDITION, {}, {method: 'get'})
+    .then(res => {
+      this.setData({
+        'objInput.patientPhysicalCondition.options': res.map(item=> {
+          item.value = item.code
+          item.label = item.fullName
+          return item
+        })
+      })
+    })
+    this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get'})
+    .then(res => {
+      this.setData({
+        'objInput.patientDisease.options': res
+      })
+    })
   },
   // 选择组件选中回调
   selectHandle(options) {
@@ -43,9 +63,6 @@ new WowPage({
     const {key, value} = options
     this.setData({
       [`${key}.value`]: value
-    }, () => {
-
-      console.log('data=>', this.data)
     })
   },
   //城市选择控件
@@ -53,11 +70,7 @@ new WowPage({
     const {value} = item
     const {api$, source = []} = this.data
     ;(source.length ? Promise.resolve(source) : this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
-      this.data.source = res.map(item => {
-        const {value: label, childs: citys, id} = item
-        const children = citys.map(({value, id}) => ({label: value, id}))
-        return {children, label, id}
-      })
+      this.data.source = res
       return this.data.source
     })).then(source => {
       // 去选择城市
@@ -71,7 +84,6 @@ new WowPage({
         }
       })
     }).then(res => {
-      console.log('res', res)
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
   },

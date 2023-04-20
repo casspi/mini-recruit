@@ -13,7 +13,7 @@
             <wow-picker
               wx:if="{{ item.is === 'picker' }}"
               item="{{ item }}"
-              rangeKey="name"
+              rangeKey="label"
               bindpicker="handlePicker"
             >
             </wow-picker>
@@ -36,7 +36,6 @@
               ></filter-datepicker>
             </filter-label>
         </block>
-
 
         <view class="c-ios-seat"></view>
     </scroll-view>

@@ -13,16 +13,26 @@
       <text>时间</text>
     </view>
   </view>
+<!--  createBy: "admin"-->
+<!--  createName: "管理员"-->
+<!--  createTime: "2023-04-19 14:58:38"-->
+<!--  patientCheckRemarks: "缺少资料，自己补"-->
+<!--  patientId: "1"-->
+<!--  patientStatus: "2"-->
+<!--  standardTime: "2023-04-19"-->
+<!--  statusName: "缺资料"-->
   <view
     class="log-item"
     data-item="{{ item }}"
     wx:for="{{ logList }}"
     wx:key="index">
     <view>
-      <text>{{item.text}}</text>
+      <text>患者状态：{{item.statusName}}</text>
+      <text>{{item.patientCheckRemarks}}</text>
     </view>
     <view>
-      <text>{{item.time}}</text>
+      <text>操作人：{{item.createName}}</text>
+      <text>操作时间：{{item.createTime}}</text>
     </view>
   </view>
 </view>

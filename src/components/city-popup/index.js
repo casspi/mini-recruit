@@ -43,8 +43,8 @@ new WowComponent({
       const {item} = this.inputParams(e)
       let {multiple, value, parent, limit} = this.data
       if (multiple) {
-        if (Tools.includes(value, item.id, 'id', 'city')) {
-          value = value.filter(o => o.city.id !== item.id)
+        if (Tools.includes(value, item.value, 'value', 'city')) {
+          value = value.filter(o => o.city.value !== item.value)
         } else {
           if (value.length >= 10) {
             this.modalToast(`最多选择${limit}个城市`)
@@ -52,7 +52,7 @@ new WowComponent({
           }
           value.push({
             city: item,
-            province: {id: parent.id, label: parent.label}
+            province: {value: parent.value, label: parent.label}
           })
         }
         this.setData({
@@ -62,7 +62,7 @@ new WowComponent({
         this.setData({
           value: [{
             city: item,
-            province: {id: parent.id, label: parent.label}
+            province: {value: parent.value, label: parent.label}
           }]
         }, () => {
           this.handleConfirm(e)
@@ -80,7 +80,6 @@ new WowComponent({
         this.resolve = resolve
         this.reject = reject
         this.setData({visible: true, ...options})
-        console.log('this.data=>', this.data)
       })
     },
     hide(forced) {

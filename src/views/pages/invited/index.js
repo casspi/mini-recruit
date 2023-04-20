@@ -15,7 +15,11 @@ new WowPage({
     WowPage.wow$.mixins.Refresh,
   ],
   onLoad() {
-    this.handleRefresh()
+    const {api$} = this.data
+    this.curl(api$.REQ_MINE, {}, {method: 'get'}).then(res=>{
+      console.log(res)
+    })
+    // this.handleRefresh()
   },
   handleRefresh(cb) {
     this.pagingRefresh(cb)

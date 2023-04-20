@@ -18,6 +18,61 @@ new WowPage({
   ],
   onLoad(options) {
     this.routerGetParams(options)
+    let {api$, objInput} = this.data
+    // allocateAreaId: "110100,120100"
+    // areaIdList: ["110100", "120100"]
+    // cityId: "110100"
+    // diseaseIdList: ["402882408754384e018754384ebe0000", " 402882408754384e018754384ebf0003"]
+    // diseaseIds: "402882408754384e018754384ebe0000, 402882408754384e018754384ebf0003"
+    // gender: "0"
+    // name: "管理员"
+    // provinceId: "110000"
+    // type: "0"
+    // typeName: "招募者"
+
+    this.getDic(this.getDetail)
+  },
+  //详情
+  getDetail() {
+    let {api$, objInput, cityList} = this.data
+    this.curl(api$.REQ_MINE_INFO, {}, {method:'get'}).then(res => {
+      const { name, gender, areaIdList, diseaseIds, provinceId, cityId } = res
+      objInput.name.value = name
+      objInput.gender.value = gender
+      objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value) )
+      const province = cityList.find(o => o.value === provinceId)
+      const city = province? province.children.find(o=> o.value === cityId):null
+      objInput.city.value = [{
+        province, city
+      }]
+      // 服务区域回显
+      const area = []
+      areaIdList.forEach(item=>{
+        const province = cityList.find(o=>o.children.find(i=> i.value === item))
+        area.push({
+          province,
+          city: province.children.find(o=>o.value === item)
+        })
+      })
+      objInput.allocateAreaId.value = area
+      this.setData({
+        objInput
+      })
+    })
+  },
+  // 获取字典
+  getDic(cb) {
+    const {api$} = this.data
+    this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
+      this.data.cityList = res
+    }).then(()=>{
+      this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get'})
+        .then(res => {
+          this.data.objInput.disease.options = res
+          cb()
+        })
+    })
+
   },
   // 选择组件选中回调
   selectHandle(options) {
@@ -33,14 +88,10 @@ new WowPage({
   //城市选择控件
   cityHandle(item) {
     const {value} = item
-    const {api$, source = []} = this.data
-    ;(source.length ? Promise.resolve(source) : this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
-      this.data.source = res.map(item => {
-        const {value: label, childs: citys, id} = item
-        const children = citys.map(({value, id}) => ({label: value, id}))
-        return {children, label, id}
-      })
-      return this.data.source
+    const {api$, cityList = []} = this.data
+    ;(cityList.length ? Promise.resolve(cityList) : this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
+      this.data.cityList = res
+      return this.data.cityList
     })).then(source => {
       // 去选择城市
       return this.selectComponent('#refCity').show({
@@ -66,8 +117,20 @@ new WowPage({
     }, this.data.objInput, 'objInput')
 
     // 提取参数
-    const options = this.validateInput(this.data.objInput, this.data.objInput)
-    console.log(options)
+    let {allocateAreaId,city, disease, gender, name } = this.validateInput(this.data.objInput, this.data.objInput)
+    allocateAreaId = allocateAreaId.map(item=>item.city.value).join(',')
+    disease = disease.map(item=>item.value).join(',')
+    const {api$} = this.data
+    this.curl(api$.REQ_MINE_INFO_CHANGE,{
+      allocateAreaId,
+      provinceId:city[0].province.value,
+      cityId: city[0].city.value,
+      diseaseIds: disease,
+      gender,
+      name
+  },{method:'get'}).then(res=>{
+
+    })
   }
 })
 

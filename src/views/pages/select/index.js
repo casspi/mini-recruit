@@ -32,24 +32,23 @@ new WowPage({
     const {item} = this.inputParams(event)
     let {params$, value} = this.data
     if (params$.multiple) {
-      if (value.find(o => o.id === item.id)) {
-        value = value.filter(o => o.id !== item.id)
+      if (value.find(o => o.value === item.value)) {
+        value = value.filter(o => o.value !== item.value)
       } else {
+        if (value.length >= 10) {
+          this.modalToast(`最多选择${params$.limit}个`)
+          return
+        }
         value.push(item)
       }
-      this.setData({
-        value
-      }, () => {
-        this.renderSelected()
-      })
     } else {
-      this.setData({
-        value: [item]
-      }, () => {
-        this.renderSelected()
-      })
+      value = [item]
     }
-
+    this.setData({
+      value
+    }, () => {
+      this.renderSelected()
+    })
   },
   handleConfirm() {
     const {params$, value} = this.data
@@ -66,7 +65,7 @@ new WowPage({
   renderSelected() {
     const {params$, value} = this.data
     if (!params$.multiple) return
-    const res = Tools.pickByKey(params$.options, value, 'id').map(item => item.text)
+    const res = Tools.pickByKey(params$.options, value, 'value').map(item => item.label)
     this.setData({
       selectedText: res.length ? res.join(';') : ''
     })

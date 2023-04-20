@@ -24,11 +24,18 @@ new WowComponent({
     visible: false,
   },
   methods: {
-    show(options) {
+    show(options, dicStatus, dicRecruit) {
+      console.log(options)
       return new Promise((resolve, reject) => {
         this.resolve = resolve
         this.reject = reject
-        this.setData({visible: true, ...options})
+        this.setData({visible: true, ...options},()=>{
+          this.setData({
+            ['objFilter.patientStatus.options']: dicStatus,
+            ['objFilter.referee.options']:dicRecruit
+          })
+        })
+
       })
     },
     handleConfirm() {
@@ -57,7 +64,7 @@ new WowComponent({
         [`${detail.key}.value`]: detail.value
       })
     },
-    // 选择联系人
+    // 选择推荐人
     handlePicker(options) {
       const {detail} = options
       this.setData({[`${detail.key}.value`]: detail.value})

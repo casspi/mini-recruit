@@ -48,6 +48,7 @@
   <view
     bindtap="jumpPageOrFireFn"
     data-url="patientlog_index"
+    data-params="{{ {patientId: params$.patientId} }}"
     class="info-item">
     <view class="info-item-label"><text>状态</text></view>
     <view class="info-item-value">

@@ -53,7 +53,6 @@ new WowPage({
   getDetail() {
     const {api$, params$} = this.data
     this.curl(api$.REQ_PATIENT_DETAIL, {patientId: params$.patientId}, {method: 'get'}).then(res=>{
-      console.log(res)
       this.setData({
         infoDetail: res
       })

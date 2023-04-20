@@ -23,24 +23,42 @@ new WowPage({
     selected: [],
     isOpen: false,
     queryText: '',
-    objFilter: {}
+    objFilter: {},
+    dicStatus:[],
+    dicRecruit:[],
   },
   onLoad() {
     this.handleRefresh()
+    this.getStatusDic()
+  },
+  getStatusDic(){
+    const {api$} = this.data
+    this.curl(api$.DIC_PATIENT_STATUS,{},{method:'get'})
+      .then(res=>{
+        this.setData({
+          dicStatus: res
+        })
+      })
+    this.curl(api$.DIC_RECRUIT,{},{method:'get'})
+      .then(res=>{
+        this.setData({
+          dicRecruit: res
+        })
+      })
   },
   handleRefresh(cb) {
     this.pagingRefresh(cb)
   },
   pagingGetUrlParamsOptions() {
-    const {api$, objFilter, patientName} = this.data
+    const {api$, objFilter:{createBeginTime, createEndTime, patientStatus}, patientName} = this.data
     return {
       url: api$.REQ_PATIENT_LIST,
       params: {
         patientName,
         patientDisease:'',
-        patientStatus:'',
-        createBeginTime:'',
-        createEndTime:''
+        patientStatus: '',
+        createBeginTime,
+        createEndTime,
       },
       options: {
         method: 'get',
@@ -60,8 +78,8 @@ new WowPage({
   },
   // 详细搜索
   handleFilter() {
-    const {objFilter} = this.data
-    this.selectComponent('#filter-view').show(objFilter)
+    const {objFilter, dicStatus, dicRecruit} = this.data
+    this.selectComponent('#filter-view').show(objFilter, dicStatus, dicRecruit)
   },
   handleFilterConfirm(event) {
     const {objFilter} = this.inputParams(event)

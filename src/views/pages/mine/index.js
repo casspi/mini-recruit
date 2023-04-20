@@ -10,6 +10,7 @@ new WowPage({
     WowPage.wow$.mixins.Router,
     WowPage.wow$.mixins.Jump,
     WowPage.wow$.mixins.Modal,
+    WowPage.wow$.mixins.Curl,
   ],
   data: {
     isAgree: false,
@@ -23,6 +24,12 @@ new WowPage({
       {label: '退出登录', fn: 'handleCell', hideArrow: true, className: 'logout-item', 'key': 'logout'},
     ],
   },
+  onLoad() {
+    const {api$} = this.data
+    this.curl(api$.REQ_MINE, {}, {method: 'get'}).then(res=>{
+      console.log(res)
+    })
+  },
   handleCell(item) {
     console.log(item)
     if (item.key === 'logout') {
@@ -34,6 +41,6 @@ new WowPage({
         this.routerPush('demo_index')
       }).null()
     }
-  }
+  },
 })
 
