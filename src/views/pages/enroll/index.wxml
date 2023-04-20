@@ -39,6 +39,7 @@
     <view
       class="enroll-item {{ item.readStatus == '0' && 'no-read'}}"
       bindtap="jumpPageOrFireFn"
+      data-params="{{ {patientId: item.patientId} }}"
       data-url="patient_index"
       wx:for="{{ arrData }}"
       wx:key="id">

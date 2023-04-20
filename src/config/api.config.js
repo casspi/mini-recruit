@@ -38,6 +38,10 @@ export default {
 
   // 患者列表
   REQ_PATIENT_LIST: 'mini/recruit/app/listPatient',
+  // 新增患者
+  REQ_PATIENT_ADD: 'mini/recruit/app/addPatient',
+  // 患者详情
+  REQ_PATIENT_DETAIL: 'mini/recruit/app/getPatient',
 
 
   // 获取城市列表

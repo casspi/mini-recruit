@@ -182,6 +182,28 @@ new WowPage({
     if (this.validateCheck(this.data.objInput)) return;
     const options = this.validateInput(objInput)
     console.log(options);
+    // cityId: Array(1)
+    // 0:
+    // city: {label: "北京", id: "110100"}
+    // province: {id: "110000", label: "北京"}
+    // __proto__: Object
+    // length: 1
+    // nv_length: (...)
+    // __proto__: Array(0)
+    // file: Array(2)
+    // 0: {name: "c06419728.pdf", src: "http://h10032.www1.hp.com/ctg/Manual/c06419728.pdf"}
+    // 1: {name: "xxx1.xls", src: "xxx"}
+    // length: 2
+    // nv_length: (...)
+    // __proto__: Array(0)
+    // patientAge: "1"
+    // patientDisease: [{…}]
+    // patientDiseaseCondition: ""
+    // patientGender: 1
+    // patientName: "1111"
+    // patientPhone: "1"
+    // patientPhysicalCondition: [{…}]
+    // pics: (3) ["group1/M00/67/A0/wKghH1S8ppmANA
     //
     // this.validateAssignment(this, {
     //   //
@@ -189,6 +211,16 @@ new WowPage({
     //
     // // 提取参数
     // const options = this.validateInput(this.data.objInput, this.data.objInput2)
+    const {patientName, patientPhone, patientGender, patientAge, patientPhysicalCondition,patientDiseaseCondition,docList=[],picList=[] } = options
+    this.curl(api$.REQ_PATIENT_ADD, {
+      patientName, patientPhone, patientGender, patientAge, patientPhysicalCondition:'',
+      patientDisease:'2',
+      picList: '',
+      docList: '',
+      patientDiseaseCondition,
+    }, { method: 'get' }).then(res=>{
+      console.log(res)
+    })
   }
 })
 

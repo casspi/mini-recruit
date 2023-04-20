@@ -9,9 +9,10 @@ new WowPage({
   mixins: [
     WowPage.wow$.mixins.Router,
     WowPage.wow$.mixins.Jump,
-
+    WowPage.wow$.mixins.Curl,
   ],
   data: {
+    infoDetail: {},
     infoObj: [
       {
         label: '所患疾病',
@@ -45,12 +46,18 @@ new WowPage({
       }
     ]
   },
-  onLoad() {
-    const pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2]
-    prevPage.setData({
-      form: 'detail'
+  onLoad(options) {
+    this.routerGetParams(options)
+    this.getDetail()
+  },
+  getDetail() {
+    const {api$, params$} = this.data
+    this.curl(api$.REQ_PATIENT_DETAIL, {patientId: params$.patientId}, {method: 'get'}).then(res=>{
+      console.log(res)
+      this.setData({
+        infoDetail: res
+      })
     })
-  }
+  },
 })
 

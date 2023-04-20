@@ -1,10 +1,33 @@
 export default {
   data: {
+    // private String patientName;
+    //
+    // private String patientGender;
+    //
+    // private String patientAge;
+    //
+    // private String patientPhone;
+    //
+    // private String patientDisease;
+    //
+    // private String patientPhysicalCondition;
+    //
+    // private String patientDiseaseCondition;
+    //
+    // private String patientStatus;
+    //
+    // private String provinceId;
+    //
+    // private String cityId;
+    //
+    // private List<String> picList;
+    //
+    // private List<String> docList;
     objInput: {
       // 患者
-      patient: {
-        value: 'lss',
-        key: 'objInput.patient',
+      patientName: {
+        value: '',
+        key: 'objInput.patientName',
         is: 'field',
         label: '患者姓名',
         labelSuffix: "(字母缩写)",
@@ -15,9 +38,9 @@ export default {
         ],
       },
       // 电话
-      phone: {
-        value: '13817672345',
-        key: 'objInput.phone',
+      patientPhone: {
+        value: '',
+        key: 'objInput.patientPhone',
         type: 'number',
         is: 'field',
         label: '联系电话',
@@ -25,9 +48,9 @@ export default {
         maxlength: 11,
         disabled: false,
       },
-      sex: {
-        value: 1,
-        key: 'objInput.sex',
+      patientGender: {
+        value: '',
+        key: 'objInput.patientGender',
         is: 'radio-group',
         label: '患者性别',
         disabled: false,
@@ -35,14 +58,14 @@ export default {
           {nonempty: true, prompt: '请选择性别'},
         ],
         options: [
-          {label: '女', value: 1},
-          {label: '男', value: 2},
+          {label: '女', value: '0'},
+          {label: '男', value: '1'},
         ],
       },
       // 年龄
-      age: {
-        value: '18',
-        key: 'objInput.age',
+      patientAge: {
+        value: '',
+        key: 'objInput.patientAge',
         type: 'number',
         is: 'field',
         label: '年龄',
@@ -52,10 +75,10 @@ export default {
         ],
       },
       // 体能状况
-      health: {
+      patientPhysicalCondition: {
         value: [],
         label: '体能状况',
-        key: 'objInput.health',
+        key: 'objInput.patientPhysicalCondition',
         is: 'picker',
         url: 'select_index',
         title: '请选择体能状况',
@@ -74,10 +97,10 @@ export default {
         disabled: false,
       },
       // 所在地
-      nowcity: {
+      cityId: {
         value: [],
         label: '所在城市',
-        key: 'objInput.nowcity',
+        key: 'objInput.cityId',
         is: 'picker',
         title: '请选择所在地',
         fn: 'cityHandle',
@@ -90,10 +113,10 @@ export default {
         ],
         disabled: false,
       },
-      disease: {
+      patientDisease: {
         value: [],
         label: '确诊疾病',
-        key: 'objInput.disease',
+        key: 'objInput.patientDisease',
         is: 'picker',
         url: 'select_index',
         title: '请选择确诊疾病',
@@ -125,9 +148,9 @@ export default {
         ],
         disabled: false,
       },
-      pics: {
+      picList: {
         value: ["group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg"],
-        key: 'objInput.pics',
+        key: 'objInput.picList',
         is: 'photo',
         label: '病例图片',
         labelSuffix: "(选填)",
@@ -147,14 +170,14 @@ export default {
         ],
         disabled: false,
       },
-      file: {
+      docList: {
         value: [
           {name: 'c06419728.pdf', src: 'http://h10032.www1.hp.com/ctg/Manual/c06419728.pdf'},
           {
             name: 'xxx1.xls',
             src: 'xxx'
           }],
-        key: 'objInput.file',
+        key: 'objInput.docList',
         is: 'file',
         label: '病例文档',
         labelSuffix: "（病历图片或病历文档有一种上传即可）",
@@ -169,12 +192,12 @@ export default {
         ],
         disabled: false,
       },
-      dsc: {
+      patientDiseaseCondition: {
         value: '',
+        key: 'objInput.patientDiseaseCondition',
         label: '病情描述',
         labelSuffix: "(选填)",
         placeholder: '请输入患者简要病史或其他备注信息，最多不超过500字',
-        key: 'objInput.dsc',
         is: 'textarea',
         maxlength: 300,
         disabled: false,
