@@ -69,7 +69,7 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
     }
   }
   console.log(`${url} [${method}] 请求返回 => `, respData)
-  let {status, data, Extend, Message} = respData
+  let {status, data, Extend, message} = respData
   // if ([201].indexOf(Status) > -1) {
   //   reject(Message || 'token已过期，请重新登录')
   //   return gotoLogin()
@@ -81,9 +81,9 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
   //     title: '关注公众号'
   //   })
   // }
-  // if (Status !== 0) {
-  //   return reject(respData)
-  // }
+  if (status !== 0) {
+    return reject(message || respData)
+  }
   // if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
   //   Data = Object.assign({}, Extend, Data)
   // }

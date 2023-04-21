@@ -128,9 +128,9 @@ new WowPage({
       diseaseIds: disease,
       gender,
       name
-  },{method:'get'}).then(res=>{
-
-    })
+    },{method:'get'}).then(res=>{
+      console.log('保存成功')
+    }).toast()
   }
 })
 
