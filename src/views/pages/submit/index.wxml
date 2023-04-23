@@ -40,13 +40,13 @@
     <text class="strong"
           catchtap="jumpPageOrFireFn"
           data-url="webview_index"
-          data-params="{{ { title: '用户服务协议', link: api$.H5_AGREEMENT_URL + '3' } }}"
+          data-params="{{ { title: '用户协议', link: api$.USER_AGREEMENT } }}"
     >《用户协议》
     </text>
     <text class="strong"
           catchtap="jumpPageOrFireFn"
           data-url="webview_index"
-          data-params="{{ { title: '隐私政策', link: api$.H5_AGREEMENT_URL + '7' } }}"
+          data-params="{{ { title: '隐私政策', link: api$.PRIVACY_POLICY } }}"
     >《隐私政策》
     </text>
   </view>

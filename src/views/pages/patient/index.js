@@ -53,8 +53,7 @@ new WowPage({
   },
   onUnload() {
     const refPage = this.pagesGetByIndex(1)
-    console.log(refPage)
-    if (refPage) {
+    if (refPage && refPage.updateRead) {
       refPage.updateRead(this.data.params$.patientId)
     }
   },

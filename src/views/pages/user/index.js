@@ -76,9 +76,6 @@ new WowPage({
     const {key, value} = options
     this.setData({
       [`${key}.value`]: value
-    }, () => {
-
-      console.log('data=>', this.data)
     })
   },
   //城市选择控件
@@ -105,15 +102,9 @@ new WowPage({
     }).toast()
   },
   submitHandle() {
-    // true 有问题
-    this.validateCheck(this.data.objInput)
-    //
-    this.validateAssignment(this, {
-      //
-    }, this.data.objInput, 'objInput')
-
+    if (this.validateCheck(this.data.objInput)) return;
     // 提取参数
-    let {allocateAreaId, city, disease, gender, name} = this.validateInput(this.data.objInput, this.data.objInput)
+    let {allocateAreaId, city, disease, gender, name} = this.validateInput(this.data.objInput)
     allocateAreaId = allocateAreaId.map(item => item.city.value).join(',')
     disease = disease.map(item => item.value).join(',')
     const {api$} = this.data

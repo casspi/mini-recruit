@@ -16,6 +16,23 @@ new WowPage({
     WowPage.wow$.mixins.Format,
     WowPage.wow$.mixins.Validate,
   ],
+  onLoad() {
+    this.getDic()
+  },
+  // 获取字典
+  getDic() {
+    const {api$} = this.data
+    this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'})
+      .then(res => {
+        this.data.source = res
+      })
+    this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get', loading: false})
+      .then(res => {
+        this.setData({
+          'objInput.patientDisease.options': res
+        })
+      })
+  },
   // 选择组件选中回调
   selectHandle(options) {
     console.log('options=>', options)
@@ -32,11 +49,7 @@ new WowPage({
     const {value} = item
     const {api$, source = []} = this.data
     ;(source.length ? Promise.resolve(source) : this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
-      this.data.source = res.map(item => {
-        const {value: label, childs: citys, id} = item
-        const children = citys.map(({value, id}) => ({label: value, id}))
-        return {children, label, id}
-      })
+      this.data.source = res
       return this.data.source
     })).then(source => {
       // 去选择城市
@@ -50,22 +63,24 @@ new WowPage({
         }
       })
     }).then(res => {
-      console.log('res', res)
       this.setData({[`${item.key}.value`]: res.value})
     }).toast()
   },
   submitHandle() {
-    if(!this.data.isAgreement) return
+    const {api$} = this.data
+    if (!this.data.isAgreement) return
     // true 有问题
-    this.validateCheck(this.data.objInput)
-    //
-    this.validateAssignment(this, {
-      //
-    }, this.data.objInput, 'objInput')
-
+    if (this.validateCheck(this.data.objInput)) return
     // 提取参数
-    const options = this.validateInput(this.data.objInput, this.data.objInput)
-    console.log(options)
+    const {patientDisease, area, ...options} = this.validateInput(this.data.objInput, this.data.objInput)
+    this.curl(api$.REQ_PATIENT_REPORT, {
+      ...options,
+      patientDisease: patientDisease[0].value,
+      provinceId: area[0].province.value,
+      cityId: area[0].city.value
+    }, {method: 'get'}).then(() => {
+      this.routerPop()
+    }).toast()
   }
 })
 

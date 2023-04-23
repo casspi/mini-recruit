@@ -13,6 +13,7 @@
         "pages/project/bill/index",
         "pages/project/index",
         "pages/qrcode/index",
+        "pages/register/index",
         "pages/select/index",
         "pages/subject/index",
         "pages/submit/index",
@@ -25,7 +26,7 @@
         }
     },
     "window": {
-        "navigationBarTitleText": "招募之家",
+        "navigationBarTitleText": "蚂蚁招募",
         "navigationBarTextStyle": "black",
         "navigationBarBackgroundColor": "#ffffff"
     },

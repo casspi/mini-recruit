@@ -172,17 +172,17 @@
         </view>
         <view
           bindtap="handleCollect"
-          data-item="{{ {isCollect: !detailInfo.isCollect, projectId: detailInfo.projectId} }}"
-          class="iconfont icon-shoucang {{detailInfo.isCollect && 'is-active'}}">
+          data-item="{{ {collectStatus: detailInfo.collectStatus, projectId: detailInfo.projectId} }}"
+          class="iconfont icon-shoucang {{detailInfo.collectStatus && 'is-active'}}">
           <view class="btn-text">
-            <text>{{detailInfo.isCollect ? '已收藏':'收藏'}}</text>
+            <text>{{detailInfo.collectStatus ? '已收藏':'收藏'}}</text>
           </view>
         </view>
         <view
           bindtap="billHandle"
-          data-item="{{ {url: 'https://images.autostreets.com/group1/M00/B3/E0/667B02E3-4E4F-460E-8236-8F4BDA276BB5.jpg'} }}"
-          data-disabled="{{ !detailInfo.isPoster }}"
-          class="iconfont icon-haibaozujian {{!detailInfo.isPoster && 'disabled'}}" >
+          data-item="{{ {urls: detailInfo.postList} }}"
+          data-disabled="{{ !(detailInfo.postList && detailInfo.postList.length) }}"
+          class="iconfont icon-haibaozujian {{!(detailInfo.postList && detailInfo.postList.length) && 'disabled'}}" >
           <view class="btn-text">
             <text>海报</text>
           </view>
@@ -202,7 +202,7 @@
       bindtap="jumpPageOrFireFn"
       data-url="login_index"
       data-params="{{ {id:1} }}">
-      <text>立即加入xx招募</text>
+      <text>立即加入蚂蚁招募</text>
     </view>
   </view>
   <view class="ios-seat"></view>

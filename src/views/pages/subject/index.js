@@ -244,12 +244,6 @@ new WowPage({
     })
   },
   handleSubmit(e) {
-    // this.validateAssignment(this, {
-    //   //
-    // }, this.data.objInput, 'objInput')
-    //
-    // // 提取参数
-    // const options = this.validateInput(this.data.objInput, this.data.objInput2)
     const {status} = this.inputParams(e)
     const {objInput, params$, objHidden} = this.data
     // true 是 有问题
@@ -302,12 +296,14 @@ new WowPage({
         message: '保存成功',
         icon: 'success'
       })
-      const refPage = this.pagesGetByIndex(1)
-      // 新增入口：1.首页-项目-立即报名；2.患者列表-立即报名
-      if (refPage && refPage.handleRefresh) {
-        refPage.handleRefresh()
-      }
-      this.routerRoot('enroll_index')
+      // const refPage = this.pagesGetByIndex(1)
+      // // 新增入口：1.首页-项目-立即报名；2.患者列表-立即报名
+      // if (refPage && refPage.handleRefresh) {
+      //   refPage.handleRefresh()
+      // }
+      // this.routerRoot('enroll_index')
+      this.jumpToEnroll()
+
     }).toast()
   },
   edit(data) {
@@ -317,12 +313,18 @@ new WowPage({
         message: '保存成功',
         icon: 'success'
       })
-      const refPage = this.pagesGetByIndex(2)
-      if (refPage && refPage.handleRefresh) {
-        refPage.handleRefresh()
-      }
-      this.routerRoot('enroll_index')
+      // const refPage = this.pagesGetByIndex(2)
+      // if (refPage && refPage.handleRefresh) {
+      //   refPage.handleRefresh()
+      // }
+      // this.routerRoot('enroll_index')
+      this.jumpToEnroll()
+
     }).toast()
+  },
+  jumpToEnroll() {
+    wx.setStorageSync('refresh', '1')
+    this.routerRoot('enroll_index')
   }
 })
 

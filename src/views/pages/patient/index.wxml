@@ -16,7 +16,7 @@
   <view class="info-item">
     <view class="info-item-label"><text>患者编码</text></view>
     <view class="info-item-value">
-      <text>{{infoDetail.patientNum}}</text>
+      <text>{{infoDetail.patientNo}}</text>
     </view>
   </view>
   <view class="info-item">
@@ -28,7 +28,7 @@
   <view
     bindtap="jumpPageOrFireFn"
     data-url="subject_index"
-    data-params="{{ {patientId: params$.patientId, isDetail: !filter.patientStatusEdit(infoDetail.patientStatusName)} }}"
+    data-params="{{ {patientId: params$.patientId, isDetail: !filter.patientStatusEdit(infoDetail.patientStatus)} }}"
     class="info-item">
     <view class="info-item-label"><text>材料</text></view>
     <view class="info-item-value">

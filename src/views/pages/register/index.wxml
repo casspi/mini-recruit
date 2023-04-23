@@ -1,4 +1,7 @@
 <import src="/templates/form-view/index.wxml"/>
+
+<view class="title">请补充以下信息，完成注册</view>
+
 <template is="formView" data="{{ objInput: objInput }}"></template>
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">

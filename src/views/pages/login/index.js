@@ -10,13 +10,18 @@ new WowPage({
     WowPage.wow$.mixins.Router,
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Jump,
+    WowPage.wow$.mixins.Curl,
   ],
   data: {
     isAgreement: false,
-    invitationCode: 'wqwff1',
+    invitationCode: '',// 分享带过来的邀请码
+    inputCode: '',// 手输邀请码
     phone: '',
-    code: 'wqwff1',
+    code: '112222',
     conut: ''
+  },
+  onLoad() {
+    console.log(this.data.api$)
   },
   // 获取验证码
   handleCode() {
@@ -40,7 +45,11 @@ new WowPage({
       }
     }, 1000)
   },
-  handleSubmit() {
+  handleRegister() {
+    const {phone, code} = this.data
+    console.log(phone, code)
+  },
+  handleLogin() {
     const {phone, code} = this.data
     console.log(phone, code)
   }

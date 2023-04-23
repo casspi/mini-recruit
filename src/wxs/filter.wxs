@@ -60,7 +60,8 @@ function formatCity(val, labelKey, str, hiddenProvince) {
 
 module.exports = {
   patientStatusEdit: function (val) {
-    return val === '未提交' || val === '缺资料'
+    // 5-待沟通、1-未提交、4-缺资料、6-驳回
+    return val === '1' || val === '4' || val === '5' || val === '6'
   },
   textSlice: function (val) {
     if (!val) return ''

@@ -13,6 +13,7 @@ new WowPage({
     WowPage.wow$.mixins.Paging,
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Modal,
+    WowPage.wow$.mixins.TabItemTap,
 
   ],
   data: {
@@ -45,7 +46,8 @@ new WowPage({
         name: '研究中心',
         key: 'params$.objFilter.hospital',
         value: '',
-        defaultValue: ''
+        defaultValue: '',
+        options: []
       },
       more: {
         name: '更多',
@@ -76,13 +78,17 @@ new WowPage({
 
     }
   },
-  onShow() {
+  onLoad() {
+    this.handleRefresh()
+  },
+  tabItemTapCallback() {
     this.handleRefresh()
   },
   handleRefresh(cb) {
     this.pagingRefresh(cb)
   },
   pagingGetUrlParamsOptions({pagingIndex}) {
+    //刷新列表，需要滚动到顶部
     if (pagingIndex === 1) {
       const refWowScroll = this.selectComponent('#wowScroll')
       if (refWowScroll) {
@@ -156,11 +162,11 @@ new WowPage({
     const {item} = this.inputParams(e)
     console.log('1111=>', item)
   },
-  // 验证
+  // 验证是否选择地区
   validateArea(data) {
     const {objFilter, item} = data
-    console.log('validateArea=>', data)
-    if (item.name === 'hospital' && objFilter.area.value.children) {
+    console.log('validateArea=>', item.name, objFilter.area.value.children)
+    if (item.name === '研究中心' && objFilter.area.value.children === undefined) {
       this.modalToast('请选择地区')
       return true
     }
@@ -169,9 +175,8 @@ new WowPage({
   filterConfirm(objFilter) {
     this.setData({
       objFilter
-    }, () => {
-      console.log('filterConfirm=>', this.data)
     })
+    this.handleRefresh()
   }
 
 })

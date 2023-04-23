@@ -11,6 +11,7 @@ new WowPage({
     WowPage.wow$.mixins.Jump,
     WowPage.wow$.mixins.Modal,
     WowPage.wow$.mixins.Curl,
+    WowPage.wow$.mixins.TabItemTap,
   ],
   data: {
     isAgree: false,
@@ -25,7 +26,7 @@ new WowPage({
     ],
     userInfo: {}
   },
-  onLoad() {
+  tabItemTapCallback() {
     this.getDetail()
   },
   getDetail() {
@@ -39,7 +40,6 @@ new WowPage({
     })
   },
   handleCell(item) {
-    console.log(item)
     if (item.key === 'logout') {
       this.modalConfirm({
         content: `是否确定退出登录？`,

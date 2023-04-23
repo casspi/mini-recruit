@@ -121,10 +121,10 @@ export default {
           '6.基因报告（如有）'
         ],
         use: [
-          {nonempty: true, prompt: '请选择照片'},
+          {nonempty: true, prompt: '请上传病例图片'},
           {
             rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
-            prompt: '请选择照片'
+            prompt: '请上传病例图片'
           },
         ],
         disabled: false,
@@ -141,10 +141,10 @@ export default {
           '注：支持上传Word、Excel'
         ],
         use: [
-          {nonempty: true, prompt: '请选择病例文档'},
+          {nonempty: true, prompt: '请上传病例文档'},
           {
             rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
-            prompt: '请选择病例文档'
+            prompt: '请上传病例文档'
           },
         ],
         disabled: false,
@@ -154,7 +154,7 @@ export default {
         key: 'objInput.patientDiseaseCondition',
         label: '病情描述',
         labelSuffix: "(选填)",
-        placeholder: '请输入患者简要病史或其他备注信息，最多不超过500字',
+        placeholder: '请输入患者简要病史或其他备注信息，最多不超过300字',
         is: 'textarea',
         maxlength: 300,
         disabled: false,

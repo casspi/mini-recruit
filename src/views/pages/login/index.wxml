@@ -3,7 +3,7 @@
 <view class="login-page">
   <view class="header">
     <image class="logo"/>
-    <text class="title">xx招募之家</text>
+    <text class="title">蚂蚁招募</text>
     <text wx:if="{{invitationCode}}" class="code" space="false">推荐码:{{invitationCode}}</text>
   </view>
   <view class="login-form">
@@ -37,12 +37,34 @@
         </view>
       </view>
     </view>
+    <view class="form-item">
+      <view class="form-item__title">推荐码(注册时填)</view>
+      <view class="form-item-cells form-item_after-title" >
+        <view class="form-item-cells form-item_input">
+          <input
+            value="{{inputCode}}"
+            bindinput="inputHandle"
+            data-item="inputCode"
+            class="form-input"
+            type="number"
+            maxlength="6"
+            placeholder="请输入推荐码"/>
+        </view>
+      </view>
+    </view>
   </view>
   <button
+    wx:if="{{invitationCode || inputCode}}"
     class="button is-submit mt-80"
     disabled="{{!filter.isPhone(phone) || !filter.isCode(code) || !isAgreement}}"
-    bindtap="handleSubmit"
-  >立即登录{{!filter.isPhone(phone) || !filter.isCode(code) || !isAgreement}}</button>
+    bindtap="handleRegister"
+  >立即注册</button>
+  <button
+    wx:else
+    class="button is-submit mt-80"
+    disabled="{{!filter.isPhone(phone) || !filter.isCode(code) || !isAgreement}}"
+    bindtap="handleLogin"
+  >立即登录</button>
   <button class="button mt-30" bindtap="routerPop">访客登录</button>
   <view class="agreement {{ isAgreement && 'is-active' }}"
         bindtap="inputHandle"
@@ -50,17 +72,17 @@
         data-item="isAgreement">
     <view class="agreement-icon iconfont icon-xuanzhong"></view>
     <view class="agreement-text">
-      <text>已认真阅读xxx朝暮之家</text>
+      <text>已认真阅读蚂蚁招募</text>
       <text class="strong"
             catchtap="jumpPageOrFireFn"
             data-url="webview_index"
-            data-params="{{ { title: '用户服务协议', link: 'https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onReady' } }}"
+            data-params="{{ { title: '用户服务协议', link: api$.USER_AGREEMENT } }}"
       >《用户服务协议》
       </text>
       <text class="strong"
             catchtap="jumpPageOrFireFn"
             data-url="webview_index"
-            data-params="{{ { title: '隐私政策', link: 'https://www.baidu.com' } }}"
+            data-params="{{ { title: '隐私政策', link: api$.PRIVACY_POLICY } }}"
       >《隐私政策》
       </text>
       <text>并接受协议内容</text>

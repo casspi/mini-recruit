@@ -12,6 +12,7 @@ export default {
     "project_bill_index": "/pages/project/bill/index",
     "project_index": "/pages/project/index",
     "qrcode_index": "/pages/qrcode/index",
+    "register_index": "/pages/register/index",
     "select_index": "/pages/select/index",
     "subject_index": "/pages/subject/index",
     "submit_index": "/pages/submit/index",

@@ -16,9 +16,11 @@ new WowPage({
     WowPage.wow$.mixins.Input,
     // WowPage.wow$.mixins.Refresh,
     WowPage.wow$.mixins.Jump,
+    WowPage.wow$.mixins.TabItemTap,
+
   ],
   data: {
-    event: 'enrollList',
+    statusChange: -1,
     patientName: '',
     selected: [],
     queryText: '',
@@ -26,7 +28,12 @@ new WowPage({
     dicStatus: [],
     dicRecruit: [],
   },
-  onLoad() {
+  onShow() {
+    const refresh = wx.getStorageSync('refresh')
+    wx.removeStorageSync('refresh')
+    if (refresh === '1') this.handleRefresh()
+  },
+  tabItemTapCallback() {
     this.handleRefresh()
     this.getStatusDic()
   },
@@ -34,19 +41,21 @@ new WowPage({
   updateRead(patientId) {
     if (!patientId) return
     const pagingData = this.data.pagingData
+    let arrIndex, itemIndex;
     updateStatus: for (let i = 0; i < pagingData.length; i++) {
       for (let j = 0; j < pagingData[i].length; j++) {
         const item = pagingData[i][j]
-        console.log(i, j, item)
         if (item.patientId === patientId) {
-          item.readStatus = '0'
+          arrIndex = i, itemIndex = j
           break updateStatus
         }
       }
     }
-    this.setData({
-      pagingData
-    })
+    if (arrIndex >= 0) {
+      this.setData({
+        [`pagingData[${arrIndex}][${itemIndex}].readStatus`]: '1'
+      })
+    }
   },
   // 字典
   getStatusDic() {
@@ -66,14 +75,15 @@ new WowPage({
   },
   handleRefresh(cb) {
     this.pagingRefresh(cb)
+    this.getStatusChange()
   },
   pagingGetUrlParamsOptions({pagingIndex}) {
-    // if (pagingIndex === 1) {
-    //   const refWowScroll = this.selectComponent('#wowScroll')
-    //   if (refWowScroll) {
-    //     refWowScroll.returnTop()
-    //   }
-    // }
+    if (pagingIndex === 1) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300
+      })
+    }
     const {
       api$,
       objFilter: {createBeginTime = '', createEndTime = '', patientStatus = [], recruit},
@@ -94,6 +104,16 @@ new WowPage({
         loading: false
       }
     }
+  },
+  // 状态更新条数
+  getStatusChange() {
+    const {api$} = this.data
+    this.curl(api$.REQ_PATIENT_STATUS_CHANGE, {}, {method: 'get', loading: false})
+      .then(res => {
+        this.setData({
+          statusChange: res
+        })
+      })
   },
   handleKeywordInput(event) {
     const {value} = this.inputParams(event)

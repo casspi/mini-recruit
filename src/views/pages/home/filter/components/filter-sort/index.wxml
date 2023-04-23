@@ -1,12 +1,18 @@
 
 <view class="filter-select">
-  <view
-    wx:for="{{options}}"
-    wx:key="index"
-    data-item="{{item}}"
-    bindtap="handleSelect"
-    class="item {{value === item.value && 'is-active'}}">
-    <text>{{item.label}}</text>
-    <view class="iconfont icon-duihao" wx:if="{{ value === item.value }}"></view>
-  </view>
+  <wow-skeleton
+    wx:if="{{ options.length <= 0 }}"
+    is-loading="{{ false }}"
+  ></wow-skeleton>
+  <block wx:else>
+    <view
+      wx:for="{{options}}"
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="handleSelect"
+      class="item {{value === item.value && 'is-active'}}">
+      <text>{{item.label}}</text>
+      <view class="iconfont icon-duihao" wx:if="{{ value === item.value }}"></view>
+    </view>
+  </block>
 </view>

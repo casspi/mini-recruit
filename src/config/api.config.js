@@ -38,6 +38,8 @@ export default {
 
   // 患者列表
   REQ_PATIENT_LIST: 'mini/recruit/app/listPatient',
+  // 状态更新患者数
+  REQ_PATIENT_STATUS_CHANGE: 'mini/recruit/app/getPatientStatusChange',
   // 患者状态
   DIC_PATIENT_STATUS: 'mini/recruit/app/listPatientStatusSelect',
   // 推荐人
@@ -72,17 +74,23 @@ export default {
   REQ_INVITED_LIST: 'mini/recruit/app/getMyRecruitList',
   //资料编辑
   REQ_MINE_INFO_CHANGE: 'mini/recruit/app/changeMyInfo',
+  //患者提报
+  REQ_PATIENT_REPORT: 'mini/recruit/app/addPatientReport',
+
 
   //文件上传
   FILE_UPLOAD: 'mini/recruit/app/uploadFile',
-
-  // REQ_CITY_LIST: 'https://vas-wap.autostreets.com/violation/getCitys',
-  // 上传地址
-  DO_IMAGE_UPLOAD: 'certificateBosOrder/imageFileUpload',
 
   // list
   REQ_AUCTION_LIST: 'auction/una/index-page',
 
   homeList: 'https://api.shuidichou.com/api/cf/pr/mini/recruit-project/list',
-  subjectList: 'https://api.shuidichou.com/api/cf/pr/mini/patient/search-info'
+  subjectList: 'https://api.shuidichou.com/api/cf/pr/mini/patient/search-info',
+
+  // 隐私政策
+  PRIVACY_POLICY: 'http://testchw.w1.luyouxia.net/pic/html/ssss.html',
+  // 用户协议
+  USER_AGREEMENT: 'http://testchw.w1.luyouxia.net/pic/html/ssss.html',
+
+
 }

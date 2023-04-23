@@ -17,17 +17,7 @@ new WowPage({
   data: {},
   onLoad(o) {
     this.routerGetParams(o)
-    let {params$, api$} = this.data
-    // Object.keys(params$.objFilter).forEach(item => {
-    //   params$.objFilter[item].key = `params$.${params$.objFilter[item].key}`
-    //   let children = params$.objFilter[item].children
-    //   if (children) {
-    //     Object.keys(children).forEach(o => {
-    //       children[o].key = `params$.${children[o].key}`
-    //     })
-    //   }
-    // })
-
+    let {api$, params$} = this.data
     // 疾病字典
     this.curl(api$.DIC_FILTER_DISEASE, {}, {method: 'get'}).then(res => {
       this.setData({
@@ -40,6 +30,15 @@ new WowPage({
         'params$.objFilter.area.options': res || []
       })
     })
+    const areaValue = (params$.objFilter.area.value.children) ? params$.objFilter.area.value.children.value : ''
+    if (areaValue) {
+      this.curl(api$.DIC_FILTER_HOSPITAL, {value: areaValue}, {method: 'get'}).then(res => {
+        this.setData({
+          ['params$.objFilter.hospital.options']: res
+        })
+      })
+    }
+
     // 科室
     this.curl(api$.DIC_FILTER_SECTION, {}, {method: 'get'}).then(res => {
       this.setData({
@@ -82,13 +81,17 @@ new WowPage({
         [`${item}`]: value
       })
     }
-    console.log(this.data)
   },
   // 选中回显
   handleSelect(options) {
     const {detail} = options
     console.log(detail)
     this.setData({[`${detail.key}.value`]: detail.value})
+    if (detail.key === 'params$.objFilter.area') {
+      this.setData({
+        ['params$.objFilter.hospital.value']: ''
+      })
+    }
   },
   resetHandle() {
     let {params$: {objFilter}} = this.data

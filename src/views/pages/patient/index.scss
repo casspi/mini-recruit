@@ -10,12 +10,13 @@ page {
   @extend %fdc;
 }
 
-.info-detail{
+.info-detail {
   padding: j(20) j(30);
   margin-bottom: j(20);
   box-sizing: border-box;
 }
-.patient-top{
+
+.patient-top {
   @extend %df;
   @extend %aic;
 }
@@ -40,19 +41,21 @@ page {
   margin-left: j(24);
 }
 
-.info-item{
+.info-item {
   @extend %df;
   @extend %aic;
   @extend %jcs;
   font-size: j(28);
   min-height: j(60);
-  padding-top: j(10);
+  padding: j(10) 0;
 }
-.info-item-label{
+
+.info-item-label {
   width: j(140);
   margin-right: j(20);
 }
-.info-item-value{
+
+.info-item-value {
   //overflow-x: hidden;
   @extend %df1;
   @extend %df;

@@ -46,7 +46,7 @@ new WowPage({
     const {item} = this.inputParams(e)
     const {api$} = this.data
     this.curl(api$.COLLECT_CHANGE, {
-      isCollect: item.isCollect,
+      collectStatus: Boolean(item.collectStatus),
       projectId: item.projectId
     }, {method: 'get'}).then(res => {
       this.getDetail()
@@ -58,17 +58,19 @@ new WowPage({
       this.modalToast('暂无海报')
       return
     }
-    this.loadingShow({
-      title: '海报下载中...',
-      mask: true
-    })
-    this.imageDownload(item.url).then((res) => {
-      console.log(res)
-      return this.imageSave(res.path)
-    }).toast().finally(() => {
-      this.loadingHide()
-    })
-    console.log(item.url)
+    this.imagePreview({
+      current: 0,
+      urls: item.urls,
+    }).toast()
+    // this.loadingShow({
+    //   title: '海报下载中...',
+    //   mask: true
+    // })
+    // this.imageDownload(item.url).then((res) => {
+    //   return this.imageSave(res.path)
+    // }).toast().finally(() => {
+    //   this.loadingHide()
+    // })
   },
   // 立即报名
   handleSubject() {

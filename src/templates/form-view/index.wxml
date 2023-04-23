@@ -147,7 +147,7 @@
       <view class="form-cell picker-cell"
             data-item="{{ item }}"
             bindtap="jumpPageOrFireFn"
-            wx:elif="{{ item.is === 'picker' }}">
+            wx:elif="{{ item.is === 'picker' && !item.hidden }}">
         <view class="iconfont {{ item.icon }}" wx:if="{{ item.icon }}"></view>
         <text>{{ item.label }}</text>
         <view class="picker-value {{ !item.value.length && 'c-input-place'}}">

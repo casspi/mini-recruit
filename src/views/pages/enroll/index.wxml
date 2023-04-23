@@ -21,14 +21,14 @@
       <view class="iconfont icon-shaixuan"></view>
     </button>
   </view>
-  <view class="total-view">找到了{{pagingTotal||pagingNumTotal}}个患者，状态更新<text class="status-num">{{'8'}}</text>条</view>
+  <view class="total-view">找到了{{pagingTotal||pagingNumTotal}}个患者，状态更新<text class="status-num">{{statusChange}}</text>条</view>
 </view>
 
 <wow-skeleton
   bindrefresh="pagingRefresh"
   error="{{ error }}"
   wx:if="{{ pagingTotal <= 0 }}"
-  is-loading="{{ false || pagingTotal === -1 }}"
+  is-loading="{{ pagingTotal === -1 }}"
 ></wow-skeleton>
 <view class="enroll-list" wx:else>
   <block

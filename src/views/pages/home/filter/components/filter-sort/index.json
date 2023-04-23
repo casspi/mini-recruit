@@ -1,5 +1,6 @@
 {
-    "component": true,
-    "usingComponents": {
-    }
+  "component": true,
+  "usingComponents": {
+    "wow-skeleton": "/components/wow-skeleton/index"
+  }
 }

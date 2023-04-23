@@ -20,7 +20,7 @@
       data-item="{{item}}"
       bindtap="handleSelect"
       class="tag-item {{value === item.value && 'is-active'}}">
-      <text>{{item.label}}</text>
+      <text class="tag-text">{{item.label}}</text>
     </view>
   </view>
 </view>

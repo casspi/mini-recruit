@@ -26,14 +26,21 @@ export default {
       },
       // 职业
       userType: {
-        value: '',
+        value: [],
         key: 'objInput.userType',
-        is: 'field',
+        is: 'picker',
         label: '职业',
-        disabled: true,
+        url: 'select_index',
+        multiple: false,
+        labelKey: 'label',
+        formatter: 'formatArrayJoin',
+        title: '请选择职业',
+        disabled: false,
+        confirm: 'selectHandle',
         use: [
-          {nonempty: true, prompt: '请输入姓名'}
+          {nonempty: true, prompt: '请选择职业'}
         ],
+        options: []
       },
       // 所在地
       city: {
@@ -66,7 +73,8 @@ export default {
         use: [
           {nonempty: true, prompt: '请选择服务城市'},
           {rule: v => v.length, prompt: '请选择服务城市'},
-        ]
+        ],
+        hidden: true
       },
       disease: {
         value: [],
@@ -80,7 +88,11 @@ export default {
         labelKey: 'label',
         formatter: 'formatArrayJoin',
         options: [],
-        confirm: 'selectHandle'
+        confirm: 'selectHandle',
+        use: [
+          {nonempty: true, prompt: '请选择疾病'},
+          {rule: v => v.length, prompt: '请选择疾病'},
+        ]
       },
     },
     // 城市数据

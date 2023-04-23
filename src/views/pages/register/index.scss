@@ -1,0 +1,13 @@
+@import 'src/assets/scss/define';
+
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  font-size: j(36);
+  font-weight: bold;
+  padding: j(30) j(30) 0;
+}
