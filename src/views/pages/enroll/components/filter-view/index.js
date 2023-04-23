@@ -29,10 +29,10 @@ new WowComponent({
       return new Promise((resolve, reject) => {
         this.resolve = resolve
         this.reject = reject
-        this.setData({visible: true, ...options},()=>{
+        this.setData({visible: true, ...options}, () => {
           this.setData({
             ['objFilter.patientStatus.options']: dicStatus,
-            ['objFilter.referee.options']:dicRecruit
+            ['objFilter.recruitList.options']: dicRecruit
           })
         })
 
@@ -42,13 +42,14 @@ new WowComponent({
       const {objFilter} = this.data
       const options = this.validateInput(objFilter)
       this.setData({visible: false})
+      console.log(options)
       this.triggerEvent('confirm', {objFilter: options})
-      this.triggerEvent('visible', {value: false})
+      // this.triggerEvent('visible', {value: false})
     },
     handleReset() {
       const {objFilter} = this.data
       const options = this.validateInput(objFilter)
-      Object.keys(options).forEach(k => options[k] = ['collectionStatus'].includes(k) ? [] : '')
+      Object.keys(options).forEach(k => options[k] = ['patientStatus'].includes(k) ? [] : '')
       this.validateAssignment(this, options, objFilter, 'objFilter')
     },
     // 姓名

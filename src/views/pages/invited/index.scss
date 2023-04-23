@@ -1,8 +1,13 @@
 @import 'src/assets/scss/define';
 
+page {
+  background-color: $page-bg;
+  height: 100%;
+  width: 100%;
+}
+
 .invited-list {
   padding: j(20);
-  background-color: $page-bg;
   @extend %c3;
   @extend %df;
   @extend %fdc;
@@ -13,4 +18,5 @@
   padding: j(30);
   margin-top: j(20);
   background-color: #fff;
+  line-height: j(40);
 }

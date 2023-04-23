@@ -76,8 +76,7 @@ new WowPage({
 
     }
   },
-  onShow(options) {
-    console.log(options)
+  onShow() {
     this.handleRefresh()
   },
   handleRefresh(cb) {
@@ -93,8 +92,8 @@ new WowPage({
     const {api$, objFilter, collect, projectQuery} = this.data
     let params = {
       projectQuery,
-      diseaseId: objFilter.disease.value.children? objFilter.disease.value.children.value:'',
-      areaId: objFilter.area.value.children? objFilter.area.value.children.value:'',
+      diseaseId: objFilter.disease.value.children ? objFilter.disease.value.children.value : '',
+      areaId: objFilter.area.value.children ? objFilter.area.value.children.value : '',
       hospitalId: objFilter.hospital.value || '',
       sectionId: objFilter.more.children.department.value || '',
       projectGeneType: objFilter.more.children.gene.value || '',
@@ -102,7 +101,7 @@ new WowPage({
       pageSize: 10,
       // userId: collect ? 'xxx' : '0'
     }
-    if(objFilter.sort.value === '1'){
+    if (objFilter.sort.value === '1') {
       params.isSort = '1'
     }
     return {
@@ -136,12 +135,12 @@ new WowPage({
     // }
   },
   handleKeywordInput(event) {
-    const { value } = this.inputParams(event)
+    const {value} = this.inputParams(event)
     if (!value.trim()) this.handleKeywordConfirm(event)
   },
   handleKeywordConfirm(event) {
-    const { value } = this.inputParams(event)
-    this.setData({ projectQuery: value.trim() }, () => {
+    const {value} = this.inputParams(event)
+    this.setData({projectQuery: value.trim()}, () => {
       this.handleRefresh()
     })
   },

@@ -13,7 +13,8 @@ new WowPage({
     WowPage.wow$.mixins.Image,
     WowPage.wow$.mixins.Modal,
     WowPage.wow$.mixins.Curl,
-    WowPage.wow$.mixins.Loading
+    WowPage.wow$.mixins.Loading,
+    WowPage.wow$.mixins.Share,
   ],
   data: {
     tabs: ['项目介绍', '治疗方案', '入排标准', '研究中心'],
@@ -24,11 +25,10 @@ new WowPage({
   onLoad(options) {
     this.routerGetParams(options)
     this.getDetail()
-    console.log(this.data)
   },
   getDetail() {
     const {api$, params$} = this.data
-    this.curl(api$.REQ_PROJECT_DETAIL, {projectId: params$.projectId}, {method: 'get'}).then(res=>{
+    this.curl(api$.REQ_PROJECT_DETAIL, {projectId: params$.projectId}, {method: 'get'}).then(res => {
       console.log(res)
       this.setData({
         detailInfo: res
@@ -42,8 +42,22 @@ new WowPage({
       toView: `item${item}`
     })
   },
-  billHandle(e) {
+  handleCollect(e) {
     const {item} = this.inputParams(e)
+    const {api$} = this.data
+    this.curl(api$.COLLECT_CHANGE, {
+      isCollect: item.isCollect,
+      projectId: item.projectId
+    }, {method: 'get'}).then(res => {
+      this.getDetail()
+    })
+  },
+  billHandle(e) {
+    const {item, disabled} = this.inputParams(e)
+    if (disabled) {
+      this.modalToast('暂无海报')
+      return
+    }
     this.loadingShow({
       title: '海报下载中...',
       mask: true
@@ -55,7 +69,20 @@ new WowPage({
       this.loadingHide()
     })
     console.log(item.url)
+  },
+  // 立即报名
+  handleSubject() {
+    const {params$} = this.data
+    this.routerRoot('subject_index', {projectId: params$.projectId}, true)
+  },
+  //分享
+  shareGetConfig() {
+    const {params$, detailInfo} = this.data
+    const {projectId} = params$
+    return {
+      title: detailInfo.projectName,
+      ...this.shareStringify({projectId})
+    }
   }
-
 })
 

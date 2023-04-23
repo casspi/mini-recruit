@@ -20,6 +20,7 @@ page {
 .header-section {
   @extend %df;
   @extend %aic;
+  @extend %bsb;
   height: j(108);
   padding-left: j(30);
   background-color: #fff;

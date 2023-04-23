@@ -150,6 +150,10 @@
 
       .file-name {
         text-decoration: underline;
+        flex: 1;
+        margin-right: j(30);
+        @extend %twno;
+        font-size: j(24);
       }
     }
   }

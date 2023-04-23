@@ -39,32 +39,42 @@ export default {
   // 患者列表
   REQ_PATIENT_LIST: 'mini/recruit/app/listPatient',
   // 患者状态
-  DIC_PATIENT_STATUS:'mini/recruit/app/listPatientStatusSelect',
+  DIC_PATIENT_STATUS: 'mini/recruit/app/listPatientStatusSelect',
   // 推荐人
-  DIC_RECRUIT:'mini/recruit/app/listAllRecruit',
+  DIC_RECRUIT: 'mini/recruit/app/listAllRecruit',
 
   // 患者详情
   REQ_PATIENT_DETAIL: 'mini/recruit/app/getPatient',
   // 状态变更记录
   PATIENT_STATUS_LOG: 'mini/recruit/app/listPatientStatus',
+  // 收藏
+  COLLECT_CHANGE: 'mini/recruit/app/changeCollectStatus',
 
   // 新增患者
   REQ_PATIENT_ADD: 'mini/recruit/app/addPatient',
+  // 患者编辑
+  REQ_PATIENT_EDIT: 'mini/recruit/app/editPatient',
   // 患者体能状况
   DIC_CONDITION: 'mini/recruit/app/listCondition',
   // 获取城市列表
   REQ_CITY_LIST: 'mini/recruit/app/listAreaSelectCommon',
   // 获取疾病列表
   REQ_DISEASE_LIST: 'mini/recruit/app/listDiseaseByType',
+  //职业
+  DIC_USER_TYPE: 'mini/recruit/app/listUserType',
+
 
   //我的
-  REQ_MINE:'mini/recruit/app/getMyPage',
+  REQ_MINE: 'mini/recruit/app/getMyPage',
   // 我的资料
   REQ_MINE_INFO: 'mini/recruit/app/getMyInfo',
   // 我邀请的好友
   REQ_INVITED_LIST: 'mini/recruit/app/getMyRecruitList',
   //资料编辑
   REQ_MINE_INFO_CHANGE: 'mini/recruit/app/changeMyInfo',
+
+  //文件上传
+  FILE_UPLOAD: 'mini/recruit/app/uploadFile',
 
   // REQ_CITY_LIST: 'https://vas-wap.autostreets.com/violation/getCitys',
   // 上传地址

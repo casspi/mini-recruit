@@ -2,8 +2,9 @@
 
 page {
   background-color: $page-bg;
-  height: 100%;
   width: 100%;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   color: #333333;
   @extend %df;
   @extend %fdc;
@@ -11,6 +12,7 @@ page {
 
 .info-detail{
   padding: j(20) j(30);
+  margin-bottom: j(20);
   box-sizing: border-box;
 }
 .patient-top{
@@ -43,10 +45,17 @@ page {
   @extend %aic;
   @extend %jcs;
   font-size: j(28);
-  height: j(60);
+  min-height: j(60);
   padding-top: j(10);
 }
+.info-item-label{
+  width: j(140);
+  margin-right: j(20);
+}
 .info-item-value{
+  //overflow-x: hidden;
+  @extend %df1;
   @extend %df;
   @extend %aic;
+  justify-content: flex-end;
 }

@@ -24,6 +24,17 @@ export default {
           {label: '男', value: '1'},
         ],
       },
+      // 职业
+      userType: {
+        value: '',
+        key: 'objInput.userType',
+        is: 'field',
+        label: '职业',
+        disabled: true,
+        use: [
+          {nonempty: true, prompt: '请输入姓名'}
+        ],
+      },
       // 所在地
       city: {
         value: [],
@@ -74,5 +85,7 @@ export default {
     },
     // 城市数据
     cityList: [],
+    // 职业
+    userType: []
   }
 }

@@ -15,11 +15,11 @@ new WowPage({
     WowPage.wow$.mixins.Refresh,
   ],
   onLoad() {
-    const {api$} = this.data
-    this.curl(api$.REQ_MINE, {}, {method: 'get'}).then(res=>{
-      console.log(res)
-    })
-    // this.handleRefresh()
+    // const {api$} = this.data
+    // this.curl(api$.REQ_INVITED_LIST, {}, {method: 'get'}).then(res=>{
+    //   console.log(res)
+    // })
+    this.handleRefresh()
   },
   handleRefresh(cb) {
     this.pagingRefresh(cb)
@@ -27,21 +27,9 @@ new WowPage({
   pagingGetUrlParamsOptions() {
     const {api$} = this.data
     return {
-      url: api$.homeList,
+      url: api$.REQ_INVITED_LIST,
       params: {
-        AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
-        'departmentId': 0,
-        'illness': 0,
-        'genetic': 0,
-        'treatmentLines': 0,
-        'province': 0,
-        'cityId': 0,
-        'researchCenterIdList': '',
-        'centerStartState': 0,
-        'searchContent': '',
-        'collectInfo': false,
-        'addedTimeSort': 0,
-        pageNum:1
+
       },
       options: {
         method: 'get',

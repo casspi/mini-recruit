@@ -1,14 +1,16 @@
+<wxs src="/wxs/filter.wxs" module="filter"/>
+
 <view class="c-page">
   <view class="user">
-    <text class="user-avatar">呵</text>
+    <text class="user-avatar">{{filter.textSlice(userInfo.name)}}</text>
     <view class="user-detail">
       <view class="user-name">
-        <text>呵呵</text>
+        <text>{{userInfo.name}}</text>
         <text decode="{{true}}">&nbsp;|&nbsp;</text>
-        <text>招募经理</text>
+        <text>{{userInfo.typeName}}</text>
       </view>
       <view>
-        <text>13817674594</text>
+        <text>{{userInfo.phone}}</text>
       </view>
     </view>
   </view>

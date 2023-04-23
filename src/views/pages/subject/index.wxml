@@ -7,8 +7,8 @@
   <view class="c-fixed-seat"></view>
   <view class="c-fixed">
     <view class="btn-bar">
-      <view class="btn btn-info">保存草稿</view>
-      <view class="btn btn-primary" bindtap="handleSubmit">提交</view>
+      <view class="btn btn-info" data-status="1" bindtap="handleSubmit">保存草稿</view>
+      <view class="btn btn-primary" data-status="2" bindtap="handleSubmit">提交</view>
     </view>
     <view class="ios-seat"></view>
   </view>

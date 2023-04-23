@@ -23,11 +23,19 @@ new WowPage({
       // {label: '我的预约', icon: 'icon-yuyue', fn: 'handleCell'},
       {label: '退出登录', fn: 'handleCell', hideArrow: true, className: 'logout-item', 'key': 'logout'},
     ],
+    userInfo: {}
   },
   onLoad() {
+    this.getDetail()
+  },
+  getDetail() {
     const {api$} = this.data
-    this.curl(api$.REQ_MINE, {}, {method: 'get'}).then(res=>{
+    this.curl(api$.REQ_MINE, {}, {method: 'get', loading: false}).then(res => {
       console.log(res)
+      this.setData({
+        userInfo: res,
+        ['arrMenu[2].value']: res.recruitNum + '人'
+      })
     })
   },
   handleCell(item) {

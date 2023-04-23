@@ -20,46 +20,101 @@ new WowPage({
     WowPage.wow$.mixins.File,
     WowPage.wow$.mixins.Loading,
     WowPage.wow$.mixins.Modal,
+    WowPage.wow$.mixins.Page,
   ],
   onLoad(options) {
     this.routerGetParams(options)
-    console.log('data=>', this.data)
-    const {params$: {isDetail}, objInput} = this.data
-    if (isDetail) {
-      wx.setNavigationBarTitle({title: '患者详情'})
-      console.log(objInput)
-      for (let key in objInput) {
-        this.setData({
-          [`${objInput[key].key}.disabled`]: true
+    const {params$: {isDetail, patientId}, objInput} = this.data
+    console.log('data=>', this.data, patientId)
+    if (patientId) {
+      // 若是详情不可编辑
+      if (isDetail) {
+        wx.setNavigationBarTitle({title: '患者详情'})
+        for (let key in objInput) {
+          this.setData({
+            [`${objInput[key].key}.disabled`]: true
+          })
+        }
+      } else {
+        wx.setNavigationBarTitle({title: '患者编辑'})
+      }
+      this.getDic(this.getDetail)
+    } else {
+      this.getDic()
+    }
+  },
+  getDetail() {
+    const {api$, params$, objInput, source} = this.data
+    this.curl(api$.REQ_PATIENT_DETAIL, {patientId: params$.patientId}, {method: 'get'}).then(res => {
+      objInput.patientName.value = res.patientName || ''
+      objInput.patientGender.value = res.patientGender || ''
+      objInput.patientPhone.value = res.patientPhone || ''
+      objInput.patientAge.value = res.patientAge || ''
+      if (res.patientPhysicalCondition) {// 体能状况
+        objInput.patientPhysicalCondition.value = [{
+          value: res.patientPhysicalCondition,
+          name: res.patientPhysicalConditionName
+        }]
+      }
+      // 所在城市
+      if (res.provinceId) {
+        const province = source.find(o => o.value === res.provinceId)
+        const city = province ? province.children.find(o => o.value === res.cityId) : null
+        objInput.city.value = [{
+          province, city
+        }]
+      }
+      //疾病
+      if (res.patientDisease && res.patientDisease.length) {
+        objInput.patientDisease.value = res.patientDisease.map((item, index) => {
+          return {
+            value: item,
+            label: res.patientDiseaseName.split(',')[index]
+          }
         })
       }
-    }
-    this.getDic()
 
+      if (res.picList && res.picList.length) {
+        objInput.picList.value = res.picList
+      }
+      if (res.docList && res.docList.length) {
+        objInput.docList.value = res.docList
+      }
+      objInput.patientDiseaseCondition.value = res.patientDiseaseCondition
+
+      console.log('回显值=>', objInput)
+      this.setData({
+        objInput
+      })
+    })
   },
   // 获取字典
-  getDic() {
+  getDic(cb) {
     const {api$} = this.data
-    this.curl(api$.DIC_CONDITION, {}, {method: 'get'})
-    .then(res => {
-      this.setData({
-        'objInput.patientPhysicalCondition.options': res.map(item=> {
-          item.value = item.code
-          item.label = item.fullName
-          return item
+    this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'})
+      .then(res => {
+        this.data.source = res
+        cb && cb()
+      })
+    this.curl(api$.DIC_CONDITION, {}, {method: 'get', loading: false})
+      .then(res => {
+        return this.setData({
+          'objInput.patientPhysicalCondition.options': res.map(item => {
+            item.value = item.code
+            item.label = item.fullName
+            return item
+          })
         })
       })
-    })
-    this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get'})
-    .then(res => {
-      this.setData({
-        'objInput.patientDisease.options': res
+    this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get', loading: false})
+      .then(res => {
+        this.setData({
+          'objInput.patientDisease.options': res
+        })
       })
-    })
   },
   // 选择组件选中回调
   selectHandle(options) {
-    console.log('options=>', options)
     const {key, value} = options
     this.setData({
       [`${key}.value`]: value
@@ -89,20 +144,20 @@ new WowPage({
   },
   // 图片上传控件事件
   handlePics(item, e) {
-    console.log('handlePics=>', item)
     let {value, limit} = item
     const {pre, del} = this.inputParams(e)
-    if (pre >= 0) {// 预览
+    console.log('handlePics=>', item, pre, del)
+    if (typeof pre === 'number') {// 预览
       const urls = value.map(item => {
-        return this.formatImage(item)
+        return item.documentLocation
       })
       this.imagePreview({
-        current: this.formatImage(value[pre]),
+        current: urls[pre],
         urls,
       }).toast()
       return
     }
-    if (del >= 0) {// 删除
+    if (typeof del === 'number') {// 删除
       this.modalConfirm({
         content: `是否确定删除？`,
         confirmText: '确定',
@@ -114,24 +169,24 @@ new WowPage({
       return
     }
     const {api$} = this.data
+    console.log(api$)
     this.imageChoose({
       count: limit - value.length,
       sourceType: ['album', 'camera'],
       sizeType: ['original'],
     }).then(res => {
-      const tasks = res.tempFilePaths.map(path => this.curl(api$.DO_IMAGE_UPLOAD, {
-        imageRate: '750X750',
+      const tasks = res.tempFilePaths.map(path => this.curl(api$.FILE_UPLOAD, {
+        // imageRate: '750X750',
       }, {
         loading: true,
         fn: 'uploadFile',
         filePath: path,
-        name: 'imageFile'
+        name: 'file'
       }))
       return Promise.all(tasks)
     }).then(res => {
-      const urls = res.map(item => item.saveUrl)
-      console.log(urls)
-      this.setData({[`${item.key}.value`]: [...item.value, ...urls]})
+      // documentId, documentLocation,documentName
+      this.setData({[`${item.key}.value`]: [...item.value, ...res[0]]})
     }).toast()
 
   },
@@ -153,8 +208,8 @@ new WowPage({
     }
     // 文件预览
     if (pre >= 0) {
-      const {src} = value[pre]
-      this.previewFile(src)
+      const {documentLocation} = value[pre]
+      this.previewFile(documentLocation)
       return
     }
     const {api$} = this.data
@@ -164,16 +219,16 @@ new WowPage({
       type: 'file',
       extension: ['xls', 'xlsx', 'doc', 'docx']
     }).then(res => {
-      const tasks = res.tempFiles.map(temp => this.curl(api$.DO_IMAGE_UPLOAD, {}, {
+      const tasks = res.tempFiles.map(temp => this.curl(api$.FILE_UPLOAD, {}, {
         loading: true,
         fn: 'uploadFile',
         filePath: temp.path,
-        name: temp.name
+        name: 'file' || temp.name
       }))
       return Promise.all(tasks)
-    }).catch(msg => {
-      console.log(msg)
-    })
+    }).then(res => {
+      this.setData({[`${item.key}.value`]: [...item.value, ...res[0]]})
+    }).toast()
   },
   // 文档预览
   previewFile(url) {
@@ -188,51 +243,86 @@ new WowPage({
       this.loadingHide()
     })
   },
-  handleSubmit() {
-    const {objInput, api$, params$, objHidden} = this.data
-    // true 是 有问题
-    if (this.validateCheck(this.data.objInput)) return;
-    const options = this.validateInput(objInput)
-    console.log(options);
-    // cityId: Array(1)
-    // 0:
-    // city: {label: "北京", id: "110100"}
-    // province: {id: "110000", label: "北京"}
-    // __proto__: Object
-    // length: 1
-    // nv_length: (...)
-    // __proto__: Array(0)
-    // file: Array(2)
-    // 0: {name: "c06419728.pdf", src: "http://h10032.www1.hp.com/ctg/Manual/c06419728.pdf"}
-    // 1: {name: "xxx1.xls", src: "xxx"}
-    // length: 2
-    // nv_length: (...)
-    // __proto__: Array(0)
-    // patientAge: "1"
-    // patientDisease: [{…}]
-    // patientDiseaseCondition: ""
-    // patientGender: 1
-    // patientName: "1111"
-    // patientPhone: "1"
-    // patientPhysicalCondition: [{…}]
-    // pics: (3) ["group1/M00/67/A0/wKghH1S8ppmANA
-    //
+  handleSubmit(e) {
     // this.validateAssignment(this, {
     //   //
     // }, this.data.objInput, 'objInput')
     //
     // // 提取参数
     // const options = this.validateInput(this.data.objInput, this.data.objInput2)
-    const {patientName, patientPhone, patientGender, patientAge, patientPhysicalCondition,patientDiseaseCondition,docList=[],picList=[] } = options
-    this.curl(api$.REQ_PATIENT_ADD, {
-      patientName, patientPhone, patientGender, patientAge, patientPhysicalCondition:'',
-      patientDisease:'2',
-      picList: '',
-      docList: '',
+    const {status} = this.inputParams(e)
+    const {objInput, params$, objHidden} = this.data
+    // true 是 有问题
+    if (this.validateCheck(this.data.objInput)) return;
+    const options = this.validateInput(objInput)
+    console.log(options, params$);
+    const {
+      patientName,
+      patientPhone,
+      patientGender,
+      patientAge,
+      city,
+      patientPhysicalCondition = [],
+      patientDisease = [],
       patientDiseaseCondition,
-    }, { method: 'get' }).then(res=>{
-      console.log(res)
-    })
+      docList = [],
+      picList = []
+    } = options
+    if (patientPhone !== '' && patientPhone.length !== 11) {
+      this.modalToast('请输入11位手机号')
+      return;
+    }
+    // 参数
+    let data = {
+      patientName,
+      patientPhone,
+      patientGender,
+      patientAge,
+      patientPhysicalCondition: patientPhysicalCondition.map(item => item.value).join(','),
+      patientDisease: patientDisease.map(item => item.value).join(','),
+      picList: picList.map(item => item.documentId).join(','),
+      docList: docList.map(item => item.documentId).join(','),
+      cityId: city[0] ? city[0].city.value : '',
+      provinceId: city[0] ? city[0].province.value : '',
+      patientDiseaseCondition,
+      patientStatus: status,
+    }
+    if (params$.projectId) {// 项目里面过来的需要带
+      data.projectId = params$.projectId
+    }
+    params$.patientId ? this.edit({
+      ...data,
+      patientId: params$.patientId
+    }) : this.add(data)
+  },
+  add(data) {
+    const {api$} = this.data
+    this.curl(api$.REQ_PATIENT_ADD, data, {method: 'get'}).then(() => {
+      this.modalToast({
+        message: '保存成功',
+        icon: 'success'
+      })
+      const refPage = this.pagesGetByIndex(1)
+      // 新增入口：1.首页-项目-立即报名；2.患者列表-立即报名
+      if (refPage && refPage.handleRefresh) {
+        refPage.handleRefresh()
+      }
+      this.routerRoot('enroll_index')
+    }).toast()
+  },
+  edit(data) {
+    const {api$} = this.data
+    this.curl(api$.REQ_PATIENT_EDIT, data, {method: 'get'}).then(() => {
+      this.modalToast({
+        message: '保存成功',
+        icon: 'success'
+      })
+      const refPage = this.pagesGetByIndex(2)
+      if (refPage && refPage.handleRefresh) {
+        refPage.handleRefresh()
+      }
+      this.routerRoot('enroll_index')
+    }).toast()
   }
 })
 

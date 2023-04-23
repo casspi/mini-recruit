@@ -1,28 +1,5 @@
 export default {
   data: {
-    // private String patientName;
-    //
-    // private String patientGender;
-    //
-    // private String patientAge;
-    //
-    // private String patientPhone;
-    //
-    // private String patientDisease;
-    //
-    // private String patientPhysicalCondition;
-    //
-    // private String patientDiseaseCondition;
-    //
-    // private String patientStatus;
-    //
-    // private String provinceId;
-    //
-    // private String cityId;
-    //
-    // private List<String> picList;
-    //
-    // private List<String> docList;
     objInput: {
       // 患者
       patientName: {
@@ -46,7 +23,7 @@ export default {
         label: '联系电话',
         labelSuffix: "(选填)",
         maxlength: 11,
-        disabled: false,
+        disabled: false
       },
       patientGender: {
         value: '',
@@ -84,23 +61,19 @@ export default {
         title: '请选择体能状况',
         labelKey: 'name',
         formatter: 'formatArrayJoin',
-        options: [
-          // {id: 1, title: '2级', text: '见客户你看就看', tips: '3、4级不符合临床招募情况'},
-          // {id: 2, title: '2级', text: '见客户你看就看'},
-          // {id: 3, title: '3级', text: '见客户你看就看'}
-        ],
+        options: [],
         confirm: 'selectHandle',
         use: [
-          // {nonempty: true, prompt: '请选择体能状况'},
+          {nonempty: true, prompt: '请选择体能状况'},
           {rule: v => v.length, prompt: '请选择体能状况'},
         ],
         disabled: false,
       },
       // 所在城市
-      cityId: {
+      city: {
         value: [],
         label: '所在城市',
-        key: 'objInput.cityId',
+        key: 'objInput.city',
         is: 'picker',
         title: '请选择所在地',
         fn: 'cityHandle',
@@ -132,11 +105,11 @@ export default {
         disabled: false,
       },
       picList: {
-        value: ["group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg", "group1/M00/67/A0/wKghH1S8ppmANAd9AABqLm0OBok204.jpg"],
+        value: [],
         key: 'objInput.picList',
         is: 'photo',
         label: '病例图片',
-        labelSuffix: "(选填)",
+        labelSuffix: "(病历图片或病历文档有一种上传即可)",
         fn: 'handlePics',
         limit: 9,
         tips: [
@@ -149,17 +122,15 @@ export default {
         ],
         use: [
           {nonempty: true, prompt: '请选择照片'},
-          {rule: v => v.length, prompt: '请选择照片'},
+          {
+            rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
+            prompt: '请选择照片'
+          },
         ],
         disabled: false,
       },
       docList: {
-        value: [
-          {name: 'c06419728.pdf', src: 'http://h10032.www1.hp.com/ctg/Manual/c06419728.pdf'},
-          {
-            name: 'xxx1.xls',
-            src: 'xxx'
-          }],
+        value: [],
         key: 'objInput.docList',
         is: 'file',
         label: '病例文档',
@@ -167,11 +138,14 @@ export default {
         fn: 'handleFile',
         limit: 3,
         tips: [
-          '注：支持上传PDF、Word、Excel'
+          '注：支持上传Word、Excel'
         ],
         use: [
           {nonempty: true, prompt: '请选择病例文档'},
-          {rule: v => v.length, prompt: '请选择病例文档'},
+          {
+            rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
+            prompt: '请选择病例文档'
+          },
         ],
         disabled: false,
       },

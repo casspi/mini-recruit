@@ -10,6 +10,7 @@ new WowPage({
     WowPage.wow$.mixins.Router,
     WowPage.wow$.mixins.Jump,
     WowPage.wow$.mixins.Curl,
+    WowPage.wow$.mixins.Page,
   ],
   data: {
     infoDetail: {},
@@ -50,13 +51,20 @@ new WowPage({
     this.routerGetParams(options)
     this.getDetail()
   },
+  onUnload() {
+    const refPage = this.pagesGetByIndex(1)
+    console.log(refPage)
+    if (refPage) {
+      refPage.updateRead(this.data.params$.patientId)
+    }
+  },
   getDetail() {
     const {api$, params$} = this.data
-    this.curl(api$.REQ_PATIENT_DETAIL, {patientId: params$.patientId}, {method: 'get'}).then(res=>{
+    this.curl(api$.REQ_PATIENT_DETAIL, {patientId: params$.patientId}, {method: 'get'}).then(res => {
       this.setData({
         infoDetail: res
       })
     })
-  },
+  }
 })
 

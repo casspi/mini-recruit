@@ -28,7 +28,7 @@
           <text>实验分期</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectTrialPeriod}}</text>
+          <text>{{detailInfo.projectTrialPeriod || 'NA'}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -36,7 +36,7 @@
           <text>适应症</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectIndication}}</text>
+          <text>{{detailInfo.projectIndication || 'NA'}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -44,7 +44,7 @@
           <text>实验名称</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectTrialName}}</text>
+          <text>{{detailInfo.projectTrialName || 'NA'}}</text>
         </view>
       </view>
       <view class="title">
@@ -52,7 +52,7 @@
       </view>
       <view class="info-item">
         <view class="info-value">
-          <text>{{detailInfo.projectEnrollMaterial}}</text>
+          <text>{{detailInfo.projectEnrollMaterial || 'NA'}}</text>
         </view>
       </view>
     </view>
@@ -62,7 +62,7 @@
           <text>实验药组</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectTrialMedicine}}</text>
+          <text>{{detailInfo.projectTrialMedicine || 'NA'}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -70,7 +70,7 @@
           <text>对照药组</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectContrastMedicine}}</text>
+          <text>{{detailInfo.projectContrastMedicine || 'NA'}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -78,7 +78,7 @@
           <text>药物介绍</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectMedicineInfo}}</text>
+          <text>{{detailInfo.projectMedicineInfo || 'NA'}}</text>
         </view>
       </view>
       <view class="info-item">
@@ -86,7 +86,7 @@
           <text>用药介绍</text>
         </view>
         <view class="info-value">
-          <text>{{detailInfo.projectMedicineUse}}</text>
+          <text>{{detailInfo.projectMedicineUse || 'NA'}}</text>
         </view>
       </view>
     </view>
@@ -94,15 +94,17 @@
       <view class="title">
         <text>简要入排</text>
       </view>
-      <view>
-        <text>{{detailInfo.projectAccessSimple}}</text>
+      <view class="info-item">
+        <view class="info-value">
+          <text>{{detailInfo.projectAccessSimple || 'NA'}}</text>
+        </view>
       </view>
       <view class="title">
         <text>完整入选标准</text>
       </view>
       <view class="info-item">
         <view class="info-value">
-          <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete)}}</text>
+          <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete || 'NA')}}</text>
         </view>
       </view>
       <view class="title">
@@ -110,7 +112,7 @@
       </view>
       <view class="info-item">
         <view class="info-value">
-          <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete)}}</text>
+          <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete) || 'NA'}}</text>
         </view>
       </view>
     </view>
@@ -169,19 +171,18 @@
           </view>
         </view>
         <view
-          bindtap="inputHandle"
-          data-value="{{ !collect }}"
-          data-item="collect"
-          class="iconfont icon-shoucang {{collect && 'is-active'}}">
+          bindtap="handleCollect"
+          data-item="{{ {isCollect: !detailInfo.isCollect, projectId: detailInfo.projectId} }}"
+          class="iconfont icon-shoucang {{detailInfo.isCollect && 'is-active'}}">
           <view class="btn-text">
-            <text>{{collect ? '已收藏':'收藏'}}</text>
+            <text>{{detailInfo.isCollect ? '已收藏':'收藏'}}</text>
           </view>
         </view>
         <view
           bindtap="billHandle"
           data-item="{{ {url: 'https://images.autostreets.com/group1/M00/B3/E0/667B02E3-4E4F-460E-8236-8F4BDA276BB5.jpg'} }}"
-          data-disabled="{{ !'xxx' }}"
-          class="iconfont icon-haibaozujian {{!'xxx' && 'disabled'}}" >
+          data-disabled="{{ !detailInfo.isPoster }}"
+          class="iconfont icon-haibaozujian {{!detailInfo.isPoster && 'disabled'}}" >
           <view class="btn-text">
             <text>海报</text>
           </view>
@@ -191,7 +192,7 @@
         class="btn btn-primary"
         bindtap="jumpPageOrFireFn"
         data-url="subject_index"
-        data-params="{{ {id:1} }}">
+        data-params="{{ {projectId: params$.projectId} }}">
         <text>立即报名</text>
       </view>
     </block>

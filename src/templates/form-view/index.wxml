@@ -41,7 +41,7 @@
             <image
               class="photo"
               mode="aspectFill"
-              src="{{ filter.filterImage(photo) }}"
+              src="{{ photo.documentLocation }}"
               bindtap="jumpPageOrFireFn"
               data-alwaysfire="{{true}}"
               data-item="{{ item }}"
@@ -89,7 +89,7 @@
               data-alwaysfire="{{true}}"
               data-item="{{ item }}"
               data-pre="{{ i }}">
-              <text>{{file.name}}</text>
+              {{file.documentName || file.documentLocation}}
             </view>
             <view
               wx:if="{{ !item.disabled }}"

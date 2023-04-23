@@ -54,12 +54,20 @@ function formatArrayJoin(val, labelKey, str) {
 function formatCity(val, labelKey, str, hiddenProvince) {
   var separator = str
   return val.map(function (o) {
-    return hiddenProvince? o.city[labelKey] : o.province[labelKey] +'-'+ o.city[labelKey]
+    return hiddenProvince ? o.city[labelKey] : o.province[labelKey] + '-' + o.city[labelKey]
   }).join(separator)
 }
 
 module.exports = {
-  lineFeedFilter: function (val){
+  patientStatusEdit: function (val) {
+    return val === '未提交' || val === '缺资料'
+  },
+  textSlice: function (val) {
+    if (!val) return ''
+    else return val.slice(0, 1)
+  },
+  // \n 换行
+  lineFeedFilter: function (val) {
     if (!val) {
       return
     }

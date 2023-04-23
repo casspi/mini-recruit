@@ -1,47 +1,38 @@
+<wxs src="/wxs/filter.wxs" module="filter" />
+
 <view class="c-block info-detail">
   <view class="patient-top">
     <view class="name">{{infoDetail.patientName}}</view>
     <view class="status">
-      <text>{{item.patientStatusName}}</text>
+      <text>{{infoDetail.patientStatusName}}</text>
     </view>
   </view>
-<!--  <view-->
-<!--    class="info-item"-->
-<!--    bindtap="jumpPageOrFireFn"-->
-<!--    data-item="{{ item }}"-->
-<!--    wx:for="{{ infoObj }}"-->
-<!--    wx:key="index">-->
-<!--    <view class="info-item-label"><text>{{item.label}}</text></view>-->
-<!--    <view class="info-item-value">-->
-<!--      <text>{{item.value}}</text>-->
-<!--      <view class="c-arrow right" wx:if="{{item.arrow}}"></view>-->
-<!--    </view>-->
-<!--  </view>-->
   <view class="info-item">
     <view class="info-item-label"><text>所患疾病</text></view>
     <view class="info-item-value">
-      <text>{{item.value}}</text>
+      <text>{{infoDetail.patientDiseaseName}}</text>
     </view>
   </view>
   <view class="info-item">
     <view class="info-item-label"><text>患者编码</text></view>
     <view class="info-item-value">
-      <text>{{item.value}}</text>
+      <text>{{infoDetail.patientNum}}</text>
     </view>
   </view>
   <view class="info-item">
     <view class="info-item-label"><text>创建时间</text></view>
     <view class="info-item-value">
-      <text>{{item.value}}</text>
+      <text>{{infoDetail.createTime}}</text>
     </view>
   </view>
   <view
     bindtap="jumpPageOrFireFn"
     data-url="subject_index"
+    data-params="{{ {patientId: params$.patientId, isDetail: !filter.patientStatusEdit(infoDetail.patientStatusName)} }}"
     class="info-item">
     <view class="info-item-label"><text>材料</text></view>
     <view class="info-item-value">
-      <text>审核中</text>
+      <text>{{infoDetail.patientStatusName}}</text>
       <view class="c-arrow right"></view>
     </view>
   </view>

@@ -15,43 +15,33 @@ new WowPage({
     WowPage.wow$.mixins.Curl,
     WowPage.wow$.mixins.Format,
     WowPage.wow$.mixins.Validate,
+    WowPage.wow$.mixins.Page,
   ],
   onLoad(options) {
     this.routerGetParams(options)
-    let {api$, objInput} = this.data
-    // allocateAreaId: "110100,120100"
-    // areaIdList: ["110100", "120100"]
-    // cityId: "110100"
-    // diseaseIdList: ["402882408754384e018754384ebe0000", " 402882408754384e018754384ebf0003"]
-    // diseaseIds: "402882408754384e018754384ebe0000, 402882408754384e018754384ebf0003"
-    // gender: "0"
-    // name: "管理员"
-    // provinceId: "110000"
-    // type: "0"
-    // typeName: "招募者"
-
     this.getDic(this.getDetail)
   },
   //详情
   getDetail() {
     let {api$, objInput, cityList} = this.data
-    this.curl(api$.REQ_MINE_INFO, {}, {method:'get'}).then(res => {
-      const { name, gender, areaIdList, diseaseIds, provinceId, cityId } = res
+    this.curl(api$.REQ_MINE_INFO, {}, {method: 'get'}).then(res => {
+      const {name, gender, areaIdList, diseaseIds, provinceId, cityId, typeName} = res
       objInput.name.value = name
       objInput.gender.value = gender
-      objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value) )
+      objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value))
       const province = cityList.find(o => o.value === provinceId)
-      const city = province? province.children.find(o=> o.value === cityId):null
+      const city = province ? province.children.find(o => o.value === cityId) : null
       objInput.city.value = [{
         province, city
       }]
+      objInput.userType.value = typeName
       // 服务区域回显
       const area = []
-      areaIdList.forEach(item=>{
-        const province = cityList.find(o=>o.children.find(i=> i.value === item))
+      areaIdList.forEach(item => {
+        const province = cityList.find(o => o.children.find(i => i.value === item))
         area.push({
           province,
-          city: province.children.find(o=>o.value === item)
+          city: province.children.find(o => o.value === item)
         })
       })
       objInput.allocateAreaId.value = area
@@ -65,12 +55,18 @@ new WowPage({
     const {api$} = this.data
     this.curl(api$.REQ_CITY_LIST, {}, {method: 'get'}).then(res => {
       this.data.cityList = res
-    }).then(()=>{
-      this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get'})
+    }).then(() => {
+      return this.curl(api$.REQ_DISEASE_LIST, {}, {method: 'get'})
         .then(res => {
           this.data.objInput.disease.options = res
-          cb()
         })
+    }).then(() => {
+      return this.curl(api$.DIC_USER_TYPE, {}, {method: 'get'})
+        .then(res => {
+          this.data.userType = res
+        })
+    }).then(() => {
+      cb()
     })
 
   },
@@ -117,19 +113,23 @@ new WowPage({
     }, this.data.objInput, 'objInput')
 
     // 提取参数
-    let {allocateAreaId,city, disease, gender, name } = this.validateInput(this.data.objInput, this.data.objInput)
-    allocateAreaId = allocateAreaId.map(item=>item.city.value).join(',')
-    disease = disease.map(item=>item.value).join(',')
+    let {allocateAreaId, city, disease, gender, name} = this.validateInput(this.data.objInput, this.data.objInput)
+    allocateAreaId = allocateAreaId.map(item => item.city.value).join(',')
+    disease = disease.map(item => item.value).join(',')
     const {api$} = this.data
-    this.curl(api$.REQ_MINE_INFO_CHANGE,{
+    this.curl(api$.REQ_MINE_INFO_CHANGE, {
       allocateAreaId,
-      provinceId:city[0].province.value,
+      provinceId: city[0].province.value,
       cityId: city[0].city.value,
       diseaseIds: disease,
       gender,
       name
-    },{method:'get'}).then(res=>{
-      console.log('保存成功')
+    }, {method: 'get'}).then(res => {
+      const refPage = this.pagesGetByIndex(1)
+      if (refPage) {
+        refPage.getDetail()
+      }
+      this.routerPop()
     }).toast()
   }
 })

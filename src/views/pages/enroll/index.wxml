@@ -6,7 +6,7 @@
       <input
         bindconfirm="handleKeywordConfirm"
         confirm-type="search"
-        value="{{ queryText }}"
+        value="{{ patientName }}"
         bindinput="handleKeywordInput"
         type="text"
         class="search-input"
@@ -16,7 +16,7 @@
     <button
       bindtap="handleFilter"
       data-item="{{objFilter}}"
-      class="filter-button {{ isOpen && 'active' }}">
+      class="filter-button">
       筛选
       <view class="iconfont icon-shaixuan"></view>
     </button>
@@ -51,12 +51,12 @@
           </view>
         </view>
         <view class="time">
-          <tex>{{item.modifyTime}}</tex>
+          <tex>{{item.createTime}}</tex>
         </view>
       </view>
       <view class="enroll-item-detail">
         <view class="disease">
-          <text>{{item.diseaseName}}</text>
+          <text>{{item.patientDiseaseName}}</text>
 <!--          <block-->
 <!--            wx:for="{{ 3 }}"-->
 <!--            wx:key="index"-->
@@ -85,8 +85,6 @@
   <text>立即\n报名</text>
 </view>
 <filter-view
-  bindvisible="inputHandle"
-  data-item="isOpen"
   bindconfirm="handleFilterConfirm"
   id="filter-view"
 ></filter-view>

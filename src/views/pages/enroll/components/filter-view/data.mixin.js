@@ -44,9 +44,9 @@ export default {
         is: 'checkbox',
         options: [],
       },
-      referee: {
+      recruit: {
         label: '推荐人',
-        key: 'objFilter.referee',
+        key: 'objFilter.recruit',
         is: 'picker',
         placeholder: '请选择推荐人',
         rangeKey: 'label',

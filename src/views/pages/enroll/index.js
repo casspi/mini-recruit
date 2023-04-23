@@ -21,26 +21,44 @@ new WowPage({
     event: 'enrollList',
     patientName: '',
     selected: [],
-    isOpen: false,
     queryText: '',
     objFilter: {},
-    dicStatus:[],
-    dicRecruit:[],
+    dicStatus: [],
+    dicRecruit: [],
   },
   onLoad() {
     this.handleRefresh()
     this.getStatusDic()
   },
-  getStatusDic(){
+  // 详情回来更新状态，不请求接口情况下
+  updateRead(patientId) {
+    if (!patientId) return
+    const pagingData = this.data.pagingData
+    updateStatus: for (let i = 0; i < pagingData.length; i++) {
+      for (let j = 0; j < pagingData[i].length; j++) {
+        const item = pagingData[i][j]
+        console.log(i, j, item)
+        if (item.patientId === patientId) {
+          item.readStatus = '0'
+          break updateStatus
+        }
+      }
+    }
+    this.setData({
+      pagingData
+    })
+  },
+  // 字典
+  getStatusDic() {
     const {api$} = this.data
-    this.curl(api$.DIC_PATIENT_STATUS,{},{method:'get'})
-      .then(res=>{
+    this.curl(api$.DIC_PATIENT_STATUS, {}, {method: 'get', loading: false})
+      .then(res => {
         this.setData({
           dicStatus: res
         })
       })
-    this.curl(api$.DIC_RECRUIT,{},{method:'get'})
-      .then(res=>{
+    this.curl(api$.DIC_RECRUIT, {}, {method: 'get', loading: false})
+      .then(res => {
         this.setData({
           dicRecruit: res
         })
@@ -49,16 +67,27 @@ new WowPage({
   handleRefresh(cb) {
     this.pagingRefresh(cb)
   },
-  pagingGetUrlParamsOptions() {
-    const {api$, objFilter:{createBeginTime, createEndTime, patientStatus}, patientName} = this.data
+  pagingGetUrlParamsOptions({pagingIndex}) {
+    // if (pagingIndex === 1) {
+    //   const refWowScroll = this.selectComponent('#wowScroll')
+    //   if (refWowScroll) {
+    //     refWowScroll.returnTop()
+    //   }
+    // }
+    const {
+      api$,
+      objFilter: {createBeginTime = '', createEndTime = '', patientStatus = [], recruit},
+      patientName
+    } = this.data
+    console.log('patientStatus=>', patientStatus)
     return {
       url: api$.REQ_PATIENT_LIST,
       params: {
         patientName,
-        patientDisease:'',
-        patientStatus: '',
-        createBeginTime,
-        createEndTime,
+        patientStatusList: patientStatus.join(','),
+        recruitId: recruit ? recruit.value : '',
+        createBeginTime: createBeginTime ? createBeginTime + ' 00:00:00' : '',
+        createEndTime: createEndTime ? createEndTime + ' 23:59:59' : '',
       },
       options: {
         method: 'get',
@@ -67,12 +96,12 @@ new WowPage({
     }
   },
   handleKeywordInput(event) {
-    const { value } = this.inputParams(event)
+    const {value} = this.inputParams(event)
     if (!value.trim()) this.handleKeywordConfirm(event)
   },
   handleKeywordConfirm(event) {
-    const { value } = this.inputParams(event)
-    this.setData({ patientName: value.trim() }, () => {
+    const {value} = this.inputParams(event)
+    this.setData({patientName: value.trim()}, () => {
       this.handleRefresh()
     })
   },
@@ -84,7 +113,7 @@ new WowPage({
   handleFilterConfirm(event) {
     const {objFilter} = this.inputParams(event)
     console.log(objFilter)
-    this.setData({objFilter},()=>{
+    this.setData({objFilter}, () => {
       this.handleRefresh()
     })
 
