@@ -38,7 +38,7 @@ export default {
     return Object.assign({
       title: '蚂蚁招募',
       path: 'pages/home/index',
-      imageUrl: s('icon-share.jpg'),
+      // imageUrl: s('icon-share.jpg'),
     }, this.shareGetConfig(options))
   },
 }

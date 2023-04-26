@@ -15,6 +15,7 @@ new WowPage({
     WowPage.wow$.mixins.Curl,
     WowPage.wow$.mixins.Loading,
     WowPage.wow$.mixins.Share,
+    WowPage.wow$.mixins.User,
   ],
   data: {
     tabs: ['项目介绍', '治疗方案', '入排标准', '研究中心'],
@@ -24,7 +25,11 @@ new WowPage({
   },
   onLoad(options) {
     this.routerGetParams(options)
+    this.userGet().then(res => {
+
+    }).null()
     this.getDetail()
+    console.log('userGet=>', this.data.user$)
   },
   getDetail() {
     const {api$, params$} = this.data

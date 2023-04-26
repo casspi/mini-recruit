@@ -4,14 +4,11 @@ import User from 'wow-wx/mixins/utils/user.mixin'
 import Router from 'wow-wx/mixins/wx/router.mixin'
 import ApiConfig, {isProd} from 'src/config/api.config'
 
-// const curl = new Curl({
-//   baseURI: 'https://epms-app.autostreets.com/',
-//   // baseURI: isProd ? 'https://rochecrm.g2digi.com/' : 'https://roche.jiappo.cn/',
-// })
-
 const curl = new Curl({
   baseURI: 'http://testchw.w1.luyouxia.net/',
-  header: {},
+  header: {
+    'content-type': 'application/x-www-form-urlencoded'
+  },
   timeout: 60 * 1000,
 })
 // 日志输出
@@ -34,16 +31,21 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     objUser = res || {}
   }).catch(() => {
   }).finally(() => {
-    let {
-      AccessToken,
-    } = objUser
-    if (data.AccessToken) {
-      AccessToken = data.AccessToken
-      delete data.AccessToken
+    console.log(data, objUser)
+    if (objUser.__gsessionId) {
+      header.cookie = `_gearframework_session=${objUser.__gsessionId}`
     }
-    if (AccessToken) {
-      config.header = Object.assign({AccessToken}, header)
-    }
+    // let {
+    //   AccessToken,
+    // } = objUser
+    // if (data.AccessToken) {
+    //   AccessToken = data.AccessToken
+    //   delete data.AccessToken
+    // }
+    // if (AccessToken) {
+    //   config.header = Object.assign({AccessToken}, header)
+    // }
+
     if (typeof extend === 'function') {
       config.data = Object.assign(config.data, (extend(objUser) || {}))
     }
@@ -69,12 +71,12 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
     }
   }
   console.log(`${url} [${method}] 请求返回 => `, respData)
-  let {status, data, Extend, message} = respData
-  // if ([201].indexOf(Status) > -1) {
-  //   reject(Message || 'token已过期，请重新登录')
-  //   return gotoLogin()
-  // }
-  // if (Status === 202) {
+  let {status, data, message} = respData
+  if (status === 2) {
+    reject(message || 'token已过期，请重新登录')
+    return gotoLogin()
+  }
+  // if (status === 3) {
   //   reject('')
   //   return Router.routerPush('webview_index', {
   //     link: Extend,
@@ -84,9 +86,6 @@ curl.interceptors.response.use((response) => new Promise((resolve, reject) => {
   if (status !== 0) {
     return reject(message || respData)
   }
-  // if (Extend && typeof Extend === 'object' && typeof Data === 'object') {
-  //   Data = Object.assign({}, Extend, Data)
-  // }
   return resolve(data)
 }), (error) => {
   if (error && error.errMsg) {

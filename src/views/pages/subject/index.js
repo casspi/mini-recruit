@@ -249,7 +249,6 @@ new WowPage({
     // true 是 有问题
     if (this.validateCheck(this.data.objInput)) return;
     const options = this.validateInput(objInput)
-    console.log(options, params$);
     const {
       patientName,
       patientPhone,

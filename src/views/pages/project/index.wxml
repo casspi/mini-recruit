@@ -163,7 +163,7 @@
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
   <view class="btn-bar">
-    <block wx:if="{{true}}">
+    <block wx:if="{{this.data.user$}}">
       <view class="icon-bar">
         <view class="iconfont icon-fenxiang">
           <view class="btn-text">

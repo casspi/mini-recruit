@@ -18,8 +18,8 @@ new WowPage({
     WowPage.wow$.mixins.Modal,
     Tools
   ],
-  onLoad(p) {
-    this.routerGetParams(p)
+  onLoad(o) {
+    this.routerGetParams(o)
     const {title, value} = this.data.params$
     wx.setNavigationBarTitle({title})
     this.setData({

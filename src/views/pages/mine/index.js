@@ -4,6 +4,7 @@ import './index.scss'
 import './index.wxml'
 
 import WowPage from 'wow-wx/lib/page'
+import User from "wow-wx/mixins/utils/user.mixin";
 
 new WowPage({
   mixins: [
@@ -12,6 +13,7 @@ new WowPage({
     WowPage.wow$.mixins.Modal,
     WowPage.wow$.mixins.Curl,
     WowPage.wow$.mixins.TabItemTap,
+    WowPage.wow$.mixins.User,
   ],
   data: {
     isAgree: false,
@@ -32,21 +34,25 @@ new WowPage({
   getDetail() {
     const {api$} = this.data
     this.curl(api$.REQ_MINE, {}, {method: 'get', loading: false}).then(res => {
-      console.log(res)
       this.setData({
         userInfo: res,
         ['arrMenu[2].value']: res.recruitNum + '人'
       })
-    })
+    }).toast()
   },
   handleCell(item) {
+    console.log(item)
     if (item.key === 'logout') {
       this.modalConfirm({
         content: `是否确定退出登录？`,
         confirmText: '确定',
         cancelText: '取消'
       }).then(() => {
-        this.routerPush('demo_index')
+        this.curl(api$.REQ_LOGOUT, {}, {method: 'get'}).then(() => {
+          User.userLogout().then(() => {
+            this.routerRoot('home_index')
+          })
+        })
       }).null()
     }
   },

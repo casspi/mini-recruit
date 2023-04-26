@@ -12,33 +12,50 @@ new WowPage({
     WowPage.wow$.mixins.User,
     WowPage.wow$.mixins.Helper,
     WowPage.wow$.mixins.Modal,
-
+    WowPage.wow$.mixins.Curl,
+    WowPage.wow$.mixins.Api,
+    WowPage.wow$.mixins.Clipboard
   ],
   data: {
-    codeUrl: 'https://miniapp.shuidichou.com/miniapp/c8e09e73a37d400dbaacbcadb347b543.png',
+    userInfo: {},
+    codeUrl: '',
     canvas: null,
     canvasW: '',
     canvasH: ''
   },
-  onLoad: function () {
-    // 通过 SelectorQuery 获取 Canvas 节点
-    wx.createSelectorQuery()
-      .select('#canvas')
-      .fields({
-        node: true,
-        size: true,
-      })
-      .exec(this.init.bind(this))
+  onLoad(o) {
+    this.routerGetParams(o)
+    let {userInfo} = this.data.params$
+    userInfo.nameInitial = userInfo.name.slice(0, 1)
+    this.setData({
+      userInfo
+    })
+    this.getMiniCode()
   },
   // 获取小程序码
   getMiniCode() {
-
+    const {api$, userInfo} = this.data
+    this.curl(api$.REQ_QRCODE, {
+      scene: `recruitCode=${userInfo.recruitCode}`,
+      page: 'pages/login/index',
+      check_path: false,// 是否校验页面存在
+      env_version: 'develop'
+    }, {method: 'get'}).then(res => {
+      this.setData({
+        codeUrl: res
+      })
+      // 通过 SelectorQuery 获取 Canvas 节点
+      wx.createSelectorQuery()
+        .select('#canvas')
+        .fields({
+          node: true,
+          size: true,
+        })
+        .exec(this.init.bind(this))
+    })
   },
   // 单位转换
   rpx2px(value) {
-    // const info = wx.getSystemInfoSync()
-    // const width = info.screenWidth
-    // return arg * width / 750
     let currentWidth = this.data.canvasW
     let oldWidth = 750
     return Math.floor(value * currentWidth / oldWidth)
@@ -85,6 +102,7 @@ new WowPage({
     ctx.clip()
   },
   init(res) {
+    const {userInfo} = this.data
     const primaryColor = '#f0831f'
     let {screenWidth: canvasW, screenHeight: canvasH, pixelRatio} = wx.getSystemInfoSync()
     canvasH = 600
@@ -134,21 +152,21 @@ new WowPage({
     ctx.textAlign = 'center'
     ctx.font = `${this.rpx2px(44)}px bold`
     ctx.fillStyle = '#fff'
-    ctx.fillText("呵", this.rpx2px(150), this.rpx2px(116));
+    ctx.fillText(userInfo.nameInitial, this.rpx2px(150), this.rpx2px(116));
 
     // 用户名
     ctx.font = `${this.rpx2px(44)}px normal`
     ctx.fillStyle = '#000'
     ctx.textAlign = 'left'
-    ctx.fillText("呵呵", this.rpx2px(240), this.rpx2px(80));
+    ctx.fillText(userInfo.name, this.rpx2px(240), this.rpx2px(80));
     ctx.font = `${this.rpx2px(30)}px normal`
-    ctx.fillText("13817674594", this.rpx2px(240), this.rpx2px(150));
+    ctx.fillText(userInfo.phone, this.rpx2px(240), this.rpx2px(150));
 
     // 邀请码文案
     ctx.textAlign = 'center'
     ctx.font = `${this.rpx2px(36)}px bold`
     ctx.fillStyle = primaryColor
-    ctx.fillText(`邀请码:${'2222hhj22'}`, this.rpx2px(375), this.rpx2px(306));
+    ctx.fillText(`邀请码:${userInfo.recruitCode}`, this.rpx2px(375), this.rpx2px(306));
     ctx.fillText('长按图片进入小程序，和我一起做招募！', this.rpx2px(375), this.rpx2px(840))
 
 
@@ -184,7 +202,7 @@ new WowPage({
         message: '已保存到相册'
       })
     }).toast(({errMsg}) => {
-      if (errMsg === 'saveImageToPhotosAlbum:fail cancel') {// 取消不提示
+      if (errMsg === 'saveImageToPhotosAlbum:fail cancel') {// 取消 不提示错误
         return true
       }
     }).finally((res) => {
@@ -193,16 +211,14 @@ new WowPage({
   },
   // 复制
   handleCopy() {
-    this.helperFnPromise('setClipboardData', {
-      data: '222'
-    }).toast()
+    this.clipboardSetData(this.data.userInfo.recruitCode)
   },
   shareGetConfig() {
     // const {params$, user$, objData} = this.data
     // const {id} = params$
     // const {nickName = ''} = user$
     return {
-      title: 'sss999',
+      title: '蚂蚁招募',
       ...this.shareStringify({to: 'login_index'})
     }
   },

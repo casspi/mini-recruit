@@ -76,10 +76,10 @@ export default {
         ],
         hidden: true
       },
-      disease: {
+      diseaseIds: {
         value: [],
         label: '疾病',
-        key: 'objInput.disease',
+        key: 'objInput.diseaseIds',
         is: 'picker',
         url: 'select_index',
         title: '请选择疾病',

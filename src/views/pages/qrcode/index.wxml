@@ -1,17 +1,17 @@
 <view class="c-block">
   <view class="user">
-    <text class="user-avatar">呵</text>
+    <text class="user-avatar">{{userInfo.nameInitial}}</text>
     <view class="user-detail">
       <view class="user-name">
-        <text>呵呵</text>
+        <text>{{userInfo.name}}</text>
       </view>
       <view>
-        <text>13817674594</text>
+        <text>{{userInfo.phone}}</text>
       </view>
     </view>
   </view>
   <view class="content">
-    <view class="code"><text>jhjjhh</text></view>
+    <view class="code"><text>{{userInfo.recruitCode}}</text></view>
     <view class="copy-btn" bindtap="handleCopy"><text>复制邀请码</text></view>
     <image
       class="code-img"

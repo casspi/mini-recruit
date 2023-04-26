@@ -18,6 +18,8 @@
     <view class="menu-item {{item.className}}"
           catchtap="jumpPageOrFireFn"
           data-item="{{ item }}"
+          data-params="{{ { userInfo: userInfo } }}"
+          data-disabled="{{ !userInfo.phone && item.key != 'logout' }}"
           wx:for="{{ arrMenu }}"
           wx:key="index">
       <view wx:if="{{item.icon}}" class="iconfont {{ item.icon }}"></view>
@@ -29,9 +31,5 @@
       </view>
       <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
     </view>
-    <button bindtap="jumpPageOrFireFn"
-            data-url="login_index">登录页</button>
-    <button bindtap="jumpPageOrFireFn"
-            data-url="register_index">注册页</button>
   </view>
 </view>

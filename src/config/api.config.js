@@ -59,11 +59,11 @@ export default {
   // 患者体能状况
   DIC_CONDITION: 'mini/recruit/app/listCondition',
   // 获取城市列表
-  REQ_CITY_LIST: 'mini/recruit/app/listAreaSelectCommon',
+  REQ_CITY_LIST: 'mini/recruit/dic/listAreaSelectCommon',
   // 获取疾病列表
-  REQ_DISEASE_LIST: 'mini/recruit/app/listDiseaseByType',
+  REQ_DISEASE_LIST: 'mini/recruit/dic/listDiseaseByType',
   //职业
-  DIC_USER_TYPE: 'mini/recruit/app/listUserType',
+  DIC_USER_TYPE: 'mini/recruit/dic/listUserType',
 
 
   //我的
@@ -76,6 +76,19 @@ export default {
   REQ_MINE_INFO_CHANGE: 'mini/recruit/app/changeMyInfo',
   //患者提报
   REQ_PATIENT_REPORT: 'mini/recruit/app/addPatientReport',
+  // 我的邀请码
+  REQ_QRCODE: 'mini/recruit/app/getMyQrCode',
+
+  // 获取短信验证码
+  REQ_MSG_CODE: 'mini/recruit/loginAuth/getMsgCode',
+  // 验证码
+  REQ_VALID_CODE: 'mini/recruit/loginAuth/validMsgCode',
+  // 登录
+  REQ_LOGIN: 'mini/recruit/loginAuth/login',
+  // 注册
+  REQ_REGISTER: 'mini/recruit/loginAuth/register',
+  // 登出
+  REQ_LOGOUT: 'mini/recruit/loginAuth/logout',
 
 
   //文件上传
