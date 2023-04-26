@@ -27,6 +27,8 @@ new WowPage({
     this.routerGetParams(options)
     this.userGet().then(res => {
 
+    }, err => {
+      console.log('err', err);
     }).null()
     this.getDetail()
     console.log('userGet=>', this.data.user$)
@@ -85,10 +87,9 @@ new WowPage({
   //分享
   shareGetConfig() {
     const {params$, detailInfo} = this.data
-    const {projectId} = params$
     return {
       title: detailInfo.projectName,
-      ...this.shareStringify({projectId})
+      path: this.shareStringify({to: 'project_index', projectId: params$.projectId})
     }
   }
 })

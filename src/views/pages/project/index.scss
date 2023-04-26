@@ -153,6 +153,7 @@ page {
   @extend %aic;
   font-size: j(28);
   font-weight: 500;
+
   .iconfont {
     color: #466a9d;
     margin-right: j(20);
@@ -171,6 +172,31 @@ page {
   @extend %df;
   @extend %aic;
   @extend %jcs;
+
+  .share-btn {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    text-align: center;
+    font-size: j(50);
+    color: #333333;
+    height: j(50);
+    @extend %fdc;
+    @extend %df;
+    @extend %aic;
+    justify-content: center;
+
+    .iconfont {
+      height: j(50);
+      @extend %df;
+      @extend %aic;
+      justify-content: center;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
 
   .iconfont {
     text-align: center;

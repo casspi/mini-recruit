@@ -25,8 +25,10 @@ new WowPage({
     _gearframework_session: '',
   },
   onLoad(o) {
+    console.log(decodeURIComponent(o.params))
+    const {recruitCode = ''} = JSON.parse(decodeURIComponent(o.params))
     this.setData({
-      recruitCode: o.recruitCode || ''
+      recruitCode
     })
 
     console.log(this.data)
@@ -72,11 +74,16 @@ new WowPage({
     }).toast()
   },
   handleLogin() {
-    const {phone, code} = this.data
-    this.curl(this.data.api$.REQ_LOGIN, {phone, code}, {method: 'get'}).then(res => {
+    const {phone, code, _gearframework_session} = this.data
+    this.curl(this.data.api$.REQ_LOGIN, {phone, code}, {
+      method: 'post',
+      header: {
+        cookie: `_gearframework_session=${_gearframework_session}`
+      }
+    }).then(res => {
       const {__gsessionId} = res
       User.userUpdate({__gsessionId})
-      this.routerPop()
+      this.routerRoot('home_index')
     }).toast()
   }
 

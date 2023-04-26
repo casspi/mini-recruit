@@ -14,7 +14,8 @@ new WowPage({
     WowPage.wow$.mixins.Input,
     WowPage.wow$.mixins.Modal,
     WowPage.wow$.mixins.TabItemTap,
-
+    WowPage.wow$.mixins.User,
+    WowPage.wow$.mixins.Share,
   ],
   data: {
     projectQuery: '',
@@ -78,9 +79,20 @@ new WowPage({
 
     }
   },
-  onLoad() {
+  onLoad(o) {
+    console.log(o)
+    this.shareHandle(o)
     this.handleRefresh()
   },
+  onShow() {
+    this.userGet().then(res => {
+      console.log(res)
+      wx.showTabBar()
+    }).catch(() => {
+      wx.hideTabBar()
+    })
+  },
+
   tabItemTapCallback() {
     this.handleRefresh()
   },

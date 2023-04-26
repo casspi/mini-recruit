@@ -31,21 +31,16 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     objUser = res || {}
   }).catch(() => {
   }).finally(() => {
-    console.log(data, objUser)
-    if (objUser.__gsessionId) {
-      header.cookie = `_gearframework_session=${objUser.__gsessionId}`
-    }
-    // let {
-    //   AccessToken,
-    // } = objUser
+    let {
+      __gsessionId,
+    } = objUser
     // if (data.AccessToken) {
     //   AccessToken = data.AccessToken
     //   delete data.AccessToken
     // }
-    // if (AccessToken) {
-    //   config.header = Object.assign({AccessToken}, header)
-    // }
-
+    if (__gsessionId) {
+      config.header = Object.assign({cookie: `_gearframework_session=${objUser.__gsessionId}`}, header)
+    }
     if (typeof extend === 'function') {
       config.data = Object.assign(config.data, (extend(objUser) || {}))
     }

@@ -10,7 +10,6 @@
         "pages/mine/index",
         "pages/patient/index",
         "pages/patientlog/index",
-        "pages/project/bill/index",
         "pages/project/index",
         "pages/qrcode/index",
         "pages/register/index",

@@ -9,7 +9,6 @@ export default {
     "mine_index": "/pages/mine/index",
     "patient_index": "/pages/patient/index",
     "patientlog_index": "/pages/patientlog/index",
-    "project_bill_index": "/pages/project/bill/index",
     "project_index": "/pages/project/index",
     "qrcode_index": "/pages/qrcode/index",
     "register_index": "/pages/register/index",

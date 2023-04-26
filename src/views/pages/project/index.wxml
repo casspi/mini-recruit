@@ -163,9 +163,12 @@
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
   <view class="btn-bar">
-    <block wx:if="{{this.data.user$}}">
+    <block wx:if="{{user$}}">
       <view class="icon-bar">
-        <view class="iconfont icon-fenxiang">
+        <view class="share-btn-w">
+          <button class="share-btn" open-type="share">
+            <view class="iconfont icon-fenxiang"></view>
+          </button>
           <view class="btn-text">
             <text>分享</text>
           </view>

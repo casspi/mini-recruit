@@ -31,7 +31,7 @@
     <view>
       <text>共找到{{pagingTotal || pagingNumTotal}}个项目</text>
     </view>
-    <view class="collect {{collect && 'is-active'}}" bindtap="collectHandle">
+    <view wx:if="{{user$}}" class="collect {{collect && 'is-active'}}" bindtap="collectHandle">
       <text>收藏</text>
     </view>
   </view>
@@ -89,3 +89,18 @@
     is-loading="{{ pagingTotal > pagingNumTotal }}"
   ></wow-end>
 </wow-scroll>
+<block wx:if="{{!user$}}">
+  <view class="c-fixed-seat"></view>
+  <view class="c-fixed">
+    <view class="btn-bar">
+      <view
+        class="btn btn-primary"
+        bindtap="jumpPageOrFireFn"
+        data-url="login_index"
+        data-params="{{ {id:1} }}">
+        <text>立即加入蚂蚁招募</text>
+      </view>
+    </view>
+    <view class="ios-seat"></view>
+  </view>
+</block>

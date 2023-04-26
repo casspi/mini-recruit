@@ -214,12 +214,9 @@ new WowPage({
     this.clipboardSetData(this.data.userInfo.recruitCode)
   },
   shareGetConfig() {
-    // const {params$, user$, objData} = this.data
-    // const {id} = params$
-    // const {nickName = ''} = user$
     return {
       title: '蚂蚁招募',
-      ...this.shareStringify({to: 'login_index'})
+      path: this.shareStringify({to: 'login_index', recruitCode: this.data.userInfo.recruitCode})
     }
   },
 })

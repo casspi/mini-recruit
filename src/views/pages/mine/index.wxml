@@ -15,21 +15,23 @@
     </view>
   </view>
   <view class="menu-section">
-    <view class="menu-item {{item.className}}"
-          catchtap="jumpPageOrFireFn"
-          data-item="{{ item }}"
-          data-params="{{ { userInfo: userInfo } }}"
-          data-disabled="{{ !userInfo.phone && item.key != 'logout' }}"
-          wx:for="{{ arrMenu }}"
-          wx:key="index">
-      <view wx:if="{{item.icon}}" class="iconfont {{ item.icon }}"></view>
-      <view class="menu-label">
-        <text>{{ item.label }}</text>
+    <block
+      wx:for="{{ arrMenu }}"
+      wx:key="index">
+      <view wx:if="{{!item.hidden}}" class="menu-item {{item.className}}"
+            catchtap="jumpPageOrFireFn"
+            data-item="{{ item }}"
+            data-params="{{ { item: item,userInfo: userInfo } }}"
+            data-disabled="{{ 0 && !userInfo.phone && item.key != 'logout' }}">
+        <view wx:if="{{item.icon}}" class="iconfont {{ item.icon }}"></view>
+        <view class="menu-label">
+          <text>{{ item.label }}</text>
+        </view>
+        <view class="menu-value">
+          <text>{{ item.value }}</text>
+        </view>
+        <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
       </view>
-      <view class="menu-value">
-        <text>{{ item.value }}</text>
-      </view>
-      <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
-    </view>
+    </block>
   </view>
 </view>
