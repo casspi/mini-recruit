@@ -23,7 +23,7 @@
 <!--<view class="c-fixed-seat"></view>-->
 <view class="c-fixed">
   <view class="btn-bar">
-    <view class="btn btn-info" bindtap="saveHandle">保存图片</view>
+    <button class="btn btn-info" bindtap="saveHandle">保存图片</button>
     <button class="btn btn-primary" open-type="share" bindtap="onShareAppMessage">分享给好友</button>
   </view>
   <view class="ios-seat"></view>

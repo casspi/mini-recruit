@@ -103,8 +103,8 @@ new WowPage({
     }, {method: 'post'}).then(res => {
       const {__gsessionId} = res
       User.userUpdate({__gsessionId})
+      wx.setStorageSync('home_refresh', '1')
       this.routerRoot('home_index')
-      console.log('REQ_REGISTER', res)
     }).toast()
   }
 })

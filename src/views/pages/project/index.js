@@ -50,6 +50,7 @@ new WowPage({
     })
   },
   handleCollect(e) {
+    wx.setStorageSync('home_refresh', '1')
     const {item} = this.inputParams(e)
     const {api$} = this.data
     this.curl(api$.COLLECT_CHANGE, {
@@ -69,15 +70,6 @@ new WowPage({
       current: 0,
       urls: item.urls,
     }).toast()
-    // this.loadingShow({
-    //   title: '海报下载中...',
-    //   mask: true
-    // })
-    // this.imageDownload(item.url).then((res) => {
-    //   return this.imageSave(res.path)
-    // }).toast().finally(() => {
-    //   this.loadingHide()
-    // })
   },
   // 立即报名
   handleSubject() {

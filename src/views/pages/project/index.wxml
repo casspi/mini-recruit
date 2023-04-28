@@ -203,8 +203,7 @@
       wx:else
       class="btn btn-primary"
       bindtap="jumpPageOrFireFn"
-      data-url="login_index"
-      data-params="{{ {id:1} }}">
+      data-url="login_index">
       <text>立即加入蚂蚁招募</text>
     </view>
   </view>

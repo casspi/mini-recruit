@@ -46,7 +46,7 @@
             bindinput="inputHandle"
             data-item="inputCode"
             class="form-input"
-            type="number"
+            type="text"
             maxlength="6"
             placeholder="请输入推荐码"/>
         </view>

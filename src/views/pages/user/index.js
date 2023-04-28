@@ -25,7 +25,7 @@ new WowPage({
   getDetail() {
     let {api$, objInput, cityList} = this.data
     this.curl(api$.REQ_MINE_INFO, {}, {method: 'get'}).then(res => {
-      const {name, gender, areaIdList, diseaseIds, provinceId, cityId, typeName} = res
+      const {name, gender, areaIdList = [], diseaseIds, provinceId, cityId, typeName, type} = res
       objInput.name.value = name
       objInput.gender.value = gender
       objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value))
@@ -44,7 +44,11 @@ new WowPage({
           city: province.children.find(o => o.value === item)
         })
       })
-      objInput.allocateAreaId.value = area
+      if (type === '1') {// 患者时
+        objInput.allocateAreaId.hidden = true
+      } else {
+        objInput.allocateAreaId.value = area
+      }
       this.setData({
         objInput
       })
@@ -104,7 +108,7 @@ new WowPage({
   submitHandle() {
     if (this.validateCheck(this.data.objInput)) return;
     // 提取参数
-    let {allocateAreaId, city, disease, gender, name} = this.validateInput(this.data.objInput)
+    let {allocateAreaId = [], city, disease, gender, name} = this.validateInput(this.data.objInput)
     allocateAreaId = allocateAreaId.map(item => item.city.value).join(',')
     disease = disease.map(item => item.value).join(',')
     const {api$} = this.data

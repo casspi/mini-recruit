@@ -66,7 +66,7 @@
           <text>{{item.projectTrialPeriod}}</text>
         </view>
       </view>
-      <view class="info-item" wx:if="{{item.projectTrialMedicine === '招募中'}}">
+      <view class="info-item" wx:if="{{item.projectTrialMedicine}}">
         <view class="info-label">
           <text>药物名称</text>
         </view>
@@ -96,8 +96,7 @@
       <view
         class="btn btn-primary"
         bindtap="jumpPageOrFireFn"
-        data-url="login_index"
-        data-params="{{ {id:1} }}">
+        data-url="login_index">
         <text>立即加入蚂蚁招募</text>
       </view>
     </view>

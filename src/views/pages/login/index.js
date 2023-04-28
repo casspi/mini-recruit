@@ -14,6 +14,7 @@ new WowPage({
     WowPage.wow$.mixins.Curl,
     WowPage.wow$.mixins.Api,
     WowPage.wow$.mixins.User,
+    WowPage.wow$.mixins.Modal,
   ],
   data: {
     isAgreement: false,
@@ -25,8 +26,17 @@ new WowPage({
     _gearframework_session: '',
   },
   onLoad(o) {
-    console.log(decodeURIComponent(o.params))
-    const {recruitCode = ''} = JSON.parse(decodeURIComponent(o.params))
+    console.log('decodeURIComponent', o)
+    let recruitCode = ''
+    // 我的邀请码页面分享过来的
+    if (o.params) {
+      recruitCode = JSON.parse(decodeURIComponent(o.params)).recruitCode || ''
+    }
+    // 小程序码过来的参数
+    if (o.scene) {
+      const scene = decodeURIComponent(o.scene).split('=')
+      recruitCode = scene[1] || ''
+    }
     this.setData({
       recruitCode
     })
@@ -62,11 +72,23 @@ new WowPage({
       }
     }, 1000)
   },
+  inputCodeChange(e) {
+    let val = e.detail.value
+    val.replace(/[^\w\/]/ig, '')
+    this.setData({
+      inputCode: val
+    })
+  },
   handleRegister() {
     const {phone, code, inputCode, recruitCode, _gearframework_session} = this.data
+    if (/[^\w\/]/ig.test(inputCode)) {
+      this.modalToast('邀请码只能含数字、字母')
+      return
+    }
     this.curl(this.data.api$.REQ_VALID_CODE, {phone, code}, {
       method: 'get',
       header: {
+        'content-type': 'application/x-www-form-urlencoded',
         cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(() => {
@@ -74,16 +96,22 @@ new WowPage({
     }).toast()
   },
   handleLogin() {
-    const {phone, code, _gearframework_session} = this.data
-    this.curl(this.data.api$.REQ_LOGIN, {phone, code}, {
+    const {phone, code, _gearframework_session, api$} = this.data
+    this.curl(api$.REQ_LOGIN, {phone, code}, {
       method: 'post',
       header: {
+        'content-type': 'application/x-www-form-urlencoded',
         cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(res => {
       const {__gsessionId} = res
-      User.userUpdate({__gsessionId})
+      User.userUpdate({
+        __gsessionId
+      })
+      wx.setStorageSync('home_refresh', '1')
       this.routerRoot('home_index')
+      // return this.curl(api$.REQ_MINE, {}, {method: 'get', loading: false}).then(res => {
+      // })
     }).toast()
   }
 

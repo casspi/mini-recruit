@@ -22,7 +22,7 @@ new WowPage({
       // {label: '新建患者', icon: 'icon-wode', url: 'subject_index'},
       {label: '我的邀请码', icon: 'icon-qr-code', url: 'qrcode_index'},
       {label: '我邀请的好友', icon: 'icon-wodewo', value: '0人', url: 'invited_index'},
-      {label: '患者提报', icon: 'icon-jihua', url: 'submit_index', hidden: true},
+      {label: '患者提报', icon: 'icon-jihua', url: 'submit_index', hidden: false},
       // {label: '我的预约', icon: 'icon-yuyue', fn: 'handleCell'},
       {label: '退出登录', fn: 'handleCell', hideArrow: true, className: 'logout-item', 'key': 'logout'},
     ],
@@ -37,7 +37,7 @@ new WowPage({
       this.setData({
         userInfo: res,
         ['arrMenu[2].value']: res.recruitNum + '人',
-        ['arrMenu[3].hidden']: res.type === '1'
+        // ['arrMenu[3].hidden']: res.type === '1'// 暂时不需要权限控制
       })
     }).toast()
   },

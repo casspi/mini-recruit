@@ -85,12 +85,15 @@ new WowPage({
     this.handleRefresh()
   },
   onShow() {
+    // 登录回来后刷新接口
     this.userGet().then(res => {
-      console.log(res)
       wx.showTabBar()
     }).catch(() => {
       wx.hideTabBar()
     })
+    const refresh = wx.getStorageSync('home_refresh')
+    wx.removeStorageSync('home_refresh')
+    if (refresh === '1') this.handleRefresh()
   },
 
   tabItemTapCallback() {
@@ -117,7 +120,7 @@ new WowPage({
       projectGeneType: objFilter.more.children.gene.value || '',
       projectTreatmentDemand: objFilter.more.children.treatment.value || '',
       pageSize: 10,
-      // userId: collect ? 'xxx' : '0'
+      collect
     }
     if (objFilter.sort.value === '1') {
       params.isSort = '1'
@@ -130,27 +133,6 @@ new WowPage({
         loading: false
       }
     }
-    // return {
-    //   url: api$.homeList,
-    //   params: {
-    //     AuthorizationV2: '9_zPc9FqNfhzVv6g9_EgywTFayIyueMyD3mGLka11Aw=',
-    //     'departmentId': 0,
-    //     'illness': 0,
-    //     'genetic': 0,
-    //     'treatmentLines': 0,
-    //     'province': 0,
-    //     'cityId': 0,
-    //     'researchCenterIdList': '',
-    //     'centerStartState': 0,
-    //     'searchContent': '',
-    //     'collectInfo': false,
-    //     'addedTimeSort': 0,
-    //   },
-    //   options: {
-    //     method: 'get',
-    //     loading: false
-    //   }
-    // }
   },
   handleKeywordInput(event) {
     const {value} = this.inputParams(event)

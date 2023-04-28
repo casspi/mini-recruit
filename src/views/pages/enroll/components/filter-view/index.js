@@ -32,7 +32,7 @@ new WowComponent({
         this.setData({visible: true, ...options}, () => {
           this.setData({
             ['objFilter.patientStatus.options']: dicStatus,
-            ['objFilter.recruitList.options']: dicRecruit
+            ['objFilter.recruit.options']: dicRecruit
           })
         })
 

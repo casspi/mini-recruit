@@ -52,6 +52,7 @@ new WowPage({
       }
     }
     if (arrIndex >= 0) {
+      this.getStatusChange()
       this.setData({
         [`pagingData[${arrIndex}][${itemIndex}].readStatus`]: '1'
       })

@@ -41,17 +41,19 @@ new WowPage({
       check_path: false,// 是否校验页面存在
       env_version: 'develop'
     }, {method: 'get'}).then(res => {
+      if (res) {
+        // 通过 SelectorQuery 获取 Canvas 节点
+        wx.createSelectorQuery()
+          .select('#canvas')
+          .fields({
+            node: true,
+            size: true,
+          })
+          .exec(this.init.bind(this))
+      }
       this.setData({
         codeUrl: res
       })
-      // 通过 SelectorQuery 获取 Canvas 节点
-      wx.createSelectorQuery()
-        .select('#canvas')
-        .fields({
-          node: true,
-          size: true,
-        })
-        .exec(this.init.bind(this))
     })
   },
   // 单位转换
