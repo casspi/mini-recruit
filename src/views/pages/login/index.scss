@@ -1,17 +1,16 @@
 @import "src/assets/scss/define";
 
 .header {
-  padding: j(60) 0 0;
+  padding: j(20) 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .logo {
-    width: j(120);
-    height: j(120);
-    background: $color-primary;
+    width: j(200);
+    height: j(200);
     border-radius: 50%;
-    margin-bottom: j(40);
+    margin-bottom: j(20);
   }
 
   .title {

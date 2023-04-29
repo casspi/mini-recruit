@@ -4,6 +4,7 @@ import './index.scss'
 import './index.wxml'
 
 import WowPage from 'wow-wx/lib/page'
+import {isProd} from "../../../config/api.config";
 
 new WowPage({
   mixins: [
@@ -39,7 +40,7 @@ new WowPage({
       scene: `recruitCode=${userInfo.recruitCode}`,
       page: 'pages/login/index',
       check_path: false,// 是否校验页面存在
-      env_version: 'develop'
+      env_version: isProd? 'release':'trial'
     }, {method: 'get'}).then(res => {
       if (res) {
         // 通过 SelectorQuery 获取 Canvas 节点
@@ -50,10 +51,10 @@ new WowPage({
             size: true,
           })
           .exec(this.init.bind(this))
+        this.setData({
+          codeUrl: res
+        })
       }
-      this.setData({
-        codeUrl: res
-      })
     })
   },
   // 单位转换
@@ -217,7 +218,7 @@ new WowPage({
   },
   shareGetConfig() {
     return {
-      title: '蚂蚁招募',
+      title: '寻毅问药',
       path: this.shareStringify({to: 'login_index', recruitCode: this.data.userInfo.recruitCode})
     }
   },

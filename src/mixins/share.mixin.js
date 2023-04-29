@@ -36,7 +36,7 @@ export default {
 
   onShareAppMessage(options) {
     return Object.assign({
-      title: '蚂蚁招募',
+      title: '寻毅问药',
       path: 'pages/home/index',
       // imageUrl: s('icon-share.jpg'),
     }, this.shareGetConfig(options))

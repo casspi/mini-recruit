@@ -204,7 +204,7 @@
       class="btn btn-primary"
       bindtap="jumpPageOrFireFn"
       data-url="login_index">
-      <text>立即加入蚂蚁招募</text>
+      <text>立即加入寻毅问药</text>
     </view>
   </view>
   <view class="ios-seat"></view>

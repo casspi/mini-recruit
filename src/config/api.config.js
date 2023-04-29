@@ -94,12 +94,6 @@ export default {
   //文件上传
   FILE_UPLOAD: 'mini/recruit/app/uploadFile',
 
-  // list
-  REQ_AUCTION_LIST: 'auction/una/index-page',
-
-  homeList: 'https://api.shuidichou.com/api/cf/pr/mini/recruit-project/list',
-  subjectList: 'https://api.shuidichou.com/api/cf/pr/mini/patient/search-info',
-
   // 隐私政策
   PRIVACY_POLICY: 'http://testchw.w1.luyouxia.net/pic/html/用户注册与隐私保护服务协议.html',
   // 用户协议

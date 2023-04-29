@@ -2,8 +2,8 @@
 
 <view class="login-page">
   <view class="header">
-    <image class="logo"/>
-    <text class="title">蚂蚁招募</text>
+    <image class="logo" src="/assets/images/logo.png"/>
+<!--    <text class="title">寻毅问药</text>-->
     <text wx:if="{{recruitCode}}" class="code" space="false">推荐码:{{recruitCode}}</text>
   </view>
   <view class="login-form">
@@ -72,7 +72,7 @@
         data-item="isAgreement">
     <view class="agreement-icon iconfont icon-xuanzhong"></view>
     <view class="agreement-text">
-      <text>已认真阅读蚂蚁招募</text>
+      <text>已认真阅读寻毅问药</text>
       <text class="strong"
             catchtap="jumpPageOrFireFn"
             data-url="webview_index"

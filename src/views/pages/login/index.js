@@ -89,7 +89,8 @@ new WowPage({
       method: 'get',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        cookie: `_gearframework_session=${_gearframework_session}`
+        '__gsessionId': `${_gearframework_session}`,
+        // cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(() => {
       return this.routerPush('register_index', {phone, code, recruitCode: recruitCode || inputCode})
@@ -101,7 +102,8 @@ new WowPage({
       method: 'post',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        cookie: `_gearframework_session=${_gearframework_session}`
+        '__gsessionId': `${_gearframework_session}`,
+        // cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(res => {
       const {__gsessionId} = res

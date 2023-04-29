@@ -6,6 +6,7 @@ import ApiConfig, {isProd} from 'src/config/api.config'
 
 const curl = new Curl({
   baseURI: 'http://testchw.w1.luyouxia.net/',
+  // baseURI: 'https://xywy.zhongyipharma.com/mini/',
   header: {
     'content-type': 'application/x-www-form-urlencoded'
   },
@@ -34,12 +35,11 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     let {
       __gsessionId,
     } = objUser
-    // if (data.AccessToken) {
-    //   AccessToken = data.AccessToken
-    //   delete data.AccessToken
-    // }
     if (__gsessionId) {
-      config.header = Object.assign({cookie: `_gearframework_session=${objUser.__gsessionId}`}, header)
+      config.header = Object.assign({
+        // cookie: `_gearframework_session=${objUser.__gsessionId}`,
+        __gsessionId: objUser.__gsessionId,
+      }, header)
     }
     if (typeof extend === 'function') {
       config.data = Object.assign(config.data, (extend(objUser) || {}))
