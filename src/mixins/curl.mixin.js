@@ -5,8 +5,8 @@ import Router from 'wow-wx/mixins/wx/router.mixin'
 import ApiConfig, {isProd} from 'src/config/api.config'
 
 const curl = new Curl({
-  baseURI: 'http://testchw.w1.luyouxia.net/',
-  // baseURI: 'https://xywy.zhongyipharma.com/mini/',
+  // baseURI: 'http://testchw.w1.luyouxia.net/',
+  baseURI: 'https://xywy.zhongyipharma.com/mini/',
   header: {
     'content-type': 'application/x-www-form-urlencoded'
   },
@@ -37,8 +37,7 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     } = objUser
     if (__gsessionId) {
       config.header = Object.assign({
-        // cookie: `_gearframework_session=${objUser.__gsessionId}`,
-        __gsessionId: objUser.__gsessionId,
+        'x-gsessionId': objUser.__gsessionId,
       }, header)
     }
     if (typeof extend === 'function') {

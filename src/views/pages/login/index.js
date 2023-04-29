@@ -22,8 +22,7 @@ new WowPage({
     inputCode: '',// 手输邀请码
     phone: '',
     code: '',
-    count: '',
-    _gearframework_session: '',
+    count: ''
   },
   onLoad(o) {
     console.log('decodeURIComponent', o)
@@ -48,11 +47,8 @@ new WowPage({
     const {phone, code} = this.data
     console.log(phone, code)
     this.countDown()
-    this.curl(this.data.api$.REQ_MSG_CODE, {phone}, {method: 'get'}).then(res => {
-      console.log(res)
-      this.setData({
-        _gearframework_session: res.token
-      })
+    this.curl(this.data.api$.REQ_MSG_CODE, {phone}, {method: 'get'}).then(() => {
+
     }).toast()
 
   },
@@ -80,7 +76,7 @@ new WowPage({
     })
   },
   handleRegister() {
-    const {phone, code, inputCode, recruitCode, _gearframework_session} = this.data
+    const {phone, code, inputCode, recruitCode} = this.data
     if (/[^\w\/]/ig.test(inputCode)) {
       this.modalToast('邀请码只能含数字、字母')
       return
@@ -89,21 +85,17 @@ new WowPage({
       method: 'get',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        '__gsessionId': `${_gearframework_session}`,
-        // cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(() => {
       return this.routerPush('register_index', {phone, code, recruitCode: recruitCode || inputCode})
     }).toast()
   },
   handleLogin() {
-    const {phone, code, _gearframework_session, api$} = this.data
+    const {phone, code, api$} = this.data
     this.curl(api$.REQ_LOGIN, {phone, code}, {
       method: 'post',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        '__gsessionId': `${_gearframework_session}`,
-        // cookie: `_gearframework_session=${_gearframework_session}`
       }
     }).then(res => {
       const {__gsessionId} = res
@@ -112,8 +104,6 @@ new WowPage({
       })
       wx.setStorageSync('home_refresh', '1')
       this.routerRoot('home_index')
-      // return this.curl(api$.REQ_MINE, {}, {method: 'get', loading: false}).then(res => {
-      // })
     }).toast()
   }
 
