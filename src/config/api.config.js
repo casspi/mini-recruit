@@ -95,9 +95,9 @@ export default {
   FILE_UPLOAD: 'mini/recruit/app/uploadFile',
 
   // 隐私政策
-  PRIVACY_POLICY: 'http://testchw.w1.luyouxia.net/pic/html/用户注册与隐私保护服务协议.html',
+  PRIVACY_POLICY: 'https://xywy.zhongyipharma.com/mini/pic/privacy.html',
   // 用户协议
-  USER_AGREEMENT: 'http://testchw.w1.luyouxia.net/pic/html/用户注册与隐私保护服务协议.html',
+  USER_AGREEMENT: 'https://xywy.zhongyipharma.com/mini/pic/register.html'
 
 
 }

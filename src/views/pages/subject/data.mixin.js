@@ -138,7 +138,7 @@ export default {
         fn: 'handleFile',
         limit: 3,
         tips: [
-          '注：支持上传Word、Excel'
+          '注：支持上传Word、Excel、PDF'
         ],
         use: [
           {nonempty: true, prompt: '请上传病例文档'},

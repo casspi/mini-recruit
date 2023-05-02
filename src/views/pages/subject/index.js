@@ -217,7 +217,7 @@ new WowPage({
     this.helperFnPromise('chooseMessageFile', {
       count: 1,
       type: 'file',
-      extension: ['xls', 'xlsx', 'doc', 'docx']
+      extension: ['xls', 'xlsx', 'doc', 'docx', 'pdf']
     }).then(res => {
       const tasks = res.tempFiles.map(temp => this.curl(api$.FILE_UPLOAD, {}, {
         loading: true,
@@ -312,11 +312,6 @@ new WowPage({
         message: '保存成功',
         icon: 'success'
       })
-      // const refPage = this.pagesGetByIndex(2)
-      // if (refPage && refPage.handleRefresh) {
-      //   refPage.handleRefresh()
-      // }
-      // this.routerRoot('enroll_index')
       this.jumpToEnroll()
 
     }).toast()
