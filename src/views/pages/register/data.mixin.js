@@ -38,7 +38,8 @@ export default {
         disabled: false,
         confirm: 'selectHandle',
         use: [
-          {nonempty: true, prompt: '请选择职业'}
+          {nonempty: true, prompt: '请选择职业'},
+          {rule: v => v.length, prompt: '请选择职业'},
         ],
         options: []
       },
