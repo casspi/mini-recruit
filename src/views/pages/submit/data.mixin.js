@@ -6,7 +6,7 @@ export default {
         key: 'objInput.patientName',
         is: 'field',
         label: '姓名',
-        maxlength: 10,
+        maxlength: 6,
         use: [
           {nonempty: true, prompt: '请输入姓名'}
         ],

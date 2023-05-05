@@ -8,7 +8,7 @@ export default {
         is: 'field',
         label: '患者姓名',
         labelSuffix: "(字母缩写)",
-        maxlength: 10,
+        maxlength: 6,
         disabled: false,
         use: [
           {nonempty: true, prompt: '请输入患者姓名'},

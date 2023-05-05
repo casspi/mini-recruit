@@ -25,7 +25,6 @@ new WowPage({
   onLoad(options) {
     this.routerGetParams(options)
     const {params$: {isDetail, patientId}, objInput} = this.data
-    console.log('data=>', this.data, patientId)
     if (patientId) {
       // 若是详情不可编辑
       if (isDetail) {
@@ -146,7 +145,6 @@ new WowPage({
   handlePics(item, e) {
     let {value, limit} = item
     const {pre, del} = this.inputParams(e)
-    console.log('handlePics=>', item, pre, del)
     if (typeof pre === 'number') {// 预览
       const urls = value.map(item => {
         return item.documentLocation
@@ -169,15 +167,12 @@ new WowPage({
       return
     }
     const {api$} = this.data
-    console.log(api$)
     this.imageChoose({
       count: limit - value.length,
       sourceType: ['album', 'camera'],
       sizeType: ['original'],
     }).then(res => {
-      const tasks = res.tempFilePaths.map(path => this.curl(api$.FILE_UPLOAD, {
-        // imageRate: '750X750',
-      }, {
+      const tasks = res.tempFilePaths.map(path => this.curl(api$.FILE_UPLOAD, {}, {
         loading: true,
         fn: 'uploadFile',
         filePath: path,
@@ -187,7 +182,11 @@ new WowPage({
     }).then(res => {
       // documentId, documentLocation,documentName
       this.setData({[`${item.key}.value`]: [...item.value, ...res[0]]})
-    }).toast()
+    }).toast(err => {
+      if (err && err.errMsg === 'chooseImage:fail cancel') {
+        return true
+      }
+    })
 
   },
   // 文件选择上传
@@ -228,7 +227,11 @@ new WowPage({
       return Promise.all(tasks)
     }).then(res => {
       this.setData({[`${item.key}.value`]: [...item.value, ...res[0]]})
-    }).toast()
+    }).toast(err => {
+      if (err && err.errMsg === 'chooseMessageFile:fail cancel') {
+        return true
+      }
+    })
   },
   // 文档预览
   previewFile(url) {
