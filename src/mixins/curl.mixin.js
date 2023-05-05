@@ -37,7 +37,7 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     } = objUser
     if (__gsessionId) {
       config.header = Object.assign({
-        'x-gsessionId': objUser.__gsessionId,
+        'x-gsessionId': __gsessionId,
       }, header)
     }
     if (typeof extend === 'function') {
