@@ -124,7 +124,7 @@ export default {
           {nonempty: true, prompt: '请上传病例图片'},
           {
             rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
-            prompt: '请上传病例图片'
+            prompt: '请上传病例图片或病例文档'
           },
         ],
         disabled: false,
@@ -144,7 +144,7 @@ export default {
           {nonempty: true, prompt: '请上传病例文档'},
           {
             rule: (v, obj) => obj.picList.value.length || obj.docList.value.length,
-            prompt: '请上传病例文档'
+            prompt: '请上传病例文档或病例文档'
           },
         ],
         disabled: false,

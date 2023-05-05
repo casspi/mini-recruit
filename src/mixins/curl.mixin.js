@@ -15,7 +15,7 @@ const curl = new Curl({
 // 日志输出
 curl.interceptors.request.use((config) => {
   const {url, method, data} = config
-  console.log(`${url} [${method}] 请求参数 => `, data, config)
+  console.log(`${url} [${method}] 请求参数 => `, data)
   return config
 })
 

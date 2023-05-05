@@ -79,7 +79,8 @@ new WowPage({
       if (res.docList && res.docList.length) {
         objInput.docList.value = res.docList
       }
-      objInput.patientDiseaseCondition.value = res.patientDiseaseCondition
+      // 备注
+      objInput.patientDiseaseCondition.value = res.patientDiseaseCondition || ''
 
       console.log('回显值=>', objInput)
       this.setData({
