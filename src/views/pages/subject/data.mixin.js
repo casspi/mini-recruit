@@ -136,7 +136,7 @@ export default {
         label: '病例文档',
         labelSuffix: "（病历图片或病历文档有一种上传即可）",
         fn: 'handleFile',
-        limit: 3,
+        limit: 5,
         tips: [
           '注：支持上传Word、Excel、PDF'
         ],

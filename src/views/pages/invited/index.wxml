@@ -20,12 +20,17 @@
           <view class="name">
             <text>{{item.name}}</text>
           </view>
+          <view class="type">
+            <text>{{item.typeName}}</text>
+          </view>
+        </view>
+        <view class="other">
           <view class="phone">
             <text>{{item.phone}}</text>
           </view>
-        </view>
-        <view class="time">
-          <text>{{item.createTime}}</text>
+          <view class="time">
+            <text>{{item.createTime}}</text>
+          </view>
         </view>
       </view>
     </view>

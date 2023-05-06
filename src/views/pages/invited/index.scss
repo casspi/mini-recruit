@@ -20,3 +20,16 @@ page {
   background-color: #fff;
   line-height: j(40);
 }
+
+.patient {
+  @extend %df;
+  @extend %jcs;
+  @extend %aic;
+  margin-bottom: j(20);
+}
+
+.other {
+  @extend %df;
+  @extend %jcs;
+  @extend %aic;
+}

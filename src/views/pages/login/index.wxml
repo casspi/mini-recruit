@@ -38,7 +38,7 @@
       </view>
     </view>
     <view class="form-item" wx:if="{{!recruitCode}}">
-      <view class="form-item__title">推荐码(注册时填)</view>
+      <view class="form-item__title">邀请码(注册时填)</view>
       <view class="form-item-cells form-item_after-title" >
         <view class="form-item-cells form-item_input">
           <input
