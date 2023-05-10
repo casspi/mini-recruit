@@ -20,7 +20,6 @@
     ></image>
   </view>
 </view>
-<!--<view class="c-fixed-seat"></view>-->
 <view class="c-fixed">
   <view class="btn-bar">
     <button class="btn btn-info" bindtap="saveHandle">保存图片</button>
@@ -33,7 +32,7 @@
   <canvas
     type="2d"
     id="canvas"
+    class="qr-canvas"
     style="{{'width: ' + (canvasW) + 'px; height: ' + (canvasH) + 'px;'}}"
-    hidden="true"
     ></canvas>
 </block>
