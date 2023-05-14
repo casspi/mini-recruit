@@ -223,7 +223,8 @@ new WowPage({
         loading: true,
         fn: 'uploadFile',
         filePath: temp.path,
-        name: 'file' || temp.name
+        name: 'file' || temp.name,
+        timeout: 5*60*1000
       }))
       return Promise.all(tasks)
     }).then(res => {

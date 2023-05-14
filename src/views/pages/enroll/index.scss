@@ -126,6 +126,7 @@ page {
 .patient {
   @extend %df;
   @extend %aic;
+  @extend %df1;
 }
 
 .name {
