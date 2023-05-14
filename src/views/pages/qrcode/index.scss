@@ -34,7 +34,7 @@ page {
     height: j(130);
     line-height: j(130);
     background-color: $color-primary;
-    font-size: j(44);
+    font-size: j(40);
     color: #fff;
     margin-left: j(48);
     @extend %fwb;
@@ -51,7 +51,7 @@ page {
     @extend %aic;
     margin-bottom: j(16);
     text:first-child {
-      font-size: j(48);
+      font-size: j(38);
     }
   }
 }

@@ -18,7 +18,7 @@ page {
     height: j(130);
     line-height: j(130);
     background-color: #fff;
-    font-size: j(44);
+    font-size: j(40);
     color: $color-primary;
     margin-left: j(48);
     @extend %fwb;
@@ -36,7 +36,11 @@ page {
     @extend %aic;
     margin-bottom: j(16);
     text:first-child {
-      font-size: j(48);
+      @extend %twno;
+      display: block;
+      font-size: j(36);
+      max-width: j(400);
+      word-break: break-all;
     }
   }
 }

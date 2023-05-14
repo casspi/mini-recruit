@@ -153,12 +153,12 @@ new WowPage({
     // 头像文案
     ctx.textBaseline = 'middle'
     ctx.textAlign = 'center'
-    ctx.font = `${this.rpx2px(44)}px bold`
+    ctx.font = `${this.rpx2px(40)}px bold`
     ctx.fillStyle = '#fff'
     ctx.fillText(userInfo.nameInitial, this.rpx2px(150), this.rpx2px(116));
 
     // 用户名
-    ctx.font = `${this.rpx2px(44)}px normal`
+    ctx.font = `${this.rpx2px(38)}px normal`
     ctx.fillStyle = '#000'
     ctx.textAlign = 'left'
     ctx.fillText(userInfo.name, this.rpx2px(240), this.rpx2px(80));
