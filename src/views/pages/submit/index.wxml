@@ -34,7 +34,7 @@
       catchtap="inputHandle"
       data-value="{{ !isAgreement }}"
       data-item="isAgreement">
-  <view class="agreement-icon iconfont icon-xuanzhong"></view>
+  <view class="agreement-icon iconfont {{ isAgreement? 'icon-xuanzhong':'icon-radio' }}"></view>
   <view class="agreement-text">
     <text>已认真阅读并同意</text>
     <text class="strong"

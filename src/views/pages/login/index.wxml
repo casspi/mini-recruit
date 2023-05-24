@@ -3,7 +3,6 @@
 <view class="login-page">
   <view class="header">
     <image class="logo" src="/assets/images/logo.png"/>
-<!--    <text class="title">寻毅问药</text>-->
     <text wx:if="{{recruitCode}}" class="code" space="false">推荐码:{{recruitCode}}</text>
   </view>
   <view class="login-form">
@@ -70,7 +69,7 @@
         bindtap="inputHandle"
         data-value="{{ !isAgreement }}"
         data-item="isAgreement">
-    <view class="agreement-icon iconfont icon-xuanzhong"></view>
+    <view class="agreement-icon iconfont {{ isAgreement? 'icon-xuanzhong':'icon-radio' }} "></view>
     <view class="agreement-text">
       <text>已认真阅读寻毅问药</text>
       <text class="strong"
