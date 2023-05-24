@@ -3,6 +3,7 @@ import Loading from 'wow-wx/mixins/wx/loading.mixin'
 import User from 'wow-wx/mixins/utils/user.mixin'
 import Router from 'wow-wx/mixins/wx/router.mixin'
 import ApiConfig, {isProd} from 'src/config/api.config'
+import {resetTabItemIndex} from 'src/mixins/tabItemTap.mixin'
 
 const curl = new Curl({
   // baseURI: 'http://testchw.w1.luyouxia.net/',
@@ -46,6 +47,7 @@ curl.interceptors.request.use((config) => new Promise((resolve, reject) => {
     if (useAuth && (!config.header || !config.header.AccessToken)) {
       return reject('')
     }
+    console.log('request.config.header=>', config.header)
     resolve(config)
   })
 }))
@@ -138,6 +140,7 @@ function gotoLogin() {
     if (route === 'pages/login/index') return
     User.userLogout().finally(() => {
       if (route !== 'pages/home/index') {
+        resetTabItemIndex()
         // 如果是其他页面 先切回首页
         Router.routerRoot('home_index', {}, true)
       }

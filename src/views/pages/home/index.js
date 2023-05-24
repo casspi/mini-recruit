@@ -80,16 +80,17 @@ new WowPage({
     }
   },
   onLoad(o) {
-    console.log(o)
+    console.log('home.onLoad=>',o)
     this.shareHandle(o)
     this.handleRefresh()
   },
   onShow() {
+    console.log("home.onShow", this)
     // 登录回来后刷新接口
     this.userGet().then(res => {
-      wx.showTabBar()
+      wx.showTabBar({})
     }).catch(() => {
-      wx.hideTabBar()
+      wx.hideTabBar({})
     })
     const refresh = wx.getStorageSync('home_refresh')
     wx.removeStorageSync('home_refresh')

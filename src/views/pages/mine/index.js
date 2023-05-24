@@ -28,7 +28,7 @@ new WowPage({
     ],
     userInfo: {}
   },
-  tabItemTapCallback() {
+  onShow() {
     this.getDetail()
   },
   getDetail() {
