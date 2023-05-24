@@ -58,7 +58,7 @@ new WowPage({
       projectId: item.projectId
     }, {method: 'get'}).then(res => {
       this.getDetail()
-    })
+    }).toast()
   },
   billHandle(e) {
     const {item, disabled} = this.inputParams(e)
