@@ -60,6 +60,7 @@ page {
   padding: 0 j(30) j(30);
   width: 100%;
   @extend %bsb;
+  @extend %oh;
 }
 
 .title {

@@ -28,6 +28,10 @@ new WowComponent({
     useControl: {
       type: Boolean,
       value: false
+    },
+    swiperVertical: {
+      type: Boolean,
+      value: false
     }
   },
   methods: {

@@ -10,9 +10,10 @@
     class="wow-tabs-content"
     bindchange="handleChange"
     current="{{ value }}"
-    duration="300"
+    duration="100"
+    vertical="{{ swiperVertical }}"
   >
-    <swiper-item wx:for="{{ tabs }}" wx:key="index">
+    <swiper-item wx:for="{{ tabs }}" wx:key="index" style='height: 800px'>
       <slot name="{{ index }}"></slot>
     </swiper-item>
   </swiper>

@@ -2,6 +2,7 @@
   "navigationBarTitleText": "项目列表",
   "usingComponents": {
     "wow-scroll": "/components/wow-scroll/index",
-    "wow-end": "/components/wow-end/index"
+    "wow-end": "/components/wow-end/index",
+    "wow-skeleton": "/components/wow-skeleton/index"
   }
 }

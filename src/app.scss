@@ -109,6 +109,14 @@ button::after {
   color: $color-primary;
 }
 
+.c-flex1 {
+  @extend %df1;
+}
+
+.c-h100 {
+  height: 100%;
+}
+
 // 表单按钮组
 .btn-bar {
   height: j(120);

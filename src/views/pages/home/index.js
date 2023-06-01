@@ -80,7 +80,7 @@ new WowPage({
     }
   },
   onLoad(o) {
-    console.log('home.onLoad=>',o)
+    console.log('home.onLoad=>', o)
     this.shareHandle(o)
     this.handleRefresh()
   },

@@ -36,7 +36,14 @@
     </view>
   </view>
 </view>
+<wow-skeleton
+  bindrefresh="pagingRefresh"
+  error="{{ error }}"
+  wx:if="{{ pagingTotal <= 0 }}"
+  is-loading="{{ pagingTotal === -1 }}"
+></wow-skeleton>
 <wow-scroll
+  wx:else
   id="wowScroll"
   bindscrolltolower="pagingLoad"
   bindrefresh="pagingRefresh"
