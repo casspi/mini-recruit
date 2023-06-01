@@ -25,15 +25,17 @@ new WowPage({
   getDetail() {
     let {api$, objInput, cityList} = this.data
     this.curl(api$.REQ_MINE_INFO, {}, {method: 'get'}).then(res => {
-      const {name, gender, areaIdList = [], diseaseIds, provinceId, cityId, typeName, type} = res
+      const {name, gender, areaIdList = [], diseaseIds = [], provinceId, cityId, typeName, type} = res
       objInput.name.value = name
       objInput.gender.value = gender
       objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value))
       const province = cityList.find(o => o.value === provinceId)
       const city = province ? province.children.find(o => o.value === cityId) : null
-      objInput.city.value = [{
-        province, city
-      }]
+      if(province){
+        objInput.city.value = [{
+          province, city
+        }]
+      }
       objInput.userType.value = typeName
       // 服务区域回显
       const area = []
