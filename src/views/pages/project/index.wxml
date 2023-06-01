@@ -1,165 +1,314 @@
 <wxs src="/wxs/filter.wxs" module="filter"/>
 
-<view
-  class="tabs">
-  <view
-    class="tabs-item {{ active === index && 'is-active'}}"
-    wx:for="{{ tabs }}"
-    wx:key="index"
-    data-item="{{index}}"
-    bindtap="jupHandle"
-  >
-    <text>{{item}}</text>
+<wow-tabs
+  class="c-flex1"
+  bindchange="inputHandle"
+  data-item="current"
+  value="{{ current }}"
+  tabs="{{ arrTabs }}">
+  <view slot="0" class="tab-view">
+    <view class="name">
+      <text>{{detailInfo.studyFullName? '【'+detailInfo.studyFullName+'】':''}}{{detailInfo.projectName}}</text>
+    </view>
+    <view class="title">
+      <text>项目基本信息</text>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <text>实验分期</text>
+      </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectTrialPeriod || 'NA'}}</text>
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <text>适应症</text>
+      </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectIndication || 'NA'}}</text>
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <text>实验名称</text>
+      </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectTrialName || 'NA'}}</text>
+      </view>
+    </view>
+    <view class="title">
+      <text>报名材料</text>
+    </view>
+    <view class="info-item">
+      <view class="info-value">
+        <text>{{detailInfo.projectEnrollMaterial || 'NA'}}</text>
+      </view>
+    </view>
   </view>
-</view>
-<view class="detail">
-  <scroll-view
-    style="height: 100%"
-    scroll-y="true">
-    <view wx:if="{{active === 0}}" class="tab-view">
-      <view class="name">
-        <text>{{detailInfo.studyFullName? '【'+detailInfo.studyFullName+'】':''}}{{detailInfo.projectName}}</text>
+  <view slot="1" class="tab-view">
+    <view class="info-item">
+      <view class="info-label">
+        <text>实验药组</text>
       </view>
-      <view class="title">
-        <text>项目基本信息</text>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>实验分期</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectTrialPeriod || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>适应症</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectIndication || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>实验名称</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectTrialName || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="title">
-        <text>报名材料</text>
-      </view>
-      <view class="info-item">
-        <view class="info-value">
-          <text>{{detailInfo.projectEnrollMaterial || 'NA'}}</text>
-        </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectTrialMedicine || 'NA'}}</text>
       </view>
     </view>
-    <view wx:if="{{active === 1}}" class="tab-view">
-      <view class="info-item">
-        <view class="info-label">
-          <text>实验药组</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectTrialMedicine || 'NA'}}</text>
-        </view>
+    <view class="info-item">
+      <view class="info-label">
+        <text>对照药组</text>
       </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>对照药组</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectContrastMedicine || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>药物介绍</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectMedicineInfo || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="info-item">
-        <view class="info-label">
-          <text>用药介绍</text>
-        </view>
-        <view class="info-value">
-          <text>{{detailInfo.projectMedicineUse || 'NA'}}</text>
-        </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectContrastMedicine || 'NA'}}</text>
       </view>
     </view>
-    <view wx:if="{{active === 2}}" class="tab-view">
-      <view class="title">
-        <text>简要入排</text>
+    <view class="info-item">
+      <view class="info-label">
+        <text>药物介绍</text>
       </view>
-      <view class="info-item">
-        <view class="info-value">
-          <text>{{detailInfo.projectAccessSimple || 'NA'}}</text>
-        </view>
-      </view>
-      <view class="title">
-        <text>完整入选标准</text>
-      </view>
-      <view class="info-item">
-        <view class="info-value">
-          <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete || 'NA')}}</text>
-        </view>
-      </view>
-      <view class="title">
-        <text>完整排除标准</text>
-      </view>
-      <view class="info-item">
-        <view class="info-value">
-          <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete) || 'NA'}}</text>
-        </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectMedicineInfo || 'NA'}}</text>
       </view>
     </view>
-    <view wx:if="{{active === 3}}" class="tab-view">
-      <view
-        class="tab-title"
-        bindtap="jumpPageOrFireFn"
-        data-params="{{ {projectId: params$.projectId} }}"
-        data-url="hospitallog_index">
-        <text>研究中心</text>
-        <view class="more">
-          <text>查看更多</text>
-          <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
+    <view class="info-item">
+      <view class="info-label">
+        <text>用药介绍</text>
+      </view>
+      <view class="info-value">
+        <text>{{detailInfo.projectMedicineUse || 'NA'}}</text>
+      </view>
+    </view>
+  </view>
+  <view slot="2" class="tab-view">
+    <view class="title">
+      <text>简要入排</text>
+    </view>
+    <view class="info-item">
+      <view class="info-value">
+        <text>{{detailInfo.projectAccessSimple || 'NA'}}</text>
+      </view>
+    </view>
+    <view class="title">
+      <text>完整入选标准</text>
+    </view>
+    <view class="info-item">
+      <view class="info-value">
+        <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete || 'NA')}}</text>
+      </view>
+    </view>
+    <view class="title">
+      <text>完整排除标准</text>
+    </view>
+    <view class="info-item">
+      <view class="info-value">
+        <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete) || 'NA'}}</text>
+      </view>
+    </view>
+  </view>
+  <view slot="3" class="tab-view">
+    <view
+      class="tab-title"
+      bindtap="jumpPageOrFireFn"
+      data-params="{{ {projectId: params$.projectId} }}"
+      data-url="hospitallog_index">
+      <text>研究中心</text>
+      <view class="more">
+        <text>查看更多</text>
+        <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>
+      </view>
+    </view>
+    <view
+      class="c-item"
+      wx:for="{{ detailInfo.projectHospitalVOList }}"
+      wx:key="index">
+      <view class="city">
+        <view class="iconfont icon-dingwei"></view>
+        <view>
+          <text>{{item.areaName}}</text>
         </view>
       </view>
       <view
-        class="c-item"
-        wx:for="{{ detailInfo.projectHospitalVOList }}"
-        wx:key="index">
-        <view class="city">
-          <view class="iconfont icon-dingwei"></view>
+        wx:for="{{item.detailVOList}}"
+        wx:key="i"
+        wx:for-item="hospital"
+        wx:for-index="i"
+        class="hospital">
+        <view class="status {{hospital.statusName === '已启动'?'status-1':'status-2'}}">
+          <text>{{hospital.statusName}}</text>
+        </view>
+        <view class="detail">
           <view>
-            <text>{{item.areaName}}</text>
+            <text>{{hospital.hospitalName}}</text>
           </view>
-        </view>
-        <view
-          wx:for="{{item.detailVOList}}"
-          wx:key="i"
-          wx:for-item="hospital"
-          wx:for-index="i"
-          class="hospital">
-          <view class="status {{hospital.statusName === '已启动'?'status-1':'status-2'}}">
-            <text>{{hospital.statusName}}</text>
-          </view>
-          <view class="detail">
-            <view>
-              <text>{{hospital.hospitalName}}</text>
-            </view>
-            <view class="range">
-              <text>招募范围：{{hospital.recruitRangeName}}</text>
-            </view>
+          <view class="range">
+            <text>招募范围：{{hospital.recruitRangeName}}</text>
           </view>
         </view>
       </view>
     </view>
-  </scroll-view>
-</view>
+  </view>
+</wow-tabs>
+<!--<view-->
+<!--  class="tabs">-->
+<!--  <view-->
+<!--    class="tabs-item {{ active === index && 'is-active'}}"-->
+<!--    wx:for="{{ tabs }}"-->
+<!--    wx:key="index"-->
+<!--    data-item="{{index}}"-->
+<!--    bindtap="jupHandle"-->
+<!--  >-->
+<!--    <text>{{item}}</text>-->
+<!--  </view>-->
+<!--</view>-->
+<!--<view class="detail">-->
+<!--  <scroll-view-->
+<!--    style="height: 100%"-->
+<!--    scroll-y="true">-->
+<!--    <view wx:if="{{active === 0}}" class="tab-view">-->
+<!--      <view class="name">-->
+<!--        <text>{{detailInfo.studyFullName? '【'+detailInfo.studyFullName+'】':''}}{{detailInfo.projectName}}</text>-->
+<!--      </view>-->
+<!--      <view class="title">-->
+<!--        <text>项目基本信息</text>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>实验分期</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectTrialPeriod || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>适应症</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectIndication || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>实验名称</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectTrialName || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="title">-->
+<!--        <text>报名材料</text>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectEnrollMaterial || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </view>-->
+<!--    <view wx:if="{{active === 1}}" class="tab-view">-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>实验药组</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectTrialMedicine || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>对照药组</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectContrastMedicine || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>药物介绍</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectMedicineInfo || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-label">-->
+<!--          <text>用药介绍</text>-->
+<!--        </view>-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectMedicineUse || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </view>-->
+<!--    <view wx:if="{{active === 2}}" class="tab-view">-->
+<!--      <view class="title">-->
+<!--        <text>简要入排</text>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-value">-->
+<!--          <text>{{detailInfo.projectAccessSimple || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="title">-->
+<!--        <text>完整入选标准</text>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-value">-->
+<!--          <text>{{ filter.lineFeedFilter(detailInfo.projectAccessComplete || 'NA')}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view class="title">-->
+<!--        <text>完整排除标准</text>-->
+<!--      </view>-->
+<!--      <view class="info-item">-->
+<!--        <view class="info-value">-->
+<!--          <text>{{ filter.lineFeedFilter(detailInfo.projectExclusionComplete) || 'NA'}}</text>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </view>-->
+<!--    <view wx:if="{{active === 3}}" class="tab-view">-->
+<!--      <view-->
+<!--        class="tab-title"-->
+<!--        bindtap="jumpPageOrFireFn"-->
+<!--        data-params="{{ {projectId: params$.projectId} }}"-->
+<!--        data-url="hospitallog_index">-->
+<!--        <text>研究中心</text>-->
+<!--        <view class="more">-->
+<!--          <text>查看更多</text>-->
+<!--          <view class="c-arrow right" wx:if="{{!item.hideArrow}}"></view>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--      <view-->
+<!--        class="c-item"-->
+<!--        wx:for="{{ detailInfo.projectHospitalVOList }}"-->
+<!--        wx:key="index">-->
+<!--        <view class="city">-->
+<!--          <view class="iconfont icon-dingwei"></view>-->
+<!--          <view>-->
+<!--            <text>{{item.areaName}}</text>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--        <view-->
+<!--          wx:for="{{item.detailVOList}}"-->
+<!--          wx:key="i"-->
+<!--          wx:for-item="hospital"-->
+<!--          wx:for-index="i"-->
+<!--          class="hospital">-->
+<!--          <view class="status {{hospital.statusName === '已启动'?'status-1':'status-2'}}">-->
+<!--            <text>{{hospital.statusName}}</text>-->
+<!--          </view>-->
+<!--          <view class="detail">-->
+<!--            <view>-->
+<!--              <text>{{hospital.hospitalName}}</text>-->
+<!--            </view>-->
+<!--            <view class="range">-->
+<!--              <text>招募范围：{{hospital.recruitRangeName}}</text>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
+<!--    </view>-->
+<!--  </scroll-view>-->
+<!--</view>-->
 <view class="c-fixed-seat"></view>
 <view class="c-fixed">
   <view class="btn-bar">

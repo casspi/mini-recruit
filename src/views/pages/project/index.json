@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "项目详情"
+  "navigationBarTitleText": "项目详情",
+  "usingComponents": {
+    "wow-tabs": "/components/wow-tabs/index"
+  }
 }
