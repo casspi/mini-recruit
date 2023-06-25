@@ -1,4 +1,4 @@
-<view class="c-block">
+<view class="c-block page-view">
   <view class="user">
     <text class="user-avatar">{{userInfo.nameInitial}}</text>
     <view class="user-detail">

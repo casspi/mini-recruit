@@ -27,7 +27,7 @@ button::after {
   width: j(702);
   min-height: j(40);
   border-radius: j(20);
-  margin: j(40) auto 0;
+  margin: 0 auto;
   @extend %bfff;
 }
 

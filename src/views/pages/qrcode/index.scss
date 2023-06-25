@@ -2,8 +2,10 @@
 
 page {
   background-color: $page-bg;
+  padding-top: j(40);
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
 }
 
 // 用户信息
@@ -87,7 +89,7 @@ page {
   }
 }
 
-.qr-canvas{
-  left:9000px;
-  position:fixed;
+.qr-canvas {
+  left: 9000px;
+  position: fixed;
 }
