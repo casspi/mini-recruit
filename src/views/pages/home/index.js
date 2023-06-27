@@ -33,7 +33,7 @@ new WowPage({
         name: '疾病',
         key: 'params$.objFilter.disease',
         value: {},
-        defaultValue: '',
+        defaultValue: {},
         options: [],
       },
       area: {

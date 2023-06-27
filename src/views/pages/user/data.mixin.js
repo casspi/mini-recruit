@@ -80,7 +80,11 @@ export default {
         labelKey: 'label',
         formatter: 'formatArrayJoin',
         options: [],
-        confirm: 'selectHandle'
+        confirm: 'selectHandle',
+        use: [
+          {nonempty: true, prompt: '请选择疾病'},
+          {rule: v => v.length, prompt: '请选择疾病'},
+        ]
       },
     },
     // 城市数据

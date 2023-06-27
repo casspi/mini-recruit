@@ -34,8 +34,8 @@ new WowComponent({
     },
     parentHandle(e) {
       const {item: {value: pValue, label: pLabel, children}} = this.inputParams(e)
-      console.log(pValue, pLabel, children)
       const {value = {}, key} = this.data
+      console.log(pValue, pLabel, children, value)
       Object.assign(value, {
         parent: {
           label: pLabel,
