@@ -31,7 +31,7 @@ new WowPage({
       objInput.disease.value = objInput.disease.options.filter(o => diseaseIds.includes(o.value))
       const province = cityList.find(o => o.value === provinceId)
       const city = province ? province.children.find(o => o.value === cityId) : null
-      if(province){
+      if (province) {
         objInput.city.value = [{
           province, city
         }]
@@ -112,7 +112,9 @@ new WowPage({
     // 提取参数
     let {allocateAreaId = [], city, disease, gender, name} = this.validateInput(this.data.objInput)
     allocateAreaId = allocateAreaId.map(item => item.city.value).join(',')
-    disease = disease.map(item => item.value).join(',')
+    if (Array.isArray(disease)) {
+      disease = disease.map(item => item.value).join(',')
+    }
     const {api$} = this.data
     this.curl(api$.REQ_MINE_INFO_CHANGE, {
       allocateAreaId,
