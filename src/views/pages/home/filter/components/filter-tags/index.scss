@@ -44,22 +44,26 @@
 .tag-item {
   width: j(140);
   padding: 0 j(20);
+  background: #f6f6f6;
+  height: j(60);
+  margin-bottom: j(20);
+  border-radius: j(6);
   @extend %bsb;
   @extend %df;
   @extend %aic;
   @extend %c6;
 
+  &:not(:nth-child(4n)) {
+    margin-right: j(20);
+  }
+
   .tag-text {
     text-align: center;
     width: 100%;
-    @extend %twno;
+    //height: 100%;
+    line-height: 1;
+    @include twno(2)
   }
-
-  background: #f6f6f6;
-  height: j(60);
-  margin-bottom: j(20);
-  margin-right: j(20);
-  border-radius: j(6);
 
   &.is-active {
     color: $color-primary;
