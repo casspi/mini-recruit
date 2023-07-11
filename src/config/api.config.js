@@ -18,6 +18,7 @@ export default {
 
   // 首页筛选-疾病
   DIC_FILTER_DISEASE: 'mini/recruit/dic/listDiseaseSelect',
+  DIC_FILTER_DISEASE_BY_LEVEL: 'mini/recruit/dic/listDiseaseSelectByLevel',
   // 首页筛选-地区
   DIC_FILTER_AREA: 'mini/recruit/dic/listAreaSelect',
   // 首页筛选-研究中心

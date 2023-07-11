@@ -35,6 +35,7 @@ new WowPage({
         value: {},
         defaultValue: {},
         options: [],
+        subOptions: []
       },
       area: {
         name: '地区',

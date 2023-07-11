@@ -19,19 +19,18 @@ new WowPage({
     this.routerGetParams(o)
     let {api$, params$} = this.data
     // 疾病字典
-    this.curl(api$.DIC_FILTER_DISEASE, {}, {method: 'get'}).then((res = []) => {
-      const omitDisease = ["全部肿瘤", "其他肿瘤", "全部慢病", "其他慢病"]
-      res = res.filter(o => !omitDisease.includes(o.label))
+    this.curl(api$.DIC_FILTER_DISEASE_BY_LEVEL, {}, {method: 'get'}).then((res = []) => {
       let options = res.map(item => {
         // 有些疾病没有children 这里补个默认的
         if (!item.children || !item.children.length) {
           const {value, label, level} = item
-          item.children = [{value, label, level}]
+          item.children = [{value, label, level, children: [{value, label}]}]
         }
+        item.topLevel = true
         return item
       })
       this.setData({
-        'params$.objFilter.disease.options': options
+        'params$.objFilter.disease.options': options,
       })
     })
     // 地区字典

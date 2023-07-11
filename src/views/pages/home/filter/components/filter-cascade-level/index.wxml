@@ -1,0 +1,34 @@
+<wxs src="/wxs/filter.wxs" module="filter"/>
+
+<view class="warp">
+  <view class="parent">
+    <block wx:for="{{ options }}" wx:key="index">
+        <view class="top-item" bindtap="handleTopSelect" data-item="{{item}}">
+          <text>{{item.label}}</text>
+          <view class="c-arrow right {{value.currentTop.value === item.value && 'bottom'}}"></view>
+        </view>
+        <view class="parent-item-list {{value.currentTop.value === item.value && 'is-active'}}">
+          <view
+            wx:for="{{ item.children }}"
+            wx:key="index"
+            wx:for-item="pItem"
+            class="parent-item {{value.parent.value === pItem.value && 'is-active' }}"
+            data-item="{{pItem}}"
+            bindtap="parentHandle">
+            <text>{{pItem.label}}</text>
+            <view class="iconfont icon-duihao"></view>
+          </view>
+        </view>
+    </block>
+  </view>
+  <view class="children">
+    <view
+      class="children-item {{item.value === value.children.value && 'is-active'}}"
+      wx:for="{{value.childrenOptions}}"
+      wx:key="index" data-item="{{item}}"
+      bindtap="childrenHandle">
+      <text>{{item.label}}</text>
+      <view class="iconfont icon-duihao"></view>
+    </view>
+  </view>
+</view>

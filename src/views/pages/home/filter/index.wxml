@@ -22,13 +22,13 @@
       bindselect="handleSelect"
       options="{{params$.objFilter.sort.options}}"
     ></filter-sort>
-    <filter-cascade
+    <filter-cascade-level
       wx:if="{{ params$.active === 'disease' }}"
       key="{{params$.objFilter.disease.key}}"
       value="{{params$.objFilter.disease.value}}"
       bindselect="handleSelect"
       options="{{params$.objFilter.disease.options}}"
-    ></filter-cascade>
+    ></filter-cascade-level>
     <filter-cascade
       wx:if="{{ params$.active === 'area' }}"
       key="{{params$.objFilter.area.key}}"
