@@ -97,7 +97,9 @@ new WowPage({
     wx.removeStorageSync('home_refresh')
     if (refresh === '1') this.handleRefresh()
   },
-
+  onShareTimeline() {
+    return this.onShareAppMessage()
+  },
   tabItemTapCallback() {
     this.handleRefresh()
   },
