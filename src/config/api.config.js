@@ -3,7 +3,7 @@ export const isProd = (() => {
   try {
     if (wx.getAccountInfoSync) {
       const accountInfo = wx.getAccountInfoSync()
-      const {envVersion} = accountInfo.miniProgram
+      const { envVersion } = accountInfo.miniProgram
       // develop trial release
       if (['develop', 'trial'].includes(envVersion)) {
         result = false
